@@ -151,6 +151,7 @@
     "@types/ws": "^8.18.1",
     "autoprefixer": "^10.4.21",
     "axe-core": "^4.8.0",
+    "cross-env": "^10.0.0",
     "cssnano": "^7.0.7",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.30",
