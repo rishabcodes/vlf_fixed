@@ -110,7 +110,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
 
       <div className="mt-4 bg-gray-200 rounded-full h-2">
         <div
-          className={`h-2 rounded-full transition-all duration-1000 ${color.replace('border-l-', 'bg-')}` style={{ width: `${Math.min(100, (animatedValue / (value * 1.2)) * 100)}%` }}
+          className={`h-2 rounded-full transition-all duration-1000 ${color.replace('border-l-', 'bg-')}`} style={{ width: `${Math.min(100, (animatedValue / (value * 1.2)) * 100)}%` }}
         />
       </div>
     </div>
@@ -226,7 +226,7 @@ const LivingMetrics: React.FC = () => {
         {metricConfigs.map((config, index) => (
           <MetricCard
             key={config.title}
-            title={config.title value={config.value}
+            title={config.title} value={config.value}
             previousValue={previousMetrics[Object.keys(data.metrics)[index] as keyof LiveMetrics]}
             format={config.format}
             icon={config.icon}
@@ -250,5 +250,3 @@ const LivingMetrics: React.FC = () => {
 };
 
 export default LivingMetrics;
-}
-}

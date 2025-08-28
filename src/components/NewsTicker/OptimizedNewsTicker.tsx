@@ -185,7 +185,7 @@ export const OptimizedNewsTicker = memo(({
                 index === currentIndex 
                   ? 'w-6 bg-primary' 
                   : 'w-1.5 bg-gray-600 hover:bg-gray-500'
-              }` aria-label={`Go to news item ${index + 1}`}
+              }`} aria-label={`Go to news item ${index + 1}`}
             />
           ))}
         </div>

@@ -42,9 +42,7 @@ export const Card: React.FC<CardProps> = ({
   const classes = `${baseClasses} ${variantClasses[variant]} ${paddingClasses[padding]} ${hoverClasses} ${className}`;
 
   const CardContent = (
-    <div
-      : { className={classes}
-    >
+    <div className={classes}>
       {children}
     </div>
   );
@@ -102,4 +100,3 @@ interface CardFooterProps {
 export const CardFooter: React.FC<CardFooterProps> = ({ children, className = '' }) => (
   <div className={`mt-6 pt-6 border-t border-neutral-200 ${className}`}>{children}</div>
 );
-}

@@ -242,7 +242,8 @@ className="mb-6"
                     type="radio"
                     name="contact"
                     value="phone"
-                    checked={formData.preferredContact === 'phone'} onChange={e => setFormData({ ...formData, preferredContact: e.target.value )}
+                    checked={formData.preferredContact === 'phone'}
+                    onChange={e => setFormData({ ...formData, preferredContact: e.target.value })}
               className="mr-2"
                   />
                   Phone Call
@@ -252,7 +253,8 @@ className="mb-6"
                     type="radio"
                     name="contact"
                     value="email"
-                    checked={formData.preferredContact === 'email'} onChange={e => setFormData({ ...formData, preferredContact: e.target.value )}
+                    checked={formData.preferredContact === 'email'}
+                    onChange={e => setFormData({ ...formData, preferredContact: e.target.value })}
               className="mr-2"
                   />
                   Email
@@ -262,7 +264,8 @@ className="mb-6"
                     type="radio"
                     name="contact"
                     value="text"
-                    checked={formData.preferredContact === 'text'} onChange={e => setFormData({ ...formData, preferredContact: e.target.value )}
+                    checked={formData.preferredContact === 'text'}
+                    onChange={e => setFormData({ ...formData, preferredContact: e.target.value })}
               className="mr-2"
                   />
                   Text Message
@@ -311,7 +314,4 @@ className="mb-6"
       </CardContent>
     </Card>
   );
-}
-}
-}
-}
+};

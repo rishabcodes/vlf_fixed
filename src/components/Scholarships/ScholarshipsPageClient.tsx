@@ -214,8 +214,6 @@ export default function ScholarshipsPageClient({ language = 'en' }: Scholarships
           {/* Animated Background */}
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-black to-secondary/10" />
-            <div className="absolute inset-0">
-            />
           </div>
 
           <div className="container mx-auto px-4 relative z-10">
@@ -488,3 +486,4 @@ export default function ScholarshipsPageClient({ language = 'en' }: Scholarships
       </div>
     </>
   );
+}

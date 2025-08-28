@@ -109,7 +109,9 @@ export function EventSchema({
     <>
       {schemas.map((schema, index) => (
         <Script
-          key={`event-schema-${pageType}-${index}` id={`event-schema-${pageType}-${index}` type="application/ld+json"
+          key={`event-schema-${pageType}-${index}`}
+          id={`event-schema-${pageType}-${index}`}
+          type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(schema),
           }}
@@ -276,6 +278,4 @@ export function EventDisplay({
       </div>
     </div>
   );
-}
-}
 }

@@ -203,7 +203,8 @@ export function BlogSEO({ post, isListingPage = false }: BlogSEOProps) {
           if (script.parentNode) {
             script.parentNode.removeChild(script);
           }
-        });
+        }
+      });
     };
   }, [post.title, structuredData, organizationSchema, faqSchema]);
 

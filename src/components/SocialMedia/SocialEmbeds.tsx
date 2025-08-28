@@ -34,7 +34,10 @@ export function FacebookPagePlugin({
       />
       <div 
         className="fb-page" 
-        data-href={pageUrl data-tabs={showPosts ? "timeline" : "" data-width={width} data-height={height}
+        data-href={pageUrl}
+        data-tabs={showPosts ? "timeline" : ""}
+        data-width={width}
+        data-height={height}
         data-small-header={smallHeader}
         data-adapt-container-width="true"
         data-hide-cover={hideCover}
@@ -251,7 +254,8 @@ export function LinkedInFollow({
     <>
       <script 
         type="IN/FollowCompany" 
-        data-id={companyId data-counter={counter}
+        data-id={companyId}
+        data-counter={counter}
       />
     </>
   );
@@ -337,7 +341,4 @@ export function SocialFeed({
       )}
     </div>
   );
-}
-}
-}
 }

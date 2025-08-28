@@ -275,4 +275,3 @@ export default function CaseDocuments({ caseId }: CaseDocumentsProps) {
     </div>
   );
 }
-}

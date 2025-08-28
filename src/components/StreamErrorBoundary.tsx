@@ -35,7 +35,9 @@ export class StreamErrorBoundary extends Component<Props, State> {
         logger.warn('Stream error caught by boundary:', error);
       } else {
         logger.error('Uncaught error:', error, errorInfo);
-      }}
+      }
+    }
+  }
 
   public override render() {
     if (this.state.hasError) {
@@ -65,7 +67,7 @@ export class StreamErrorBoundary extends Component<Props, State> {
   }
 }
 
-// Hook version for functional components
+// Hook for handling stream errors in functional components
 export function useStreamErrorHandler() {
   React.useEffect(() => {
     const handleError = (event: ErrorEvent) => {
@@ -79,8 +81,9 @@ export function useStreamErrorHandler() {
 
         if (process.env.NODE_ENV === 'development') {
           logger.warn('Stream error intercepted:', event.error);
-            }
-};
+        }
+      }
+    };
 
     window.addEventListener('error', handleError);
 
@@ -88,6 +91,4 @@ export function useStreamErrorHandler() {
       window.removeEventListener('error', handleError);
     };
   }, []);
-}
-}
 }

@@ -152,3 +152,4 @@ className="absolute top-10 -right-4 bg-[#C9974D] text-white px-6 py-3 rounded-fu
       </div>
     </div>
   );
+};

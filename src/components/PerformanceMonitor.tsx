@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { logger } from '@/lib/safe-logger';
 import EnhancedPerformanceMonitor from '@/lib/performance/enhanced-monitor';
 import WebVitalsOptimizer from '@/lib/performance/web-vitals-optimizer';
@@ -13,6 +13,9 @@ export default function PerformanceMonitor() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    
+    let performanceInterval: NodeJS.Timeout;
+    let memoryInterval: NodeJS.Timeout;
 
     // Initialize Enhanced Performance Monitor
     performanceMonitorRef.current = new EnhancedPerformanceMonitor();
@@ -41,8 +44,8 @@ export default function PerformanceMonitor() {
               warnings: report.summary.warnings,
               score: report.score,
             });
-              }
-};
+          }
+        };
 
       // Run check after initial load and on route changes
       setTimeout(runA11yCheck, 2000);
@@ -71,11 +74,12 @@ export default function PerformanceMonitor() {
             score,
             recommendations: recommendations.slice(0, 3), // Top 3 recommendations
           });
-            }
-};
+        }
+      }
+    };
 
     // Check performance every 30 seconds
-    const performanceInterval = setInterval(checkWebVitals, 30000);
+    performanceInterval = setInterval(checkWebVitals, 30000);
 
     // Monitor memory usage
     const monitorMemory = () => {
@@ -90,10 +94,11 @@ export default function PerformanceMonitor() {
             heapLimit: Math.round(memory.jsHeapSizeLimit / 1024 / 1024),
             usagePercentage: Math.round(memoryUsage),
           });
-            }
-};
+        }
+      }
+    };
 
-    const memoryInterval = setInterval(monitorMemory, 60000); // Check every minute
+    memoryInterval = setInterval(monitorMemory, 60000); // Check every minute
 
     // Monitor network conditions
     if ('connection' in navigator) {
@@ -112,8 +117,8 @@ export default function PerformanceMonitor() {
           logger.info('Slow connection detected, implementing optimizations');
           // Implement aggressive optimizations for slow connections
           document.documentElement.classList.add('slow-connection');
-            }
-};
+        }
+      };
 
       logNetworkInfo();
       connection.addEventListener('change', logNetworkInfo);
@@ -132,9 +137,9 @@ export default function PerformanceMonitor() {
 
       if (webVitalsOptimizerRef.current) {
         webVitalsOptimizerRef.current.cleanup();
-          }
-};
-  }, []);
+      }
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Report final metrics when component unmounts
   useEffect(() => {
@@ -146,8 +151,8 @@ export default function PerformanceMonitor() {
       if (webVitalsOptimizerRef.current) {
         const report = webVitalsOptimizerRef.current.generateReport();
         logger.info('Final Performance Report', { report });
-          }
-};
+      }
+    };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
 
@@ -157,7 +162,4 @@ export default function PerformanceMonitor() {
   }, []);
 
   return null;
-}
-}
-}
 }

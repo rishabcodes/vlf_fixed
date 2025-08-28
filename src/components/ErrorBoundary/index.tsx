@@ -53,8 +53,8 @@ export class ErrorBoundary extends Component<Props, State> {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
-                onClick={() => this.setState({ hasError: false })
-        className="px-6 py-3 bg-[#188bf6] text-white rounded-md font-semibold hover:bg-[#0e5ca8] transition-colors"
+                onClick={() => this.setState({ hasError: false })}
+                className="px-6 py-3 bg-[#188bf6] text-white rounded-md font-semibold hover:bg-[#0e5ca8] transition-colors"
               >
                 Try Again
               </button>
@@ -82,5 +82,4 @@ export class ErrorBoundary extends Component<Props, State> {
 
     return this.props.children;
   }
-}
 }

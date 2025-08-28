@@ -291,12 +291,12 @@ export const SSRSafeHeader: React.FC<SSRSafeHeaderProps> = ({
                 <div key={item.name}>
                   <Link
                     href={item.href}
-
-                className={`block px-3 py-2 text-base font-medium ${
+                    className={`block px-3 py-2 text-base font-medium ${
                       isActive(item.href)
                         ? 'text-primary bg-black/50'
                         : 'text-white hover:text-primary hover:bg-black/50'
-                    } transition-colors` onClick={() => setMobileMenuOpen(false)}
+                    } transition-colors`}
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>

@@ -50,7 +50,8 @@ export default function ClientPortalDashboard({ data }: { data: DashboardData })
         <StatCard
           title="Active Cases"
           value={data.cases.active}
-          subtitle={`${data.cases.total} total cases` href="/portal/cases?status=active"
+          subtitle={`${data.cases.total} total cases`}
+          href="/portal/cases?status=active"
           color="blue"
         />
         <StatCard
@@ -70,7 +71,8 @@ export default function ClientPortalDashboard({ data }: { data: DashboardData })
         <StatCard
           title="Balance Due"
           value={`$${data.billing.outstandingBalance.toLocaleString()}`}
-          subtitle={data.billing.nextPaymentDue ? `Due ${new Date(data.billing.nextPaymentDue.date).toLocaleDateString()}` : '' href="/portal/billing"
+          subtitle={data.billing.nextPaymentDue ? `Due ${new Date(data.billing.nextPaymentDue.date).toLocaleDateString()}` : ''}
+          href="/portal/billing"
           color="purple"
         />
       </div>
@@ -233,6 +235,4 @@ function QuickAction({ title, description, href, icon }: {
       </div>
     </Link>
   );
-}
-}
 }

@@ -89,8 +89,9 @@ export function DOMSafeWrapper({ children, fallback, onError }: DOMSafeWrapperPr
           errorMessage.includes('Cannot read') || errorMessage.includes('null is not an object');
         if (isCritical && !hasError) {
           setHasError(true);
-            }
-};
+        }
+      }
+    };
 
     window.addEventListener('error', handleError);
 
@@ -224,5 +225,4 @@ export function DOMSafeWrapper({ children, fallback, onError }: DOMSafeWrapperPr
       {children}
     </div>
   );
-}
 }

@@ -124,7 +124,8 @@ export default function PaymentHistory({ clientId }: PaymentHistoryProps) {
             <input
               type="date"
               id="start-date"
-              value={dateRange.start} onChange={e => setDateRange({ ...dateRange, start: e.target.value )}
+              value={dateRange.start}
+              onChange={e => setDateRange({ ...dateRange, start: e.target.value })}
               className="block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
           </div>
@@ -135,7 +136,8 @@ export default function PaymentHistory({ clientId }: PaymentHistoryProps) {
             <input
               type="date"
               id="end-date"
-              value={dateRange.end} onChange={e => setDateRange({ ...dateRange, end: e.target.value )}
+              value={dateRange.end}
+              onChange={e => setDateRange({ ...dateRange, end: e.target.value })}
               className="block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
           </div>
@@ -240,6 +242,4 @@ export default function PaymentHistory({ clientId }: PaymentHistoryProps) {
       )}
     </div>
   );
-}
-}
 }

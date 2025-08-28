@@ -207,13 +207,15 @@ className="relative group"
                     <div className="relative aspect-square bg-gray-100">
                       {post.mediaType === 'image' ? (
                         <Image
-                          src={post.mediaUrl alt="Social media post"
+                          src={post.mediaUrl}
+                          alt="Social media post"
                           fill
                           className="object-cover"
                         />
                       ) : post.mediaType === 'video' && post.platform === 'youtube' ? (
                         <iframe
-                          src={post.mediaUrl className="absolute inset-0 w-full h-full"
+                          src={post.mediaUrl}
+                          className="absolute inset-0 w-full h-full"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
                         />
@@ -336,6 +338,4 @@ className="p-3 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
       </div>
     </div>
   );
-}
-}
 }

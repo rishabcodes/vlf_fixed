@@ -109,9 +109,11 @@ export function BlogReadingProgress({ contentId }: { contentId: string }) {
                   reading_progress: milestone,
                 },
               });
-            }}
+            }
           }
-};
+        }
+      }
+    };
 
     const handleScroll = () => {
       requestAnimationFrame(trackReadingProgress);

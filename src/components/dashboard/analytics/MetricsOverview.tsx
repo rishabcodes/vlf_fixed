@@ -291,4 +291,3 @@ export function MetricsOverview({ metrics, isLoading = false }: MetricsOverviewP
     </div>
   );
 }
-}

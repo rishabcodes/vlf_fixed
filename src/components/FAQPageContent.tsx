@@ -469,8 +469,9 @@ export default function FAQPageContent({ language = 'en' }: FAQPageContentProps)
                     const windowWithChat = window as unknown as { openChatWidget?: () => void };
                     if (windowWithChat.openChatWidget) {
                       windowWithChat.openChatWidget();
-                    }}}
-
+                    }
+                  }
+                }}
                 className="inline-flex items-center gap-2 bg-primary-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-800 transition-colors"
               >
                 <MessageCircle className="w-5 h-5" />
@@ -478,7 +479,6 @@ export default function FAQPageContent({ language = 'en' }: FAQPageContentProps)
               </a>
               <a
                 href={`tel:${content[language].callNumber.replace(/-/g, '')}`}
-
                 className="inline-flex items-center gap-2 bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-600 transition-all"
               >
                 <Phone className="w-5 h-5" />
@@ -490,5 +490,4 @@ export default function FAQPageContent({ language = 'en' }: FAQPageContentProps)
       </div>
     </ModernPageWrapper>
   );
-}
 }

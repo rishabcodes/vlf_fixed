@@ -22,6 +22,8 @@ export function ResourceDiagnostics() {
               duration: resourceEntry.duration,
             });
           }
+        }
+      }
     });
 
     // Start observing resource timings

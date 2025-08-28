@@ -86,8 +86,9 @@ const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
           onEscapeKeyDown?.(event);
           if (!event.defaultPrevented) {
             onOpenChange(false);
-              }
-};
+          }
+        }
+      };
 
       if (open) {
         document.addEventListener('keydown', handleEscape);

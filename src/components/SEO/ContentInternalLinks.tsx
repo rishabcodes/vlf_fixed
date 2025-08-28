@@ -103,16 +103,18 @@ export function ContentInternalLinks({
               end: match.index + match[0].length,
               element: (
                 <Link
-                  key={`${mapping.link}-${match.index}` href={mapping.link}
-
-                className="text-primary hover:text-primary-300 underline font-medium"
+                  key={`${mapping.link}-${match.index}`}
+                  href={mapping.link}
+                  className="text-primary hover:text-primary-300 underline font-medium"
                 >
                   {match[0]}
                 </Link>
               ),
             });
             linkCount++;
-          }});
+          }
+        }
+      });
     });
 
     // Sort links by position
@@ -220,6 +222,4 @@ export function AutoLinkContent({
   };
 
   return <div className={`auto-linked-content ${className}`}>{processNode(children)}</div>;
-}
-}
 }

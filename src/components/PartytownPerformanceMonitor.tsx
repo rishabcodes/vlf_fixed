@@ -67,7 +67,8 @@ export function PartytownPerformanceMonitor() {
               workerThread: url.includes('~partytown'),
             });
           }
-        });
+        }
+      });
 
       observer.observe({ entryTypes: ['resource'] });
     };
@@ -90,5 +91,4 @@ export function PartytownPerformanceMonitor() {
   }, []);
 
   return null;
-}
 }

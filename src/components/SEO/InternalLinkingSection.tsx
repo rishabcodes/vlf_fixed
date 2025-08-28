@@ -129,4 +129,3 @@ export function InternalLinkingSection({
 
   return null;
 }
-}

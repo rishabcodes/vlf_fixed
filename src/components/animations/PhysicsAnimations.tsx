@@ -230,7 +230,9 @@ export function ElasticCollision({ className = '' }: { className?: string }) {
               const temp = ball1.vx;
               ball1.vx = ball2.vx;
               ball2.vx = temp;
-            }}
+            }
+          }
+        }
 
         return newBalls;
       });
