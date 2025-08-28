@@ -43,7 +43,7 @@ export default function ChildCustodyPage() {
       ],
     },
     {
-      title: "Father\'s Rights Protection',
+      title: "Father's Rights Protection",
       description: 'Equal parenting rights for fathers',
       icon: '👨‍👧‍👦',
       features: [

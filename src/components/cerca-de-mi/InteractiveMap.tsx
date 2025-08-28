@@ -259,7 +259,7 @@ export default function InteractiveMap({
         <img
           src={`https://maps.googleapis.com/maps/api/staticmap?center=${cityCoords.lat},${cityCoords.lng}&zoom=12&size=600x400&markers=color:red%7C${cityCoords.lat},${cityCoords.lng}&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''}`}
 
-                alt={`Map of ${city}` className="w-full h-full object-cover"
+                alt={`Map of ${city}`} className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 flex items-center justify-center bg-black/20">
           <p className="text-white bg-black/50 px-4 py-2 rounded">Interactive map unavailable</p>
@@ -283,5 +283,4 @@ export default function InteractiveMap({
                 className="w-full h-full" />
     </div>
   );
-}
 }

@@ -24,7 +24,7 @@ export default function EB2AdvancedDegreeNIWPage() {
     },
     {
       title: 'EB-2A Advanced Degree',
-      description: "Master\'s degree or Bachelor\'s plus 5 years',
+      description: "Master's degree or Bachelor's plus 5 years",
       icon: '🎓',
       features: [
         'Master\'s or higher degree',

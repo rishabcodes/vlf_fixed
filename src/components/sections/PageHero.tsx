@@ -40,7 +40,8 @@ export function PageHero({
       {backgroundImage && (
         <div
           className="absolute inset-0 z-0"
-         )`,
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -52,21 +53,15 @@ export function PageHero({
       {/* Animated Background Pattern */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[url('/images/justice-pattern.svg')] opacity-5" />
-        <div
-className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-white/5 blur-3xl"
-        />
-        <div
-className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-white/5 blur-3xl"
-        />
+        <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-white/5 blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-white/5 blur-3xl" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumbs */}
         {breadcrumbs && breadcrumbs.length > 0 && (
-          <nav
-className="mb-6"
-          >
+          <nav className="mb-6">
             <ol className="flex items-center space-x-2 text-sm">
               <li>
                 <Link href="/" className="text-white/70 hover:text-white transition-colors">
@@ -82,8 +77,7 @@ className="mb-6"
                     ) : (
                       <Link
                         href={crumb.href}
-
-                className="text-white/70 hover:text-white transition-colors"
+                        className="text-white/70 hover:text-white transition-colors"
                       >
                         {crumb.label}
                       </Link>
@@ -96,9 +90,7 @@ className="mb-6"
         )}
 
         {/* Main Content */}
-        <div
-className="text-center max-w-4xl mx-auto"
-        >
+        <div className="text-center max-w-4xl mx-auto">
           {/* Title */}
           <h1
             className={`font-black text-white ${compact ? 'text-4xl md:text-5xl' : 'text-5xl md:text-7xl'} mb-6`}
@@ -123,9 +115,7 @@ className="text-center max-w-4xl mx-auto"
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href={primaryButtonLink}>
-              <button
-className="inline-flex items-center gap-2 bg-white text-[#6B1F2E] px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all"
-              >
+              <button className="inline-flex items-center gap-2 bg-white text-[#6B1F2E] px-8 py-4 rounded-full font-bold text-lg shadow-2xl hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all">
                 {primaryButtonText}
                 <ArrowRight className="w-5 h-5" />
               </button>
@@ -133,8 +123,7 @@ className="inline-flex items-center gap-2 bg-white text-[#6B1F2E] px-8 py-4 roun
 
             <a
               href={`tel:${secondaryButtonPhone}`}
-
-                className="inline-flex items-center gap-3 border-2 border-white bg-white/10 text-white px-8 py-4 rounded-full font-bold text-lg backdrop-blur-sm hover:bg-white hover:text-[#6B1F2E] transition-all"
+              className="inline-flex items-center gap-3 border-2 border-white bg-white/10 text-white px-8 py-4 rounded-full font-bold text-lg backdrop-blur-sm hover:bg-white hover:text-[#6B1F2E] transition-all"
             >
               <Phone className="w-6 h-6" />
               {secondaryButtonText}
@@ -143,9 +132,7 @@ className="inline-flex items-center gap-2 bg-white text-[#6B1F2E] px-8 py-4 roun
         </div>
 
         {/* Trust Badges */}
-        <div
-className="mt-12 flex flex-wrap justify-center gap-6"
-        >
+        <div className="mt-12 flex flex-wrap justify-center gap-6">
           <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3 border border-white/20">
             <p className="text-white font-semibold">24/7 Available</p>
           </div>
@@ -162,3 +149,4 @@ className="mt-12 flex flex-wrap justify-center gap-6"
       </div>
     </section>
   );
+}

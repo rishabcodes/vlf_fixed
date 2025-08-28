@@ -227,7 +227,7 @@ export default function ContactForm({
 };
 
   return (
-    <form onSubmit={handleSubmit className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div className="text-center mb-8">
         <h3 className="text-2xl font-bold mb-2">{t.title}</h3>
         <p className="text-white/80">{t.subtitle}</p>
@@ -243,7 +243,7 @@ export default function ContactForm({
           type="text"
           value={formData.name} onChange={e => handleChange('name', e.target.value)} placeholder={t.placeholders.name} className={`w-full px-4 py-3 rounded-lg bg-white/10 backdrop-blur-sm text-white placeholder-white/50 border ${
             errors.name ? 'border-red-400' : 'border-white/20'
-          } focus:outline-none focus:border-white transition-colors` disabled={isSubmitting}
+          } focus:outline-none focus:border-white transition-colors`} disabled={isSubmitting}
         />
         {errors.name && <p className="mt-1 text-sm text-red-300">{errors.name}</p>}
       </div>
@@ -258,7 +258,7 @@ export default function ContactForm({
           type="email"
           value={formData.email} onChange={e => handleChange('email', e.target.value)} placeholder={t.placeholders.email} className={`w-full px-4 py-3 rounded-lg bg-white/10 backdrop-blur-sm text-white placeholder-white/50 border ${
             errors.email ? 'border-red-400' : 'border-white/20'
-          } focus:outline-none focus:border-white transition-colors` disabled={isSubmitting}
+          } focus:outline-none focus:border-white transition-colors`} disabled={isSubmitting}
         />
         {errors.email && <p className="mt-1 text-sm text-red-300">{errors.email}</p>}
       </div>
@@ -273,7 +273,7 @@ export default function ContactForm({
           type="tel"
           value={formData.phone} onChange={e => handleChange('phone', e.target.value)} placeholder={t.placeholders.phone} className={`w-full px-4 py-3 rounded-lg bg-white/10 backdrop-blur-sm text-white placeholder-white/50 border ${
             errors.phone ? 'border-red-400' : 'border-white/20'
-          } focus:outline-none focus:border-white transition-colors` disabled={isSubmitting}
+          } focus:outline-none focus:border-white transition-colors`} disabled={isSubmitting}
         />
         {errors.phone && <p className="mt-1 text-sm text-red-300">{errors.phone}</p>}
       </div>
@@ -313,7 +313,7 @@ export default function ContactForm({
 
                 className={`w-full px-4 py-3 rounded-lg bg-white/10 backdrop-blur-sm text-white placeholder-white/50 border ${
             errors.message ? 'border-red-400' : 'border-white/20'
-          } focus:outline-none focus:border-white transition-colors resize-none` disabled={isSubmitting}
+          } focus:outline-none focus:border-white transition-colors resize-none`} disabled={isSubmitting}
         />
         {errors.message && <p className="mt-1 text-sm text-red-300">{errors.message}</p>}
       </div>
@@ -387,9 +387,4 @@ className="bg-red-500/20 border border-red-400 text-red-100 px-4 py-3 rounded-lg
       )}
     </form>
   );
-}
-}
-}
-}
-}
 }

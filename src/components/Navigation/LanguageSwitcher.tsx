@@ -114,7 +114,9 @@ export function LanguageSwitcher({
               currentLang === lang.code
                 ? 'bg-primary-600 text-white'
                 : 'text-gray-600 hover:text-primary-600 hover:bg-gray-100'
-            }` aria-label={`Switch to ${lang.name}` disabled={currentLang === lang.code}
+            }`}
+            aria-label={`Switch to ${lang.name}`}
+            disabled={currentLang === lang.code}
           >
             {showFlags && lang.flag} {showLabels && lang.code.toUpperCase()}
           </button>
@@ -132,9 +134,10 @@ export function LanguageSwitcher({
       <button
         onClick={() => handleLanguageSwitch(otherLang.code)}
 
-                className={`flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors ${className}` aria-label={`Switch to ${otherLang.name}`}
+                className={`flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors ${className}`}
+        aria-label={`Switch to ${otherLang.name}`}
       >
-        <GlobeAltIcon className="w-4 h-4" />
+        <Globe className="w-4 h-4" />
         {showFlags && <span>{otherLang.flag}</span>}
         {showLabels && <span>{otherLang.name}</span>}
       </button>
@@ -149,13 +152,14 @@ export function LanguageSwitcher({
         onClick={() => setIsOpen(!isOpen)}
 
                 className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
-        aria-expanded={isOpen aria-haspopup="true"
+        aria-expanded={isOpen}
+        aria-haspopup="true"
         aria-label="Select language"
       >
-        <GlobeAltIcon className="w-4 h-4" />
+        <Globe className="w-4 h-4" />
         {showFlags && currentLanguage && <span>{currentLanguage.flag}</span>}
         {showLabels && currentLanguage && <span>{currentLanguage.name}</span>}
-        <ChevronDownIcon className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {isOpen && (
@@ -178,7 +182,8 @@ export function LanguageSwitcher({
                     currentLang === lang.code
                       ? 'bg-primary-50 text-primary-600 font-medium'
                       : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
-                  }` role="menuitem"
+                  }`}
+                  role="menuitem"
                   disabled={currentLang === lang.code}
                 >
                   <span className="mr-3">{lang.flag}</span>
@@ -259,7 +264,10 @@ export function LanguageLinks({ className = '' }: { className?: string }) {
 
                 className={`flex items-center space-x-1 text-sm transition-colors ${
               isActive ? 'text-primary-600 font-medium' : 'text-gray-600 hover:text-primary-600'
-            }` aria-label={`Switch to ${lang.name}` aria-current={isActive ? 'page' : undefined disabled={isActive}
+            }`}
+            aria-label={`Switch to ${lang.name}`}
+            aria-current={isActive ? 'page' : undefined}
+            disabled={isActive}
           >
             <span>{lang.flag}</span>
             <span>{lang.name}</span>
@@ -268,12 +276,4 @@ export function LanguageLinks({ className = '' }: { className?: string }) {
       })}
     </div>
   );
-}
-}
-}
-}
-}
-}
-}
-}
 }

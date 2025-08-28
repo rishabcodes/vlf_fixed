@@ -57,16 +57,13 @@ export default function LazySection({
         {!isInView ? (
           <div
             key="fallback"
-           }}
           >
             {fallback}
           </div>
         ) : (
           <div
             key="content"
-            : false}
-            : false}
-           }
+            className={animateIn ? 'animate-fadeIn' : ''}
           >
             {children}
           </div>
@@ -110,6 +107,7 @@ export function useLazyLoad(options?: IntersectionObserverInit) {
 }
 
 // Utility for lazy loading multiple sections
+
 export function LazyContainer({
   children,
   className,
@@ -132,3 +130,4 @@ export function LazyContainer({
       )}
     </div>
   );
+}

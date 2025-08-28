@@ -18,8 +18,8 @@ export default function RaleighNcWorkersCompLawyersPage() {
   // TODO: Extract content from original file and format properly
   const post = {
     id: 'raleigh-nc-workers-comp-lawyers',
-    title: "Raleigh, NC Workers Comp Lawyers ,
-    slug: "'raleigh-nc-workers-comp-lawyers',
+    title: "Raleigh, NC Workers Comp Lawyers",
+    slug: "raleigh-nc-workers-comp-lawyers",
     excerpt: 'Blog post excerpt here - TODO: extract from content',
     content: `
       <div className="prose prose-lg max-w-none">

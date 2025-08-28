@@ -139,8 +139,6 @@ export default function CaseList() {
         {showFilters && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 pt-4 border-t">
             <select
-              value={filters.practiceArea}
-              onChange={e => setFilters({ ...filters, practiceArea: e.target.value })}
               className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent"
             >
               <option value="">All Practice Areas</option>
@@ -154,8 +152,6 @@ export default function CaseList() {
             </select>
 
             <select
-              value={filters.status}
-              onChange={e => setFilters({ ...filters, status: e.target.value })}
               className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent"
             >
               <option value="">All Statuses</option>
@@ -190,7 +186,8 @@ export default function CaseList() {
                 className="bg-white rounded-lg shadow-sm border hover:shadow-md transition-shadow"
           >
             <Link
-                href={`/admin/cases/${case_.id}`}>
+              href={`/admin/cases/${case_.id}`}
+            >
               <div className="p-6">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
@@ -231,7 +228,6 @@ export default function CaseList() {
                           <div className="w-24 bg-gray-200 rounded-full h-2">
                             <div
                               className="bg-green-500 h-2 rounded-full"
-                              style={{ width: `${Math.round(case_.metrics.taskCompletion)}%` }}
                             />
                           </div>
                           <span className="text-sm text-gray-600">

@@ -22,8 +22,8 @@ export default function WinstonSalemNcWorkersCompLawyersPage() {
   // TODO: Extract content from original file and format properly
   const post = {
     id: 'winston-salem-nc-workers-comp-lawyers',
-    title: "Winston-Salem, NC Workers Comp Lawyers ,
-    slug: "'winston-salem-nc-workers-comp-lawyers',
+    title: "Winston-Salem, NC Workers Comp Lawyers",
+    slug: "winston-salem-nc-workers-comp-lawyers",
     excerpt: 'Blog post excerpt here - TODO: extract from content',
     content: `
       <div className="prose prose-lg max-w-none">

@@ -97,8 +97,8 @@ export default function PaymentForm({
       securityLogger.error('Payment error:', error);
     } finally {
       setIsProcessing(false);
-        }
-};
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -111,8 +111,7 @@ export default function PaymentForm({
           <button
             type="button"
             onClick={() => setSelectedGateway('authorize.net')}
-
-                className={`p-3 border rounded-lg text-center transition-colors ${
+            className={`p-3 border rounded-lg text-center transition-colors ${
               selectedGateway === 'authorize.net'
                 ? 'border-blue-500 bg-blue-50 dark:bg-blue-900'
                 : 'border-gray-300 dark:border-gray-600'
@@ -126,8 +125,7 @@ export default function PaymentForm({
           <button
             type="button"
             onClick={() => setSelectedGateway('lawpay')}
-
-                className={`p-3 border rounded-lg text-center transition-colors ${
+            className={`p-3 border rounded-lg text-center transition-colors ${
               selectedGateway === 'lawpay'
                 ? 'border-blue-500 bg-blue-50 dark:bg-blue-900'
                 : 'border-gray-300 dark:border-gray-600'
@@ -145,7 +143,6 @@ export default function PaymentForm({
           <input
             type="checkbox"
             id="trustAccount"
-            {...register('trustAccount')} className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
           />
           <label
             htmlFor="trustAccount"
@@ -183,7 +180,6 @@ export default function PaymentForm({
           </label>
           <input
             type="text"
-            {...register('description')} className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
             placeholder="Legal services payment"
           />
           {errors.description && (
@@ -203,7 +199,6 @@ export default function PaymentForm({
           </label>
           <input
             type="text"
-            {...register('clientName')} className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
           />
           {errors.clientName && (
             <p className="mt-1 text-sm text-red-600">{errors.clientName.message}</p>
@@ -219,7 +214,6 @@ export default function PaymentForm({
           </label>
           <input
             type="email"
-            {...register('clientEmail')} className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
           />
           {errors.clientEmail && (
             <p className="mt-1 text-sm text-red-600">{errors.clientEmail.message}</p>
@@ -240,8 +234,7 @@ export default function PaymentForm({
             type="text"
             {...register('cardNumber')}
             maxLength={16}
-
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
             placeholder="1234 5678 9012 3456"
           />
           {errors.cardNumber && (
@@ -261,8 +254,7 @@ export default function PaymentForm({
               type="text"
               {...register('expiryDate')}
               maxLength={5}
-
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
               placeholder="MM/YY"
             />
             {errors.expiryDate && (
@@ -281,8 +273,7 @@ export default function PaymentForm({
               type="text"
               {...register('cvv')}
               maxLength={4}
-
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
               placeholder="123"
             />
             {errors.cvv && <p className="mt-1 text-sm text-red-600">{errors.cvv.message}</p>}
@@ -295,7 +286,6 @@ export default function PaymentForm({
         <input
           type="checkbox"
           id="saveCard"
-          {...register('saveCard')} className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
         />
         <label htmlFor="saveCard" className="ml-2 block text-sm text-gray-900 dark:text-gray-100">
           Save card for future payments
@@ -334,14 +324,16 @@ export default function PaymentForm({
         {onCancel && (
           <button
             type="button"
-            onClick={onCancel} className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            onClick={onCancel}
+            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             Cancel
           </button>
         )}
         <button
           type="submit"
-          disabled={isProcessing} className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={isProcessing}
+          className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isProcessing ? 'Processing...' : `Pay $${watch('amount') || 0}`}
         </button>

@@ -45,7 +45,8 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = 
           currentLang === 'en'
             ? 'bg-blue-600 text-white'
             : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-        }` aria-label="Switch to English"
+        }`}
+        aria-label="Switch to English"
       >
         EN
       </button>
@@ -56,7 +57,8 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = 
           currentLang === 'es'
             ? 'bg-blue-600 text-white'
             : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-        }` aria-label="Cambiar a Español"
+        }`}
+        aria-label="Cambiar a Español"
       >
         ES
       </button>
@@ -65,5 +67,3 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ className = 
 };
 
 export default LanguageSwitcher;
-}
-}

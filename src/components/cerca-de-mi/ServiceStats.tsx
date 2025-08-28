@@ -116,9 +116,9 @@ className="text-center mb-12"
 
                 className="bg-white rounded-lg shadow-lg p-6 text-center hover:shadow-xl transition-shadow"
             >
-              <stat.icon}
-
-                className={`w-10 h-10 mx-auto mb-3 ${stat.color}`} />
+              <stat.icon
+                className={`w-10 h-10 mx-auto mb-3 ${stat.color}`}
+              />
               <div className="text-2xl md:text-3xl font-bold mb-2">{stat.value}</div>
               <div className="text-sm text-gray-600">{stat.label}</div>
             </div>

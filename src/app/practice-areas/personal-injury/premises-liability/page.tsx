@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Premises Liability Attorney NC & FL | Property Injury Lawyer | Vasquez Law',
-  description: "Injured on someone\'s property? Slip/fall, negligent security, dangerous conditions. Property owners held accountable.',
+  description: "Injured on someone's property? Slip/fall, negligent security, dangerous conditions. Property owners held accountable.",
   keywords: 'premises liability lawyer, slip and fall attorney, property injury, negligent security',
 };
 

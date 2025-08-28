@@ -201,7 +201,9 @@ export default function NearMePageClient({
           event_label: 'phone_call',
           page_location: window.location.href,
         });
-      }}, []);
+      }
+    }
+  }, []);
 
   const handleSchedule = useCallback(() => {
     // Track analytics
@@ -241,9 +243,10 @@ className="max-w-4xl mx-auto text-center"
               </button>
 
               <button
-onClick={() =>
+                onClick={() =>
                   document.getElementById('locations')?.scrollIntoView({ behavior: 'smooth' })
-        className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-all flex items-center justify-center gap-2"
+                }
+                className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-all flex items-center justify-center gap-2"
               >
                 <Map className="w-5 h-5" />
                 {t.hero.secondary}
@@ -502,6 +505,4 @@ className="fixed bottom-0 left-0 right-0 bg-white shadow-2xl border-t border-gra
       </div>
     </div>
   );
-}
-}
 }

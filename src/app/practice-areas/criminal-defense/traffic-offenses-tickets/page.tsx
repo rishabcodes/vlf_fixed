@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   keywords: 'traffic ticket lawyer Raleigh NC, speeding ticket attorney Charlotte, reckless driving lawyer Smithfield, CDL violation attorney Orlando, DWI traffic lawyer, license suspension attorney, hit and run defense, racing ticket lawyer NC, prayer for judgment continued, traffic court Wake County',
   openGraph: {
     title: 'Traffic Violation Attorney | Speeding Tickets NC & FL | Vasquez Law',
-    description: "Don\'t just pay that ticket. Fight to keep your license and insurance rates low. Former prosecutors.',
+    description: "Don't just pay that ticket. Fight to keep your license and insurance rates low. Former prosecutors.",
     type: 'website',
     locale: 'en_US',
   },
@@ -135,7 +135,7 @@ export default function TrafficOffensesTicketsPage() {
       {
         step: '2',
         title: 'Court Representation',
-        description: "Appear so you don\'t have to',
+        description: "Appear so you don't have to",
       },
       {
         step: '3',
@@ -145,7 +145,7 @@ export default function TrafficOffensesTicketsPage() {
       {
         step: '4',
         title: 'Trial if Needed',
-        description: "Fight tickets that can\'t be reduced',
+        description: "Fight tickets that can't be reduced",
       },
       {
         step: '5',

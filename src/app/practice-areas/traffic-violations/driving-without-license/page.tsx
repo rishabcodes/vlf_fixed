@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Driving Without License Attorney NC & FL | DWOL Defense | Vasquez Law',
-  description: "Charged with driving without a license? Avoid jail and get legal driving privileges. No operator\'s license defense.',
+  description: "Charged with driving without a license? Avoid jail and get legal driving privileges. No operator's license defense.",
   keywords: 'driving without license, DWOL, no operators license, suspended license',
 };
 
@@ -11,7 +11,7 @@ export default function DrivingWithoutLicensePage() {
   const services = [
     {
       title: 'No Valid License',
-      description: "Never obtained a driver\'s license',
+      description: "Never obtained a driver's license",
       icon: '🚫',
       features: [
         'First-time offenders',

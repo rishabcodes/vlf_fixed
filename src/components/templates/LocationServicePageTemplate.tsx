@@ -440,8 +440,3 @@ function getServiceContent(service: string, city: string) {
   };
 
   return contents[service] || contents['Immigration Lawyer'];
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> 385653308dfb2c360afdd38825894f8b869c0502

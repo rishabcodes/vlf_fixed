@@ -64,8 +64,13 @@ export const HeroTemplate: React.FC<HeroTemplateProps> = ({
         return 'min-h-[60vh]';
       default:
         return 'min-h-screen';
+<<<<<<< HEAD
         }
 };
+=======
+    }
+  };
+>>>>>>> origin/Mahesh-Syntax-Fix
 
   if (variant === 'video' && videoUrl) {
     return (
@@ -81,8 +86,7 @@ export const HeroTemplate: React.FC<HeroTemplateProps> = ({
         >
           <source src={videoUrl} type="video/mp4" />
         </video>
-        <div
-                className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
 
         <div      className="relative z-10 text-center text-white px-4">
           <div className="animate-fadeIn">
@@ -134,11 +138,9 @@ export const HeroTemplate: React.FC<HeroTemplateProps> = ({
                 {t.stats.map((stat, index) => (
                   <div
                     key={index}
-
-                className="text-center lg:text-left"
+                    className="text-center lg:text-left"
                   >
-                    <div
-                className="text-3xl font-bold text-primary">{stat.number}</div>
+                    <div className="text-3xl font-bold text-primary">{stat.number}</div>
                     <div className="text-sm text-neutral-600">{stat.label}</div>
                   </div>
                 ))}

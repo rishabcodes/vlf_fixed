@@ -68,9 +68,7 @@ export function InteractiveServices() {
     <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div
-className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="gradient-text">Áreas de Práctica</span>
           </h2>
@@ -83,13 +81,11 @@ className="text-center mb-16"
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {services.map((service, index) => (
             <div
-              key={service.id}}
-             }
-             }
-                onMouseEnter={() => setHoveredService(service.id)}
-                onMouseLeave={() => setHoveredService(null)} onClick={() => setSelectedService(service)}
-
-                className="relative cursor-pointer"
+              key={service.id}
+              onMouseEnter={() => setHoveredService(service.id)}
+              onMouseLeave={() => setHoveredService(null)}
+              onClick={() => setSelectedService(service)}
+              className="relative cursor-pointer"
             >
               <div className="glass-card p-6 rounded-2xl h-full modern-card group">
                 {/* Icon Container */}
@@ -103,9 +99,7 @@ className="text-center mb-16"
                   {/* Floating Badge */}
                   <>
                     {hoveredService === service.id && (
-                      <div
-className="absolute -top-2 -right-2 bg-white rounded-full p-1 shadow-lg"
-                      >
+                      <div className="absolute -top-2 -right-2 bg-white rounded-full p-1 shadow-lg">
                         <Check className="w-4 h-4 text-[#22C55E]" />
                       </div>
                     )}
@@ -123,11 +117,9 @@ className="absolute -top-2 -right-2 bg-white rounded-full p-1 shadow-lg"
                   {service.features.slice(0, 3).map((feature, idx) => (
                     <div
                       key={idx}
-
-                className="flex items-center text-xs text-gray-500"
+                      className="flex items-center text-xs text-gray-500"
                     >
-                      <ChevronRight
-                className="w-3 h-3 mr-1 text-[#C9974D]" />
+                      <ChevronRight className="w-3 h-3 mr-1 text-[#C9974D]" />
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -143,9 +135,7 @@ className="absolute -top-2 -right-2 bg-white rounded-full p-1 shadow-lg"
         </div>
 
         {/* Call to Action */}
-        <div
-className="text-center"
-        >
+        <div className="text-center">
           <Link href="/practice-areas">
             <button className="group relative inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#6B1F2E] to-[#8B2635] text-white font-semibold rounded-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
               <span>Ver Todas las Áreas</span>
@@ -159,21 +149,18 @@ className="text-center"
       <>
         {selectedService && (
           <div
-onClick={() => setSelectedService(null)}
-
-                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setSelectedService(null)}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           >
             <div
-onClick={e => e.stopPropagation()}
-
-                className="bg-white rounded-3xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl"
+              onClick={e => e.stopPropagation()}
+              className="bg-white rounded-3xl max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-2xl"
             >
               {/* Modal Header */}
               <div className={`relative h-48 bg-gradient-to-br ${selectedService.color} p-8`}>
                 <button
                   onClick={() => setSelectedService(null)}
-
-                className="absolute top-4 right-4 p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
+                  className="absolute top-4 right-4 p-2 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-colors"
                 >
                   <X className="w-5 h-5 text-white" />
                 </button>
@@ -197,22 +184,18 @@ onClick={e => e.stopPropagation()}
                   {selectedService.features.map((feature, idx) => (
                     <div
                       key={idx}
-
-                className="flex items-center gap-2"
+                      className="flex items-center gap-2"
                     >
                       <div className="p-1 bg-[#C9974D]/10 rounded-full">
                         <Check className="w-4 h-4 text-[#C9974D]" />
                       </div>
-                      <span
-                className="text-gray-700">{feature}</span>
+                      <span className="text-gray-700">{feature}</span>
                     </div>
                   ))}
                 </div>
 
                 <div className="flex gap-4">
-                  <Link href={`/practice-areas/${selectedService?.id || ''}`}
-
-                className="flex-1">
+                  <Link href={`/practice-areas/${selectedService?.id || ''}`} className="flex-1">
                     <button className="w-full px-6 py-3 bg-gradient-to-r from-[#6B1F2E] to-[#8B2635] text-white font-semibold rounded-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
                       Más Información
                     </button>
@@ -230,3 +213,4 @@ onClick={e => e.stopPropagation()}
       </>
     </section>
   );
+}

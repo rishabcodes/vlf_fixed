@@ -259,4 +259,3 @@ export function ElasticCollision({ className = '' }: { className?: string }) {
     </div>
   );
 }
-}

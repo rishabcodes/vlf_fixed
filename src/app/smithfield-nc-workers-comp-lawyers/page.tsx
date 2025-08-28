@@ -18,8 +18,8 @@ export default function SmithfieldNcWorkersCompLawyersPage() {
   // TODO: Extract content from original file and format properly
   const post = {
     id: 'smithfield-nc-workers-comp-lawyers',
-    title: "Smithfield, NC Workers Comp Lawyers ,
-    slug: "'smithfield-nc-workers-comp-lawyers',
+    title: "Smithfield, NC Workers Comp Lawyers",
+    slug: "smithfield-nc-workers-comp-lawyers",
     excerpt: 'Blog post excerpt here - TODO: extract from content',
     content: `
       <div className="prose prose-lg max-w-none">

@@ -135,8 +135,9 @@ export function ParallaxText({
             break;
           default:
             setOffset({ x: 0, y: -rate });
-            }
-};
+        }
+      }
+    };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -151,5 +152,4 @@ export function ParallaxText({
       {children}
     </div>
   );
-}
 }

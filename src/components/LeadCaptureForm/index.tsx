@@ -195,8 +195,9 @@ className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center 
             type="text"
             id="firstName"
             required
-            value={formData.firstName} onChange={e => setFormData({ ...formData, firstName: e.target.value )}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white"
+            value={formData.firstName}
+            onChange={e => setFormData({ ...formData, firstName: e.target.value })}
+            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white"
           />
         </div>
 
@@ -211,8 +212,9 @@ className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center 
             type="text"
             id="lastName"
             required
-            value={formData.lastName} onChange={e => setFormData({ ...formData, lastName: e.target.value )}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white"
+            value={formData.lastName}
+            onChange={e => setFormData({ ...formData, lastName: e.target.value })}
+            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white"
           />
         </div>
       </div>
@@ -228,8 +230,9 @@ className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center 
           type="email"
           id="email"
           required
-          value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value )}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white"
+          value={formData.email}
+          onChange={e => setFormData({ ...formData, email: e.target.value })}
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white"
         />
       </div>
 
@@ -244,8 +247,9 @@ className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center 
           type="tel"
           id="phone"
           required
-          value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value )}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white"
+          value={formData.phone}
+          onChange={e => setFormData({ ...formData, phone: e.target.value })}
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white"
         />
       </div>
 
@@ -259,8 +263,9 @@ className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center 
         <select
           id="practiceArea"
           required
-          value={formData.practiceArea} onChange={e => setFormData({ ...formData, practiceArea: e.target.value )}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white"
+          value={formData.practiceArea}
+          onChange={e => setFormData({ ...formData, practiceArea: e.target.value })}
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white"
         >
           <option value="">Select...</option>
           {Object.entries(t.practiceAreaOptions).map(([value, label]) => (
@@ -282,8 +287,9 @@ className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center 
         </label>
         <select
           id="urgency"
-          value={formData.urgency} onChange={e => setFormData({ ...formData, urgency: e.target.value )}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white"
+          value={formData.urgency}
+          onChange={e => setFormData({ ...formData, urgency: e.target.value })}
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white"
         >
           {Object.entries(t.urgencyOptions).map(([value, label]) => (
             <option key={value}
@@ -306,8 +312,9 @@ className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center 
           id="message"
           rows={4}
 
-                value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value )}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white"
+          value={formData.message}
+          onChange={e => setFormData({ ...formData, message: e.target.value })}
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white"
         />
       </div>
 
@@ -324,7 +331,8 @@ className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg flex items-start gap-3"
 
       <button
         type="submit"
-        disabled={loading} className="w-full bg-[#6B1F2E] hover:bg-[#8B2635] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        disabled={loading}
+        className="w-full bg-[#6B1F2E] hover:bg-[#8B2635] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         {loading ? (
           <>
@@ -343,11 +351,4 @@ className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg flex items-start gap-3"
       </p>
     </form>
   );
-}
-}
-}
-}
-}
-}
-}
 }

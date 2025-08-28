@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   keywords: 'juvenile defense attorney Raleigh NC, teen criminal lawyer Charlotte, youth court attorney Smithfield, juvenile delinquency Orlando FL, school suspension lawyer, teen drug charges NC, underage drinking attorney, sexting defense lawyer, school resource officer arrest, juvenile record sealing NC',
   openGraph: {
     title: 'Juvenile Criminal Defense Attorney | Teen Court Lawyer NC & FL | Vasquez Law',
-    description: "Protecting your child\'s future. Former prosecutors defending teens. Keep records clean.',
+    description: "Protecting your child's future. Former prosecutors defending teens. Keep records clean.",
     type: 'website',
     locale: 'en_US',
   },

@@ -24,7 +24,7 @@ export default function EB3VisaPage() {
     },
     {
       title: 'Professionals',
-      description: "Bachelor\'s degree required positions',
+      description: "Bachelor's degree required positions",
       icon: '🎓',
       features: [
         'Engineers',

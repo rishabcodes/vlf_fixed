@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Traffic Court Attorney NC & FL | Complete Representation | Vasquez Law',
-  description: "Professional traffic court representation. We appear so you don\'t have to. All traffic violations defended.',
+  description: "Professional traffic court representation. We appear so you don't have to. All traffic violations defended.",
   keywords: 'traffic court lawyer, traffic ticket attorney, court representation',
 };
 
@@ -134,7 +134,7 @@ export default function TrafficCourtRepresentationPage() {
       {
         step: '3',
         title: 'Court Appearance',
-        description: "We appear so you don\'t have to',
+        description: "We appear so you don't have to",
       },
       {
         step: '4',
