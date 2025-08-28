@@ -97,17 +97,18 @@ className="absolute -top-8 left-1/2 transform -translate-x-1/2 z-10"
             <>
               <div
                 key={currentIndex}
-
-               ,
-                  opacity: { duration: 0.2 }, className="absolute inset-0"
+                className="absolute inset-0"
+                style={{
+                  opacity: 1,
+                  transition: 'opacity 0.2s'
+                }}
               >
                 <div className="glass-card p-8 md:p-12 rounded-3xl h-full flex flex-col justify-center">
                   {/* Rating */}
                   <div className="flex justify-center mb-4">
                     {[...Array(testimonials[currentIndex]?.rating || 0)].map((_, i) => (
                       <div
-                        key={i}}
-                       }
+                        key={i}
                       >
                         <Star className="w-6 h-6 text-[#C9974D] fill-current" />
                       </div>
@@ -133,14 +134,17 @@ className="absolute -top-8 left-1/2 transform -translate-x-1/2 z-10"
           </div>
 
           {/* Navigation Buttons */}
-          <button onClick={handlePrevious} className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 md:-translate-x-12 p-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+          <button 
+            onClick={handlePrevious} 
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 md:-translate-x-12 p-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-6 h-6 text-[#6B1F2E] group-hover:text-[#C9974D] transition-colors" />
           </button>
 
           <button
-            onClick={handleNext} className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 md:translate-x-12 p-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+            onClick={handleNext} 
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 md:translate-x-12 p-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
             aria-label="Next testimonial"
           >
             <ChevronRight className="w-6 h-6 text-[#6B1F2E] group-hover:text-[#C9974D] transition-colors" />
@@ -154,14 +158,14 @@ className="absolute -top-8 left-1/2 transform -translate-x-1/2 z-10"
 
                 onClick={() => {
                   setDirection(index > currentIndex ? 1 : -1);
-                  setCurrentIndex(index);}
-
+                  setCurrentIndex(index);
+                }}
                 className={`h-2 rounded-full transition-all duration-300 ${
                   index === currentIndex
                     ? 'w-8 bg-gradient-to-r from-[#6B1F2E] to-[#8B2635]'
                     : 'w-2 bg-gray-300 hover:bg-gray-400'
                 }`}
-      aria-label={`Go to testimonial ${index + 1}`}
+                aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
           </div>
@@ -177,9 +181,9 @@ className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
             { value: '95%', label: 'Casos Ganados' },
             { value: '24/7', label: 'Disponibilidad' },
           ].map((stat, index) => (
-            <div key={index}
-
-                className="text-center">
+            <div 
+              key={index}
+              className="text-center">
               <div
                 className="text-2xl md:text-3xl font-bold gradient-text mb-1">{stat.value}</div>
               <div className="text-sm text-gray-600">{stat.label}</div>
@@ -189,3 +193,4 @@ className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
       </div>
     </section>
   );
+}

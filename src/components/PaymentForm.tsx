@@ -124,8 +124,8 @@ export function PaymentForm({
       onError?.(message);
     } finally {
       setIsProcessing(false);
-        }
-};
+    }
+  };
 
   if (success) {
     return (

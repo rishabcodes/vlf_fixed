@@ -146,7 +146,9 @@ export function CityPageTemplate({ city, nearbyOffice, content }: CityPageTempla
                 {/* Stats */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   {stats.map((stat, index) => (
-                    <div key={index} className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20"
+                    <div
+                      key={index}
+                      className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20"
                     >
                       <stat.icon className="w-8 h-8 text-primary mx-auto mb-2" />
                       <div className="text-3xl font-bold text-white">{stat.value}</div>
@@ -171,27 +173,21 @@ export function CityPageTemplate({ city, nearbyOffice, content }: CityPageTempla
                 {content.practiceAreas.map((area, index) => (
                   <div
                     key={index}
-
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-primary/50 transition-all"
+                    className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-primary/50 transition-all"
                   >
-                    <h3
-                className="text-2xl font-bold text-primary mb-4">{area.name}</h3>
+                    <h3 className="text-2xl font-bold text-primary mb-4">{area.name}</h3>
                     <p className="text-gray-300 mb-6">{area.description}</p>
                     <div className="grid grid-cols-2 gap-3">
                       {area.features.map((feature, idx) => (
-                        <div key={idx}
-
-                className="flex items-center text-sm text-gray-400">
-                          <CheckCircle
-                className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
+                        <div key={idx} className="flex items-center text-sm text-gray-400">
+                          <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
                           {feature}
                         </div>
                       ))}
                     </div>
                     <Link
                       href={`/practice-areas/${practiceAreaSlugs[area.name] || area.name.toLowerCase().replace(/['\s]+/g, '-')}`}
-
-                className="inline-flex items-center text-primary hover:text-primary-300 mt-6 font-semibold"
+                      className="inline-flex items-center text-primary hover:text-primary-300 mt-6 font-semibold"
                     >
                       Learn More →
                     </Link>
@@ -212,7 +208,9 @@ export function CityPageTemplate({ city, nearbyOffice, content }: CityPageTempla
 
               <div className="grid md:grid-cols-2 gap-8">
                 {content.whyChooseUs.map((item, index) => (
-                  <div key={index} className="flex items-start space-x-4"
+                  <div
+                    key={index}
+                    className="flex items-start space-x-4"
                   >
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                       <CheckCircle className="w-6 h-6 text-black" />
@@ -318,7 +316,9 @@ export function CityPageTemplate({ city, nearbyOffice, content }: CityPageTempla
 
               <div className="grid md:grid-cols-3 gap-8">
                 {content.localContent.testimonials.map((testimonial, index) => (
-                  <div key={index} className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+                  <div
+                    key={index}
+                    className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
                   >
                     <div className="flex mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (

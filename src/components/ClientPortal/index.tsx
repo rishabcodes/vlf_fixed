@@ -99,17 +99,13 @@ export const ClientPortal: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <>
           {activeTab === 'overview' && (
-            <div
-              key="overview"
-            >
+            <div key="overview">
               <CaseOverview metrics={caseMetrics} />
             </div>
           )}
 
           {activeTab === 'documents' && (
-            <div
-              key="documents"
-            >
+            <div key="documents">
               <DocumentCollaboration
                 documents={documents}
                 selectedDoc={selectedDoc}
@@ -120,17 +116,13 @@ export const ClientPortal: React.FC = () => {
           )}
 
           {activeTab === 'messages' && (
-            <div
-              key="messages"
-            >
+            <div key="messages">
               <SecureMessaging />
             </div>
           )}
 
           {activeTab === 'timeline' && (
-            <div
-              key="timeline"
-            >
+            <div key="timeline">
               <CaseTimeline />
             </div>
           )}
@@ -286,8 +278,7 @@ const DocumentCollaboration: React.FC<{
                 </button>
               </div>
             </div>
-            <div ref={setEditorRef}
-                className="min-h-[400px] border rounded-lg" />
+            <div ref={setEditorRef} className="min-h-[400px] border rounded-lg" />
           </>
         ) : (
           <div className="text-center py-12 text-gray-500">Select a document to view or edit</div>
@@ -599,8 +590,7 @@ const TimelineEvent: React.FC<{ event: TimelineEventData; isLast: boolean }> = (
       {event.documents.length > 0 && (
         <div className="flex gap-2 mt-2">
           {event.documents.map((doc: string) => (
-            <span key={doc}
-                className="text-xs bg-gray-100 px-2 py-1 rounded">
+            <span key={doc} className="text-xs bg-gray-100 px-2 py-1 rounded">
               📄 {doc}
             </span>
           ))}
