@@ -1,0 +1,116 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Display system resources
+        - echo "Available memory:"
+        - free -h || vm_stat
+        - echo "CPU cores:"
+        - nproc || sysctl -n hw.ncpu
+        
+        # Set aggressive memory limits for Node.js
+        - export NODE_OPTIONS="--max-old-space-size=65536 --max-semi-space-size=1024"
+        - export GENERATE_SOURCEMAP=false
+        - export NEXT_TELEMETRY_DISABLED=1
+        
+        # Disable parallel installations
+        - export NPM_CONFIG_JOBS=1
+        - export YARN_CHILD_CONCURRENCY=1
+        
+        # Install dependencies with reduced parallelism
+        - echo "Installing dependencies..."
+        - |
+          if [ -f "pnpm-lock.yaml" ]; then
+            npm install -g pnpm
+            pnpm config set node-options "--max-old-space-size=8192"
+            pnpm config set worker-concurrency 1
+            pnpm install --frozen-lockfile --prefer-offline
+          elif [ -f "yarn.lock" ]; then
+            yarn install --frozen-lockfile --network-concurrency 1
+          else
+            npm ci --prefer-offline --no-audit --no-fund
+          fi
+        
+        # Clear any existing build cache
+        - rm -rf .next
+        - rm -rf node_modules/.cache
+        
+    build:
+      commands:
+        # Display memory usage before build
+        - echo "Memory before build:"
+        - free -h || vm_stat
+        
+        # Set build environment variables
+        - export NODE_ENV=production
+        - export NEXT_SHARP_PATH=/tmp/node_modules/sharp
+        
+        # Use custom build script with sequential processing
+        - echo "Starting sequential build process..."
+        - |
+          if [ -f "scripts/amplify-build.js" ]; then
+            node --max-old-space-size=65536 scripts/amplify-build.js
+          else
+            npm run build:amplify
+          fi
+        
+        # Display memory usage after build
+        - echo "Memory after build:"
+        - free -h || vm_stat
+        
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      # Minimal caching to reduce memory overhead
+      - node_modules/**/*
+      - .pnpm-store/**/*
+  
+  # Custom build settings for Amplify
+  buildSpec:
+    configurePhase:
+      nodeVersion: 20
+    env:
+      variables:
+        # Memory optimization variables
+        NODE_OPTIONS: "--max-old-space-size=65536 --max-semi-space-size=1024"
+        GENERATE_SOURCEMAP: "false"
+        NEXT_TELEMETRY_DISABLED: "1"
+        
+        # Webpack optimization variables
+        WEBPACK_PARALLELISM: "1"
+        WEBPACK_MAX_WORKERS: "1"
+        
+        # Next.js build optimization
+        NEXT_CONCURRENT_FEATURES: "false"
+        EXPERIMENTAL_PAGE_LIMIT: "50"
+        
+        # TypeScript optimization
+        TSC_COMPILE_ON_ERROR: "true"
+        TSC_WATCHFILE: "prioritypollinginterval"
+        
+        # Build timeout (30 minutes)
+        AMPLIFY_BUILD_TIMEOUT: "1800"
+        
+  # Custom compute settings for XLarge instance
+  compute:
+    runtime: nodejs20.x
+    memory: 73728  # 72GB in MB
+    
+# Additional custom headers and redirects
+customHeaders:
+  - pattern: '**/*'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=31536000, immutable'
+  - pattern: '/_next/static/**'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=31536000, immutable'
+  - pattern: '**/*.html'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=0, must-revalidate'
