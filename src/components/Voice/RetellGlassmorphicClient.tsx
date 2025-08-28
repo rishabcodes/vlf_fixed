@@ -114,8 +114,8 @@ export const RetellGlassmorphicClient: React.FC<RetellGlassmorphicClientProps> =
         
         // Reset flag
         isStartingCall.current = false;
-          }
-};
+      }
+    };
   }, [isActive]); // Only depend on isActive to avoid re-renders
 
   const startCall = async () => {
@@ -282,8 +282,8 @@ export const RetellGlassmorphicClient: React.FC<RetellGlassmorphicClientProps> =
       onClose();
     } finally {
       isStartingCall.current = false;
-        }
-};
+    }
+  };
 
   const endCall = async () => {
     logger.info('📞 Ending call... Current state:', {
@@ -372,8 +372,9 @@ export const RetellGlassmorphicClient: React.FC<RetellGlassmorphicClientProps> =
         retellClientRef.current.mute();
         setIsMuted(true);
         toast.success('Microphone muted');
-          }
-};
+      }
+    }
+  };
 
   const handleEndCall = async () => {
     logger.info('🔴 End call button clicked');
@@ -388,13 +389,21 @@ export const RetellGlassmorphicClient: React.FC<RetellGlassmorphicClientProps> =
     <>
       {isActive && (
         <div
-className="fixed inset-0 z-[10000] flex items-center justify-center p-4"
-
+          className="fixed inset-0 z-[10000] flex items-center justify-center p-4"
+          style={{
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            backdropFilter: 'blur(10px)',
+          }}
         >
           {/* Glassmorphic Card */}
           <div
-className="relative w-full max-w-md"
-
+            className="relative w-full max-w-md"
+            style={{
+              background: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(20px)',
+              borderRadius: '24px',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+            }}
           >
             {/* Liquid glass effect - animated gradient */}
             <style dangerouslySetInnerHTML={{ __html: `
@@ -406,13 +415,19 @@ className="relative w-full max-w-md"
             `}} />
             <div
               className="absolute inset-0 rounded-3xl opacity-50"
-             }
+              style={{
+                background: 'linear-gradient(-45deg, #6B1F2E, #8B2635, #C9974D, #D4A574)',
+                backgroundSize: '400% 400%',
+                animation: 'liquidGlass 15s ease infinite',
+              }}
             />
 
             {/* Content */}
             <div className="relative p-8">
               {/* Close button */}
-              <button onClick={onClose} className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition-colors"
+              <button 
+                onClick={onClose} 
+                className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/10 transition-colors"
                 title="Close window"
               >
                 <X className="w-5 h-5 text-white/70" />
@@ -420,8 +435,11 @@ className="relative w-full max-w-md"
 
               {/* Header */}
               <div className="text-center mb-6">
-                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-4"
-
+                <div 
+                  className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-4"
+                  style={{
+                    background: 'radial-gradient(circle, rgba(212,165,116,0.3), rgba(107,31,46,0.3))',
+                  }}
                 >
                   {isConnecting ? (
                     <Loader2 className="w-10 h-10 text-white animate-spin" />
@@ -446,9 +464,9 @@ className="relative w-full max-w-md"
                 {animatedBars.map((height, index) => (
                   <div
                     key={index}
-
-                className="w-1 bg-gradient-to-t from-gold-400 to-gold-600 rounded-full transition-all duration-150"
-                   %`,
+                    className="w-1 bg-gradient-to-t from-gold-400 to-gold-600 rounded-full transition-all duration-150"
+                    style={{
+                      height: `${height}%`,
                       opacity: isConnected ? 1 : 0.3,
                     }}
                   />
@@ -476,7 +494,8 @@ className="relative w-full max-w-md"
                 {isConnected && (
                   <>
                     <button
-                      onClick={toggleMute} className={`p-4 rounded-full transition-all ${
+                      onClick={toggleMute} 
+                      className={`p-4 rounded-full transition-all ${
                         isMuted 
                           ? 'bg-red-500/20 hover:bg-red-500/30 border-2 border-red-500/50' 
                           : 'bg-white/10 hover:bg-white/20 border-2 border-white/30'
@@ -490,8 +509,9 @@ className="relative w-full max-w-md"
                       )}
                     </button>
 
-                    <button onClick={handleEndCall}
-      className="px-6 py-4 rounded-full bg-red-500/20 hover:bg-red-500/30 border-2 border-red-500/50 transition-all flex items-center gap-2"
+                    <button 
+                      onClick={handleEndCall}
+                      className="px-6 py-4 rounded-full bg-red-500/20 hover:bg-red-500/30 border-2 border-red-500/50 transition-all flex items-center gap-2"
                     >
                       <PhoneOff className="w-6 h-6 text-red-400" />
                       <span className="text-red-400 font-medium">{t[language].endCall}</span>

@@ -59,7 +59,7 @@ export function FAQSection({
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div
-className="text-center mb-12"
+            className="text-center mb-12"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">{title}</h2>
             {subtitle && <p className="text-xl text-gray-600">{subtitle}</p>}
@@ -74,14 +74,14 @@ className="text-center mb-12"
                 className="bg-gray-50 rounded-lg shadow-sm overflow-hidden"
               >
                 <button
-                onClick={() => toggleFAQ(index)}
-
-                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 transition-colors"
-                  aria-expanded={openIndex === index aria-controls={`faq-answer-${index}`}
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 transition-colors"
+                  aria-expanded={openIndex === index}
+                  aria-controls={`faq-answer-${index}`}
                 >
                   <h3 className="text-lg font-semibold text-gray-900 pr-4">{faq.question}</h3>
                   <div
-className="flex-shrink-0"
+                    className="flex-shrink-0"
                   >
                     <ChevronDown className="w-5 h-5 text-gray-500" />
                   </div>
@@ -90,9 +90,7 @@ className="flex-shrink-0"
                 <>
                   {openIndex === index && (
                     <div
-                      id={`faq-answer-${index}`}}
-                     }
-                     }
+                      id={`faq-answer-${index}`}
                     >
                       <div className="px-6 pb-4">
                         <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
@@ -106,7 +104,7 @@ className="flex-shrink-0"
 
           {/* CTA */}
           <div
-className="mt-12 text-center"
+            className="mt-12 text-center"
           >
             <p className="text-gray-600 mb-4">Still have questions?</p>
             <a
@@ -128,3 +126,4 @@ className="mt-12 text-center"
       </section>
     </>
   );
+}

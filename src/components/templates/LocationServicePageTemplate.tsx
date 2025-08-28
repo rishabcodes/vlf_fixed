@@ -63,9 +63,7 @@ export function LocationServicePageTemplate({
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <div
-               }}
-              >
+              <div>
                 <h1 className="text-4xl md:text-5xl font-black mb-6 text-white">
                   {city} {service}
                 </h1>
@@ -108,9 +106,7 @@ export function LocationServicePageTemplate({
               <div className="grid md:grid-cols-2 gap-12">
                 {/* Main Content */}
                 <div>
-                  <div
-                   }}
-                  >
+                  <div>
                     <h2 className="text-3xl font-bold text-white mb-6">
                       {serviceContent.mainTitle}
                     </h2>
@@ -121,12 +117,9 @@ export function LocationServicePageTemplate({
                     </h3>
                     <ul className="space-y-3">
                       {serviceContent.services.map((item: string, index: number) => (
-                        <li key={index}
-
-                className="flex items-start">
+                        <li key={index} className="flex items-start">
                           <CheckCircle className="w-5 h-5 text-primary mt-1 mr-3 flex-shrink-0" />
-                          <span
-                className="text-gray-300">{item}</span>
+                          <span className="text-gray-300">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -135,9 +128,7 @@ export function LocationServicePageTemplate({
 
                 {/* Sidebar */}
                 <div>
-                  <div
-className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-primary/20"
-                  >
+                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-primary/20">
                     <h3 className="text-2xl font-bold text-white mb-6">Get Help Today</h3>
                     <div className="space-y-4 mb-6">
                       <div className="flex items-center text-gray-300">
@@ -161,15 +152,11 @@ className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-primary/20"
                     </Button>
                   </div>
 
-                  <div
-className="mt-8 bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
-                  >
+                  <div className="mt-8 bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
                     <h3 className="text-xl font-bold text-primary mb-4">Why Choose Us?</h3>
                     <ul className="space-y-3">
                       {serviceContent.whyChooseUs.map((reason: string, index: number) => (
-                        <li key={index}
-
-                className="text-gray-300">
+                        <li key={index} className="text-gray-300">
                           • {reason}
                         </li>
                       ))}
@@ -185,9 +172,7 @@ className="mt-8 bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/
         <section className="py-16 bg-black">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2
-className="text-3xl font-bold text-center text-white mb-12"
-              >
+              <h2 className="text-3xl font-bold text-center text-white mb-12">
                 Frequently Asked Questions
               </h2>
 
@@ -196,11 +181,9 @@ className="text-3xl font-bold text-center text-white mb-12"
                   (faq: { question: string; answer: string }, index: number) => (
                     <div
                       key={index}
-
-                className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10"
+                      className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10"
                     >
-                      <h3
-                className="text-xl font-semibold text-primary mb-3">{faq.question}</h3>
+                      <h3 className="text-xl font-semibold text-primary mb-3">{faq.question}</h3>
                       <p className="text-gray-300">{faq.answer}</p>
                     </div>
                   )
@@ -235,7 +218,8 @@ className="text-3xl font-bold text-center text-white mb-12"
 
         {/* Schemas */}
         <Script
-          id={`service-schema-${slug}-${city.toLowerCase()}` type="application/ld+json"
+          id={`service-schema-${slug}-${city.toLowerCase()}`}
+          type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
@@ -456,3 +440,4 @@ function getServiceContent(service: string, city: string) {
   };
 
   return contents[service] || contents['Immigration Lawyer'];
+}

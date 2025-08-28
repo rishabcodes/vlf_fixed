@@ -111,9 +111,7 @@ export function CityPageTemplate({ city, nearbyOffice, content }: CityPageTempla
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-5xl mx-auto text-center">
-              <div
-               }}
-              >
+              <div>
                 <h1 className="text-4xl md:text-6xl font-black mb-6 text-white">
                   {content.heroTitle}
                 </h1>
@@ -150,12 +148,10 @@ export function CityPageTemplate({ city, nearbyOffice, content }: CityPageTempla
                   {stats.map((stat, index) => (
                     <div
                       key={index}
-
-                className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20"
+                      className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20"
                     >
                       <stat.icon className="w-8 h-8 text-primary mx-auto mb-2" />
-                      <div
-                className="text-3xl font-bold text-white">{stat.value}</div>
+                      <div className="text-3xl font-bold text-white">{stat.value}</div>
                       <div className="text-sm text-gray-300">{stat.label}</div>
                     </div>
                   ))}
@@ -169,9 +165,7 @@ export function CityPageTemplate({ city, nearbyOffice, content }: CityPageTempla
         <section className="py-20 bg-neutral-950">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2
-className="text-3xl md:text-4xl font-black text-center text-white mb-12"
-              >
+              <h2 className="text-3xl md:text-4xl font-black text-center text-white mb-12">
                 Legal Services for {city.name} Residents
               </h2>
 
@@ -179,27 +173,21 @@ className="text-3xl md:text-4xl font-black text-center text-white mb-12"
                 {content.practiceAreas.map((area, index) => (
                   <div
                     key={index}
-
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-primary/50 transition-all"
+                    className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-primary/50 transition-all"
                   >
-                    <h3
-                className="text-2xl font-bold text-primary mb-4">{area.name}</h3>
+                    <h3 className="text-2xl font-bold text-primary mb-4">{area.name}</h3>
                     <p className="text-gray-300 mb-6">{area.description}</p>
                     <div className="grid grid-cols-2 gap-3">
                       {area.features.map((feature, idx) => (
-                        <div key={idx}
-
-                className="flex items-center text-sm text-gray-400">
-                          <CheckCircle
-                className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
+                        <div key={idx} className="flex items-center text-sm text-gray-400">
+                          <CheckCircle className="w-4 h-4 text-primary mr-2 flex-shrink-0" />
                           {feature}
                         </div>
                       ))}
                     </div>
                     <Link
                       href={`/practice-areas/${practiceAreaSlugs[area.name] || area.name.toLowerCase().replace(/['\s]+/g, '-')}`}
-
-                className="inline-flex items-center text-primary hover:text-primary-300 mt-6 font-semibold"
+                      className="inline-flex items-center text-primary hover:text-primary-300 mt-6 font-semibold"
                     >
                       Learn More →
                     </Link>
@@ -214,9 +202,7 @@ className="text-3xl md:text-4xl font-black text-center text-white mb-12"
         <section className="py-20 bg-black">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2
-className="text-3xl md:text-4xl font-black text-center text-white mb-12"
-              >
+              <h2 className="text-3xl md:text-4xl font-black text-center text-white mb-12">
                 Why {city.name} Chooses Vasquez Law Firm
               </h2>
 
@@ -224,15 +210,13 @@ className="text-3xl md:text-4xl font-black text-center text-white mb-12"
                 {content.whyChooseUs.map((item, index) => (
                   <div
                     key={index}
-
-                className="flex items-start space-x-4"
+                    className="flex items-start space-x-4"
                   >
                     <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                       <CheckCircle className="w-6 h-6 text-black" />
                     </div>
                     <div>
-                      <h3
-                className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                      <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
                       <p className="text-gray-300">{item.description}</p>
                     </div>
                   </div>
@@ -246,9 +230,7 @@ className="text-3xl md:text-4xl font-black text-center text-white mb-12"
         <section className="py-20 bg-neutral-950">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2
-className="text-3xl md:text-4xl font-black text-center text-white mb-12"
-              >
+              <h2 className="text-3xl md:text-4xl font-black text-center text-white mb-12">
                 Serving {city.name} & {city.county} County
               </h2>
 
@@ -328,9 +310,7 @@ className="text-3xl md:text-4xl font-black text-center text-white mb-12"
         <section className="py-20 bg-black">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2
-className="text-3xl md:text-4xl font-black text-center text-white mb-12"
-              >
+              <h2 className="text-3xl md:text-4xl font-black text-center text-white mb-12">
                 What {city.name} Clients Say
               </h2>
 
@@ -338,14 +318,11 @@ className="text-3xl md:text-4xl font-black text-center text-white mb-12"
                 {content.localContent.testimonials.map((testimonial, index) => (
                   <div
                     key={index}
-
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+                    className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
                   >
                     <div className="flex mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <span key={i}
-
-                className="text-primary text-xl">
+                        <span key={i} className="text-primary text-xl">
                           ★
                         </span>
                       ))}
@@ -397,7 +374,8 @@ className="text-3xl md:text-4xl font-black text-center text-white mb-12"
 
         {/* Schema */}
         <Script
-          id={`city-schema-${city.slug}` type="application/ld+json"
+          id={`city-schema-${city.slug}`}
+          type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(localBusinessSchema),
           }}
@@ -471,3 +449,4 @@ function getEstimatedTravelTime(fromCity: string, toOffice: string) {
   };
 
   return times[toOffice]?.[fromCity] || '30-45 min';
+}

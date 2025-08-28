@@ -153,8 +153,8 @@ export default function CaseEvaluator({ onComplete }: CaseEvaluatorProps) {
       setStep(step + 1);
     } else {
       calculateResult();
-        }
-};
+    }
+  };
 
   const handleSelect = (value: string) => {
     const currentStep = steps[step];
@@ -189,8 +189,7 @@ export default function CaseEvaluator({ onComplete }: CaseEvaluatorProps) {
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div
                   className="bg-gradient-to-r from-burgundy-600 to-gold-500 h-2 rounded-full"
-                 }
-                 %` }}
+                  style={{ width: `${((step + 1) / steps.length) * 100}%` }}
                 />
               </div>
             </div>
@@ -198,19 +197,15 @@ export default function CaseEvaluator({ onComplete }: CaseEvaluatorProps) {
             {/* Question */}
             <>
               <div
-                key={step}}
-               }
-               }
+                key={step}
               >
                 <h3 className="text-2xl font-bold mb-6">{steps[step]?.title || ''}</h3>
                 <div className="space-y-3">
                   {(steps[step]?.options || []).map(option => (
                     <button
                       key={option.value}
-
-                onClick={() => handleSelect(option.value)}
-
-                className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-burgundy-500 hover:bg-burgundy-50 transition-all text-left"
+                      onClick={() => handleSelect(option.value)}
+                      className="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-burgundy-500 hover:bg-burgundy-50 transition-all text-left"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -231,7 +226,7 @@ export default function CaseEvaluator({ onComplete }: CaseEvaluatorProps) {
         ) : (
           /* Results */
           <div
-className="text-center"
+            className="text-center"
           >
             <div className="mb-8">
               <h3 className="text-2xl font-bold mb-4">Your Case Evaluation Results</h3>
@@ -273,11 +268,11 @@ className="text-center"
                 <h4 className="font-semibold mb-3">Recommended Next Steps:</h4>
                 <ul className="space-y-2">
                   {result.nextSteps.map((step: string, index: number) => (
-                    <li key={index}
-
-                className="flex items-start gap-2">
+                    <li 
+                      key={index}
+                      className="flex items-start gap-2">
                       <span
-                className="text-burgundy-600 font-bold">{index + 1}.</span>
+                        className="text-burgundy-600 font-bold">{index + 1}.</span>
                       <span>{step}</span>
                     </li>
                   ))}
@@ -319,3 +314,4 @@ className="text-center"
       </CardContent>
     </Card>
   );
+}

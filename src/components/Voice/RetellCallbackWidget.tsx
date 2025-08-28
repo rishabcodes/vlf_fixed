@@ -106,8 +106,8 @@ export function RetellCallbackWidget({
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
-        }
-};
+    }
+  };
 
   const handleScheduleCallback = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -134,8 +134,8 @@ export function RetellCallbackWidget({
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
-        }
-};
+    }
+  };
 
   const urgencyColors = {
     normal: 'bg-blue-100 text-blue-700',
@@ -147,9 +147,8 @@ export function RetellCallbackWidget({
     <>
       {/* Floating Call Button */}
       <button
-onClick={() => setIsOpen(true)}
-
-                className={cn(
+        onClick={() => setIsOpen(true)}
+        className={cn(
           "fixed bottom-24 right-6 z-40 bg-gradient-to-r from-green-600 to-green-700",
           "text-white rounded-full p-4 shadow-2xl hover:shadow-3xl transition-all duration-300 group",
           className
@@ -157,7 +156,7 @@ onClick={() => setIsOpen(true)}
       >
         <Phone className="w-6 h-6 group-hover:rotate-12 transition-transform" />
         <span
-className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"
+          className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"
         />
       </button>
 
@@ -169,9 +168,8 @@ className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50"
             onClick={() => setIsOpen(false)}
           >
             <div
-onClick={(e) => e.stopPropagation()}
-
-                className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden"
             >
               {/* Header */}
               <div className="bg-gradient-to-r from-primary-600 to-primary-700 p-6 text-white">
@@ -182,8 +180,7 @@ onClick={(e) => e.stopPropagation()}
                   </h2>
                   <button
                     onClick={() => setIsOpen(false)}
-
-                className="hover:bg-white/20 p-1 rounded transition"
+                    className="hover:bg-white/20 p-1 rounded transition"
                   >
                     <X className="w-5 h-5" />
                   </button>
@@ -198,16 +195,18 @@ onClick={(e) => e.stopPropagation()}
               {!showForm ? (
                 <div className="p-6 space-y-4">
                   {/* Call Now Option */}
-                  <button onClick={handleImmediateCall disabled={isSubmitting className="w-full p-4 bg-green-50 border-2 border-green-200 rounded-xl hover:bg-green-100 transition-colors group"
+                  <button
+                    onClick={handleImmediateCall}
+                    disabled={isSubmitting}
+                    className="w-full p-4 bg-green-50 border-2 border-green-200 rounded-xl hover:bg-green-100 transition-colors group"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div className="p-3 bg-green-600 text-white rounded-full group-hover:bg-green-700 transition">
                           <Phone className="w-5 h-5" />
                         </div>
-                        <div} className="text-left">
-                          <h3}
-              className="font-semibold text-gray-900">
+                        <div className="text-left">
+                          <h3 className="font-semibold text-gray-900">
                             {locale === 'es' ? 'Llamar Ahora' : 'Call Now'}
                           </h3>
                           <p className="text-sm text-gray-600">
@@ -223,9 +222,8 @@ onClick={(e) => e.stopPropagation()}
 
                   {/* Schedule Callback Option */}
                   <button
-onClick={() => setShowForm(true)}
-
-                className="w-full p-4 bg-blue-50 border-2 border-blue-200 rounded-xl hover:bg-blue-100 transition-colors group"
+                    onClick={() => setShowForm(true)}
+                    className="w-full p-4 bg-blue-50 border-2 border-blue-200 rounded-xl hover:bg-blue-100 transition-colors group"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
@@ -249,8 +247,7 @@ onClick={() => setShowForm(true)}
 
                   {/* Success/Error Messages */}
                   {submitStatus === 'success' && (
-                    <div
-className="p-4 bg-green-100 border border-green-300 rounded-lg"
+                    <div className="p-4 bg-green-100 border border-green-300 rounded-lg"
                     >
                       <div className="flex items-center gap-2 text-green-700">
                         <Check className="w-5 h-5" />
@@ -269,8 +266,7 @@ className="p-4 bg-green-100 border border-green-300 rounded-lg"
                   )}
 
                   {submitStatus === 'error' && (
-                    <div
-className="p-4 bg-red-100 border border-red-300 rounded-lg"
+                    <div className="p-4 bg-red-100 border border-red-300 rounded-lg"
                     >
                       <div className="flex items-center gap-2 text-red-700">
                         <AlertCircle className="w-5 h-5" />
@@ -308,9 +304,9 @@ className="p-4 bg-red-100 border border-red-300 rounded-lg"
                     <input
                       type="text"
                       required
-                      value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                     />
                   </div>
 
@@ -322,9 +318,9 @@ className="p-4 bg-red-100 border border-red-300 rounded-lg"
                     <input
                       type="tel"
                       required
-                      value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                     />
                   </div>
 
@@ -334,14 +330,12 @@ className="p-4 bg-red-100 border border-red-300 rounded-lg"
                       {locale === 'es' ? 'Tema' : 'Topic'}
                     </label>
                     <select
-                      value={formData.topic} onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
-
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      value={formData.topic}
+                      onChange={(e) => setFormData({ ...formData, topic: e.target.value })}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                     >
                       {topics.map(topic => (
-                        <option key={topic.value}
-
-                value={topic.value}>
+                        <option key={topic.value} value={topic.value}>
                           {locale === 'es' ? topic.labelEs : topic.label}
                         </option>
                       ))}
@@ -357,11 +351,9 @@ className="p-4 bg-red-100 border border-red-300 rounded-lg"
                       {(['normal', 'urgent', 'emergency'] as const).map((level) => (
                         <button
                           key={level}
-
-                type="button"
-                onClick={() => setFormData({ ...formData, urgency: level })}
-
-                className={cn(
+                          type="button"
+                          onClick={() => setFormData({ ...formData, urgency: level })}
+                          className={cn(
                             'flex-1 px-3 py-2 rounded-lg font-medium transition',
                             formData.urgency === level 
                               ? urgencyColors[level]
@@ -385,9 +377,10 @@ className="p-4 bg-red-100 border border-red-300 rounded-lg"
                       <input
                         type="date"
                         required
-                        min={new Date().toISOString().split('T')[0]} value={formData.preferredDate} onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
-
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                        min={new Date().toISOString().split('T')[0]}
+                        value={formData.preferredDate}
+                        onChange={(e) => setFormData({ ...formData, preferredDate: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                       />
                     </div>
                     <div>
@@ -396,17 +389,16 @@ className="p-4 bg-red-100 border border-red-300 rounded-lg"
                       </label>
                       <select
                         required
-                        value={formData.preferredTime} onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
-
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                        value={formData.preferredTime}
+                        onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                       >
                         <option value="">{locale === 'es' ? 'Seleccionar' : 'Select'}</option>
                         {timeSlots.map(slot => (
-                          <option key={slot.id}
-
-                value={slot.time}
-
-                disabled={!slot.available}>
+                          <option
+                            key={slot.id}
+                            value={slot.time}
+                            disabled={!slot.available}>
                             {slot.time}
                           </option>
                         ))}
@@ -419,14 +411,14 @@ className="p-4 bg-red-100 border border-red-300 rounded-lg"
                     <button
                       type="button"
                       onClick={() => setShowForm(false)}
-
-                className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition"
+                      className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition"
                     >
                       {locale === 'es' ? 'Atrás' : 'Back'}
                     </button>
                     <button
                       type="submit"
-                      disabled={isSubmitting} className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition disabled:opacity-50"
+                      disabled={isSubmitting}
+                      className="flex-1 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition disabled:opacity-50"
                     >
                       {isSubmitting ? (
                         <Loader2 className="w-5 h-5 animate-spin mx-auto" />

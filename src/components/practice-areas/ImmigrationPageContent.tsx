@@ -142,9 +142,7 @@ export default function ImmigrationPageContent({ language }: ImmigrationPageCont
       <section className="relative bg-gradient-to-br from-[#6B1F2E] to-[#8B2635] text-white py-24">
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-           }}
-          >
+          <div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">{t.title}</h1>
             <p className="text-xl text-[#C9974D] font-semibold mb-6">{t.subtitle}</p>
             <p className="text-xl max-w-3xl">{t.description}</p>
@@ -156,37 +154,25 @@ export default function ImmigrationPageContent({ language }: ImmigrationPageCont
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
-            <div
-             }}
-             }
-            >
+            <div>
               <h2 className="text-3xl font-bold text-[#6B1F2E] mb-6">{t.whyChoose}</h2>
               <ul className="space-y-4">
                 {t.reasons.map((reason, index) => (
-                  <li key={index}
-
-                className="flex items-start">
+                  <li key={index} className="flex items-start">
                     <CheckCircle className="w-6 h-6 text-[#C9974D] mr-3 mt-0.5 flex-shrink-0" />
-                    <span
-                className="text-gray-700">{reason}</span>
+                    <span className="text-gray-700">{reason}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div
-             }}
-             }
-            >
+            <div>
               <h2 className="text-3xl font-bold text-[#6B1F2E] mb-6">{t.howWeHelp}</h2>
               <ul className="space-y-4">
                 {t.services.map((service, index) => (
-                  <li key={index}
-
-                className="flex items-start">
+                  <li key={index} className="flex items-start">
                     <CheckCircle className="w-6 h-6 text-[#C9974D] mr-3 mt-0.5 flex-shrink-0" />
-                    <span
-                className="text-gray-700">{service}</span>
+                    <span className="text-gray-700">{service}</span>
                   </li>
                 ))}
               </ul>
@@ -198,9 +184,7 @@ export default function ImmigrationPageContent({ language }: ImmigrationPageCont
       {/* Services Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-className="text-center mb-12"
-          >
+          <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-[#6B1F2E] mb-4">{t.practiceAreas}</h2>
           </div>
 
@@ -208,13 +192,11 @@ className="text-center mb-12"
             {t.areas.map((area, index) => (
               <div
                 key={index}
-
                 className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow border border-gray-200"
               >
                 <div className="flex items-center mb-4">
                   <area.icon className="w-8 h-8 text-[#C9974D] mr-3" />
-                  <h3
-                className="text-xl font-semibold text-[#6B1F2E]">{area.title}</h3>
+                  <h3 className="text-xl font-semibold text-[#6B1F2E]">{area.title}</h3>
                 </div>
                 <p className="text-gray-600">{area.description}</p>
               </div>
@@ -226,15 +208,12 @@ className="text-center mb-12"
       {/* CTA Section */}
       <section className="py-16 bg-[#C9974D]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div
-           }}
-          >
+          <div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.ctaTitle}</h2>
             <p className="text-xl text-white/90 mb-8">{t.ctaDescription}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href={language === 'es' ? '/es/contacto' : '/contact'}
-
                 className="bg-white text-[#6B1F2E] px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors inline-block"
               >
                 {t.scheduleConsultation}
@@ -252,3 +231,4 @@ className="text-center mb-12"
       </section>
     </div>
   );
+}

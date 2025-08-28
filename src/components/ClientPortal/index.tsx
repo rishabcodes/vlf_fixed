@@ -81,9 +81,7 @@ export const ClientPortal: React.FC = () => {
             {(['overview', 'documents', 'messages', 'timeline'] as const).map(tab => (
               <button
                 key={tab}
-
                 onClick={() => setActiveTab(tab)}
-
                 className={`py-4 px-1 border-b-2 font-medium text-sm capitalize ${
                   activeTab === tab
                     ? 'border-primary text-primary'
@@ -101,19 +99,13 @@ export const ClientPortal: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <>
           {activeTab === 'overview' && (
-            <div
-              key="overview"
-             }}
-            >
+            <div key="overview">
               <CaseOverview metrics={caseMetrics} />
             </div>
           )}
 
           {activeTab === 'documents' && (
-            <div
-              key="documents"
-             }}
-            >
+            <div key="documents">
               <DocumentCollaboration
                 documents={documents}
                 selectedDoc={selectedDoc}
@@ -124,19 +116,13 @@ export const ClientPortal: React.FC = () => {
           )}
 
           {activeTab === 'messages' && (
-            <div
-              key="messages"
-             }}
-            >
+            <div key="messages">
               <SecureMessaging />
             </div>
           )}
 
           {activeTab === 'timeline' && (
-            <div
-              key="timeline"
-             }}
-            >
+            <div key="timeline">
               <CaseTimeline />
             </div>
           )}
@@ -269,7 +255,8 @@ const DocumentCollaboration: React.FC<{
             <DocumentItem
               key={doc.id}
               document={doc}
-              isSelected={selectedDoc?.id === doc.id onClick={() => onSelectDoc(doc)}
+              isSelected={selectedDoc?.id === doc.id}
+              onClick={() => onSelectDoc(doc)}
             />
           ))}
         </div>
@@ -291,13 +278,10 @@ const DocumentCollaboration: React.FC<{
                 </button>
               </div>
             </div>
-            <div ref={setEditorRef}
-
-                className="min-h-[400px] border rounded-lg" />
+            <div ref={setEditorRef} className="min-h-[400px] border rounded-lg" />
           </>
         ) : (
-          <div
-                className="text-center py-12 text-gray-500">Select a document to view or edit</div>
+          <div className="text-center py-12 text-gray-500">Select a document to view or edit</div>
         )}
       </div>
     </div>
@@ -346,8 +330,9 @@ const SecureMessaging: React.FC = () => {
             <label className="flex items-center gap-2 text-sm">
               <input
                 type="checkbox"
-                checked={isEncrypted} onChange={e => setIsEncrypted(e.target.checked)}
-      className="rounded"
+                checked={isEncrypted}
+                onChange={e => setIsEncrypted(e.target.checked)}
+                className="rounded"
               />
               End-to-end encryption
             </label>
@@ -366,12 +351,15 @@ const SecureMessaging: React.FC = () => {
         <div className="flex gap-2">
           <input
             type="text"
-            value={newMessage} onChange={e => setNewMessage(e.target.value)}
-                onKeyPress={e => e.key === 'Enter' && sendMessage()} placeholder="Type a secure message..."
+            value={newMessage}
+            onChange={e => setNewMessage(e.target.value)}
+            onKeyPress={e => e.key === 'Enter' && sendMessage()}
+            placeholder="Type a secure message..."
             className="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
           />
           <button
-            onClick={sendMessage} className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90"
+            onClick={sendMessage}
+            className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90"
           >
             Send
           </button>
@@ -520,8 +508,7 @@ const CollaboratorAvatars: React.FC<{ collaborators: { name?: string }[] }> = ({
     {collaborators.slice(0, 3).map((collab, i) => (
       <div
         key={i}
-
-                className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs font-medium"
+        className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs font-medium"
       >
         {collab.name?.[0] || '?'}
       </div>
@@ -602,9 +589,7 @@ const TimelineEvent: React.FC<{ event: TimelineEventData; isLast: boolean }> = (
       {event.documents.length > 0 && (
         <div className="flex gap-2 mt-2">
           {event.documents.map((doc: string) => (
-            <span key={doc}
-
-                className="text-xs bg-gray-100 px-2 py-1 rounded">
+            <span key={doc} className="text-xs bg-gray-100 px-2 py-1 rounded">
               📄 {doc}
             </span>
           ))}
@@ -628,3 +613,4 @@ async function encryptMessage(message: string): Promise<string> {
   const encrypted = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, data);
 
   return btoa(String.fromCharCode(...new Uint8Array(encrypted)));
+}
