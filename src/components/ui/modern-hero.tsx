@@ -39,7 +39,6 @@ className="mb-8"
                 <h1 className="text-6xl md:text-7xl lg:text-8xl font-black leading-none">
                   <span
                     className="block text-transparent bg-clip-text bg-gradient-to-r from-[#C9974D] to-[#D4A574]"
-                   }}
                   >
                     YO PELEO™
                   </span>
@@ -48,7 +47,7 @@ className="mb-8"
 
                 {/* Tagline */}
                 <p
-className="text-xl md:text-2xl text-[#C9974D] font-bold mt-4"
+                  className="text-xl md:text-2xl text-[#C9974D] font-bold mt-4"
                 >
                   I FIGHT FOR YOU
                 </p>
@@ -56,7 +55,7 @@ className="text-xl md:text-2xl text-[#C9974D] font-bold mt-4"
 
               {/* Features */}
               <div
-className="space-y-4 mb-8"
+                className="space-y-4 mb-8"
               >
                 <div className="flex items-center space-x-3">
                   <div className="w-12 h-12 bg-[#C9974D] rounded-full flex items-center justify-center">

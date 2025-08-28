@@ -8,35 +8,62 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || '',
 });
 
-// Helper function to analyze immigration case details from conversation
-function analyzeImmigrationCase(conversationText: string): any {
+// Helper function to analyze case details from conversation
+function analyzeCaseDetails(conversationText: string, legalIssues: string[]): any {
   const lowerText = conversationText.toLowerCase();
   
-  // Extract nationality
-  let nationality = 'N/A';
-  const nationalityMatch = lowerText.match(/(?:from|soy de|vengo de|nationality|nacionalidad)[\s:]*([\w\s]+?)(?:\.|,|\n|$)/);
-  if (nationalityMatch) nationality = nationalityMatch[1].trim();
+  // Check if this is primarily an immigration case
+  const isImmigrationCase = legalIssues.some(issue => 
+    issue.toLowerCase().includes('immigration') || 
+    issue.toLowerCase().includes('ice')
+  );
   
-  // Extract entry year
-  let entryYear = 'N/A';
-  const yearMatch = lowerText.match(/(?:entered|came|arrived|llegué|vine).*?(\d{4})/);
-  if (yearMatch) entryYear = yearMatch[1];
+  // For traffic violations
+  if (legalIssues.some(issue => issue.toLowerCase().includes('traffic'))) {
+    const violationType = lowerText.includes('red light') ? 'Red Light Violation' :
+                         lowerText.includes('speeding') ? 'Speeding' :
+                         lowerText.includes('dui') || lowerText.includes('dwi') ? 'DUI/DWI' :
+                         'Traffic Violation';
+    const firstOffense = lowerText.includes('first') || !lowerText.includes('previous');
+    const hasCourtDate = lowerText.includes('court') || lowerText.includes('hearing');
+    
+    return {
+      caseType: 'traffic',
+      violationType,
+      firstOffense,
+      hasCourtDate,
+      hasCriminalHistory: lowerText.includes('dui') || lowerText.includes('dwi')
+    };
+  }
   
-  // Detect persecution
-  const hasPersecution = /(?:threat|persec|violence|gang|mara|pandilla|cartel|danger|fear|fled|escape)/i.test(lowerText);
+  // For immigration cases (original logic)
+  if (isImmigrationCase) {
+    let nationality = 'N/A';
+    const nationalityMatch = lowerText.match(/(?:from|soy de|vengo de|nationality|nacionalidad)[\s:]*([\w\s]+?)(?:\.|,|\n|$)/);
+    if (nationalityMatch) nationality = nationalityMatch[1].trim();
+    
+    let entryYear = 'N/A';
+    const yearMatch = lowerText.match(/(?:entered|came|arrived|llegué|vine).*?(\d{4})/);
+    if (yearMatch) entryYear = yearMatch[1];
+    
+    const hasPersecution = /(?:threat|persec|violence|gang|mara|pandilla|cartel|danger|fear|fled|escape)/i.test(lowerText);
+    const hasUSFamily = /(?:spouse|husband|wife|child|son|daughter|parent).*?(?:citizen|green card|resident)/i.test(lowerText);
+    const hasCriminalHistory = /(?:arrest|convict|criminal|jail|prison|dui|charge)/i.test(lowerText);
+    
+    return {
+      caseType: 'immigration',
+      nationality,
+      entryYear,
+      hasPersecution,
+      hasUSFamily,
+      hasCriminalHistory
+    };
+  }
   
-  // Detect family status
-  const hasUSFamily = /(?:spouse|husband|wife|child|son|daughter|parent).*?(?:citizen|green card|resident)/i.test(lowerText);
-  
-  // Detect criminal issues
-  const hasCriminalHistory = /(?:arrest|convict|criminal|jail|prison|dui|charge)/i.test(lowerText);
-  
+  // Default case details for other legal issues
   return {
-    nationality,
-    entryYear,
-    hasPersecution,
-    hasUSFamily,
-    hasCriminalHistory
+    caseType: 'general',
+    hasCriminalHistory: /(?:arrest|convict|criminal|jail|prison|dui|charge)/i.test(lowerText)
   };
 }
 
@@ -44,60 +71,68 @@ function analyzeImmigrationCase(conversationText: string): any {
 function calculateReliefScores(caseInfo: any): Array<{relief: string, score: number, hurdle: string}> {
   const scores = [];
   
-  // Asylum/Withholding
-  if (caseInfo.hasPersecution) {
-    scores.push({
-      relief: 'Asylum/Withholding',
-      score: 7,
-      hurdle: 'must prove persecution'
-    });
-  } else {
-    scores.push({
-      relief: 'Asylum/Withholding',
-      score: 3,
-      hurdle: 'no persecution mentioned'
-    });
+  // Handle traffic cases
+  if (caseInfo.caseType === 'traffic') {
+    return []; // Traffic relief options are handled inline in the note template
   }
   
-  // Family-based adjustment
-  if (caseInfo.hasUSFamily) {
+  // Handle immigration cases
+  if (caseInfo.caseType === 'immigration') {
+    // Asylum/Withholding
+    if (caseInfo.hasPersecution) {
+      scores.push({
+        relief: 'Asylum/Withholding',
+        score: 7,
+        hurdle: 'must prove persecution'
+      });
+    } else {
+      scores.push({
+        relief: 'Asylum/Withholding',
+        score: 3,
+        hurdle: 'no persecution mentioned'
+      });
+    }
+    
+    // Family-based adjustment
+    if (caseInfo.hasUSFamily) {
+      scores.push({
+        relief: 'Family-based Adjustment',
+        score: 8,
+        hurdle: 'verify qualifying relationship'
+      });
+    } else {
+      scores.push({
+        relief: 'Family-based Adjustment',
+        score: 2,
+        hurdle: 'no qualifying family'
+      });
+    }
+    
+    // Non-LPR Cancellation (needs 10 years)
+    const currentYear = new Date().getFullYear();
+    const yearsInUS = caseInfo.entryYear !== 'N/A' ? currentYear - parseInt(caseInfo.entryYear) : 0;
+    
+    if (yearsInUS >= 10) {
+      scores.push({
+        relief: 'Non-LPR Cancellation',
+        score: 6,
+        hurdle: 'must show hardship'
+      });
+    } else {
+      scores.push({
+        relief: 'Non-LPR Cancellation',
+        score: 2,
+        hurdle: `only ${yearsInUS} years presence`
+      });
+    }
+    
+    // Prosecutorial discretion
     scores.push({
-      relief: 'Family-based Adjustment',
-      score: 8,
-      hurdle: 'verify qualifying relationship'
-    });
-  } else {
-    scores.push({
-      relief: 'Family-based Adjustment',
-      score: 2,
-      hurdle: 'no qualifying family'
+      relief: 'Prosecutorial Discretion',
+      score: caseInfo.hasCriminalHistory ? 3 : 5,
+      hurdle: caseInfo.hasCriminalHistory ? 'criminal history' : 'no strong equities'
     });
   }
-  
-  // Non-LPR Cancellation (needs 10 years)
-  const currentYear = new Date().getFullYear();
-  const yearsInUS = caseInfo.entryYear !== 'N/A' ? currentYear - parseInt(caseInfo.entryYear) : 0;
-  
-  if (yearsInUS >= 10) {
-    scores.push({
-      relief: 'Non-LPR Cancellation',
-      score: 6,
-      hurdle: 'must show hardship'
-    });
-  } else {
-    scores.push({
-      relief: 'Non-LPR Cancellation',
-      score: 2,
-      hurdle: `only ${yearsInUS} years presence`
-    });
-  }
-  
-  // Prosecutorial discretion
-  scores.push({
-    relief: 'Prosecutorial Discretion',
-    score: caseInfo.hasCriminalHistory ? 3 : 5,
-    hurdle: caseInfo.hasCriminalHistory ? 'criminal history' : 'no strong equities'
-  });
   
   return scores;
 }
@@ -106,29 +141,42 @@ function calculateReliefScores(caseInfo: any): Array<{relief: string, score: num
 function generateActionPlan(caseInfo: any, reliefScores: any[]): string[] {
   const actions = [];
   
-  // Priority actions based on case
-  if (caseInfo.hasPersecution) {
-    actions.push('Gather evidence of threats/persecution');
-    actions.push('Prepare asylum declaration');
+  // Traffic case actions
+  if (caseInfo.caseType === 'traffic') {
+    return []; // Traffic actions are handled inline in the note template
   }
   
-  if (caseInfo.hasUSFamily) {
-    actions.push('Verify family member immigration status');
-    actions.push('Gather relationship documents');
-  }
-  
-  // Standard actions
-  actions.push('Confirm EOIR status and hearing date');
-  actions.push('Schedule consultation with attorney');
-  
-  const currentYear = new Date().getFullYear();
-  const yearsInUS = caseInfo.entryYear !== 'N/A' ? currentYear - parseInt(caseInfo.entryYear) : 0;
-  if (yearsInUS >= 8) {
-    actions.push('Document continuous presence for cancellation');
-  }
-  
-  if (!caseInfo.hasCriminalHistory) {
-    actions.push('Maintain clean record');
+  // Immigration case actions
+  if (caseInfo.caseType === 'immigration') {
+    // Priority actions based on case
+    if (caseInfo.hasPersecution) {
+      actions.push('Gather evidence of threats/persecution');
+      actions.push('Prepare asylum declaration');
+    }
+    
+    if (caseInfo.hasUSFamily) {
+      actions.push('Verify family member immigration status');
+      actions.push('Gather relationship documents');
+    }
+    
+    // Standard actions
+    actions.push('Confirm EOIR status and hearing date');
+    actions.push('Schedule consultation with attorney');
+    
+    const currentYear = new Date().getFullYear();
+    const yearsInUS = caseInfo.entryYear !== 'N/A' ? currentYear - parseInt(caseInfo.entryYear) : 0;
+    if (yearsInUS >= 8) {
+      actions.push('Document continuous presence for cancellation');
+    }
+    
+    if (!caseInfo.hasCriminalHistory) {
+      actions.push('Maintain clean record');
+    }
+  } else {
+    // General case actions
+    actions.push('Schedule consultation with attorney');
+    actions.push('Gather relevant documentation');
+    actions.push('Follow up within 24-48 hours');
   }
   
   return actions;
@@ -211,11 +259,13 @@ export async function POST(request: NextRequest) {
     const lowerText = conversationText.toLowerCase();
     if (lowerText.includes('divorce')) legalIssues.push('Divorce');
     if (lowerText.includes('ice') || lowerText.includes('detention')) legalIssues.push('Immigration/ICE');
-    if (lowerText.includes('accident')) legalIssues.push('Personal Injury');
-    if (lowerText.includes('dui') || lowerText.includes('arrest')) legalIssues.push('Criminal Defense');
+    if (lowerText.includes('accident') && !lowerText.includes('traffic')) legalIssues.push('Personal Injury');
+    if (lowerText.includes('dui') || lowerText.includes('dwi')) legalIssues.push('DUI/DWI');
+    else if (lowerText.includes('arrest')) legalIssues.push('Criminal Defense');
     if (lowerText.includes('work') && lowerText.includes('injur')) legalIssues.push('Workers Comp');
     if (lowerText.includes('custody')) legalIssues.push('Custody');
     if (lowerText.includes('visa') || lowerText.includes('green card') || lowerText.includes('asylum')) legalIssues.push('Immigration');
+    if (lowerText.includes('traffic') || lowerText.includes('ticket') || lowerText.includes('red light') || lowerText.includes('speeding')) legalIssues.push('Traffic');
     
     // Determine if emergency
     const isEmergency = lowerText.includes('detained') || lowerText.includes('arrested') || 
@@ -229,8 +279,8 @@ export async function POST(request: NextRequest) {
     const isAbandonedByTime = timeSinceLastMessage > 300000; // 5 minutes = abandoned
     const abandoned = isAbandoned || isAbandonedByTime; // Use explicit flag or time-based
     
-    // Analyze case details
-    const caseInfo = analyzeImmigrationCase(conversationText);
+    // Analyze case details based on legal issues
+    const caseInfo = analyzeCaseDetails(conversationText, legalIssues);
     const reliefScores = calculateReliefScores(caseInfo);
     const actionPlan = generateActionPlan(caseInfo, reliefScores);
     const leadRating = scoreLeadQuality(conversationHistory, caseInfo);
@@ -284,31 +334,81 @@ Provide a concise summary that captures the key points.`;
     const aNumberMatch = conversationText.match(/[Aa][-\s]?(\d{8,9})/);
     if (aNumberMatch) aNumber = `A-${aNumberMatch[1]}`;
     
-    // Create note content in the exact format requested
-    const noteContent = `QUALIFYING AGENT Chat SUMMARY
-${aiSummary}
-
-DOB: N/A  
-Address: N/A  
-
-📄 Case Summary – [${legalIssues.join(', ') || 'N/A'}]
+    // Create note content based on case type
+    let caseSpecificContent = '';
+    
+    if (caseInfo.caseType === 'traffic') {
+      caseSpecificContent = `📄 Case Summary – [Traffic Violation]
+---------------------------------------
+- Violation Type: ${caseInfo.violationType}
+- First Offense: ${caseInfo.firstOffense ? 'Yes' : 'No'}
+- Court Date: ${courtDate}
+- Location: ${lowerText.includes('charlotte') ? 'Charlotte, NC' : 
+                  lowerText.includes('raleigh') ? 'Raleigh, NC' : 
+                  lowerText.includes('smithfield') ? 'Smithfield, NC' :
+                  lowerText.includes('orlando') ? 'Orlando, FL' : 'To be determined'}
+- License Status: ${lowerText.includes('suspended') ? 'Suspended' : 
+                    lowerText.includes('revoked') ? 'Revoked' : 'Valid'}
+- Prior Violations: ${caseInfo.firstOffense ? 'None' : 'Has prior violations'}`;
+    } else if (caseInfo.caseType === 'immigration') {
+      caseSpecificContent = `📄 Case Summary – [Immigration]
 ---------------------------------------
 - Nationality: ${caseInfo.nationality}
 - Entry & Status: ${entryStatus}; ${caseInfo.entryYear !== 'N/A' ? `entered ${caseInfo.entryYear}` : 'entry date unknown'}; ${lowerText.includes('no status') || lowerText.includes('undocumented') ? 'no legal status' : 'status unclear'}${lowerText.includes('detained') ? '; detained at entry' : ''}
 - Next Court / USCIS date: ${courtDate}
 - Family with status: ${caseInfo.hasUSFamily ? 'Yes - verify relationship' : 'None mentioned'}
 - Past persecution: ${caseInfo.hasPersecution ? 'Yes - ' + (lowerText.includes('gang') || lowerText.includes('mara') ? 'gang/violence' : 'threats/persecution') : 'Not mentioned'}
-- A-Number: ${aNumber}
+- A-Number: ${aNumber}`;
+    } else {
+      caseSpecificContent = `📄 Case Summary – [${legalIssues.join(', ') || 'General Inquiry'}]
+---------------------------------------
+- Issue Type: ${legalIssues.join(', ') || 'To be determined'}
+- Court Date: ${courtDate}
+- Urgency: ${isEmergency ? 'High - Immediate attention needed' : 'Standard'}
+- Criminal History: ${caseInfo.hasCriminalHistory ? 'Yes - needs review' : 'None mentioned'}`;
+    }
+    
+    const noteContent = `QUALIFYING AGENT Chat SUMMARY
+${aiSummary}
+
+DOB: N/A  
+Address: N/A  
+
+${caseSpecificContent}
 
 🔍 Legal Analysis
 ---------------------------------------
-- Removal posture: ${lowerText.includes('court') || lowerText.includes('hearing') ? 'Defensive' : 'Affirmative'}; ${caseInfo.entryYear !== 'N/A' && parseInt(caseInfo.entryYear) <= 2014 ? 'possible 10-year presence' : 'insufficient presence for cancellation'}
+${caseInfo.caseType === 'traffic' ? 
+`- Violation Severity: ${caseInfo.violationType === 'DUI/DWI' ? 'High - Criminal charge' : 
+                        caseInfo.violationType === 'Red Light Violation' ? 'Moderate - Moving violation' : 
+                        'Standard traffic violation'}
+- Defense Options: ${caseInfo.firstOffense ? 'First offense - possible diversion programs' : 
+                    'Multiple violations - limited options'}
+- License Impact: ${caseInfo.violationType === 'DUI/DWI' ? 'Likely suspension' : 
+                   'Points on license'}` :
+caseInfo.caseType === 'immigration' ?
+`- Removal posture: ${lowerText.includes('court') || lowerText.includes('hearing') ? 'Defensive' : 'Affirmative'}; ${caseInfo.entryYear !== 'N/A' && parseInt(caseInfo.entryYear) <= 2014 ? 'possible 10-year presence' : 'insufficient presence for cancellation'}
 - Adjustment or other relief track: ${caseInfo.hasUSFamily ? 'Family-based possible' : caseInfo.hasPersecution ? 'Asylum/withholding' : 'Limited options'}; ${caseInfo.hasUSFamily ? 'verify qualifying relationship' : 'no family-based options'}
-- Critical deadlines / evidentiary issues: ${courtDate !== 'No hearing scheduled' ? courtDate : 'No immediate deadlines'}; ${caseInfo.hasPersecution ? 'must document persecution' : 'gather supporting evidence'}; ${lowerText.includes('one year') || lowerText.includes('1 year') ? 'asylum clock may be running' : ''}
+- Critical deadlines / evidentiary issues: ${courtDate !== 'No hearing scheduled' ? courtDate : 'No immediate deadlines'}; ${caseInfo.hasPersecution ? 'must document persecution' : 'gather supporting evidence'}; ${lowerText.includes('one year') || lowerText.includes('1 year') ? 'asylum clock may be running' : ''}` :
+`- Initial assessment pending consultation
+- Gather relevant documentation
+- Schedule consultation with attorney`}
 
 🎯 Relief Options & Scores
 ---------------------------------------
-${reliefScores.map(item => 
+${caseInfo.caseType === 'traffic' ? 
+`Option : Traffic School  
+Score  : ${caseInfo.firstOffense ? '8' : '4'} / 10  
+Hurdle : ${caseInfo.firstOffense ? 'Court approval needed' : 'May not be eligible'}
+
+Option : Fine Reduction  
+Score  : 6 / 10  
+Hurdle : Demonstrate financial hardship
+
+Option : Contest Violation  
+Score  : ${lowerText.includes('hurry') ? '3' : '5'} / 10  
+Hurdle : ${lowerText.includes('hurry') ? 'Admission of fault' : 'Need evidence'}` :
+reliefScores.map(item => 
 `Relief : ${item.relief}  
 Score  : ${item.score} / 10  
 Hurdle : ${item.hurdle}
@@ -316,7 +416,17 @@ Hurdle : ${item.hurdle}
 
 🗒️ Action Plan
 ---------------------------------------
-${actionPlan.map(action => `- ${action}`).join('\n')}
+${caseInfo.caseType === 'traffic' ? 
+[
+  'Review traffic citation details',
+  'Document circumstances of violation',
+  'Gather any evidence (dashcam, witnesses)',
+  'Prepare for court appearance',
+  caseInfo.firstOffense ? 'Inquire about traffic school eligibility' : 'Review prior violation history',
+  'Schedule consultation with traffic attorney',
+  'Prepare financial documentation if seeking fine reduction'
+].map(action => `- ${action}`).join('\n') :
+actionPlan.map(action => `- ${action}`).join('\n')}
 
 First name: ${contactName?.split(' ')[0] || ''}
 Last name: ${contactName?.split(' ').slice(1).join(' ') || ''}

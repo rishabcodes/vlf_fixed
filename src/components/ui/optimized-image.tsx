@@ -71,9 +71,11 @@ export default function OptimizedImage({
       {/* Blur placeholder for smooth loading */}
       {lowQualitySrc && currentSrc === src && (
         <Image
-          src={lowQualitySrc alt=""
-          fill      className="absolute inset-0 blur-lg scale-110"
-                aria-hidden="true"
+          src={lowQualitySrc}
+          alt=""
+          fill
+          className="absolute inset-0 blur-lg scale-110"
+          aria-hidden="true"
         />
       )}
 
@@ -136,5 +138,4 @@ export function useImageLazyLoad(threshold = 0.1) {
   }, [threshold]);
 
   return { ref, isIntersecting };
-}
 }

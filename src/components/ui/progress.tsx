@@ -46,10 +46,11 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
         )}
         <div
           ref={ref}
-                role="progressbar"
-          aria-valuemin={0 aria-valuemax={max aria-valuenow={value}
-
-                className={cn(
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={max}
+          aria-valuenow={value}
+          className={cn(
             'relative w-full overflow-hidden rounded-full bg-secondary',
             sizeClasses[size],
             className
@@ -60,7 +61,8 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
             className={cn(
               'h-full w-full flex-1 bg-primary transition-all duration-300 ease-in-out',
               indicatorClassName
-            ) style={{ transform: `translateX(-${100 - percentage}%)` }}
+            )}
+            style={{ transform: `translateX(-${100 - percentage}%)` }}
           />
         </div>
       </div>
@@ -71,6 +73,3 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
 Progress.displayName = 'Progress';
 
 export { Progress };
-}
-}
-}

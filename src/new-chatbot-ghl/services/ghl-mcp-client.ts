@@ -771,6 +771,86 @@ ${divider}
   }
   
   /**
+   * Create an appointment/calendar event
+   */
+  async createAppointment(data: {
+    contactId: string;
+    title: string;
+    startTime: string;
+    endTime?: string;
+    duration?: number;
+    location?: string;
+    description?: string;
+    appointmentStatus?: string;
+  }): Promise<any> {
+    if (!this.isConfigured()) return null;
+    
+    try {
+      // Calculate end time if not provided
+      let endTime = data.endTime;
+      if (!endTime && data.startTime && data.duration) {
+        const start = new Date(data.startTime);
+        start.setMinutes(start.getMinutes() + (data.duration || 30));
+        endTime = start.toISOString();
+      }
+      
+      console.log('[GHL] Creating appointment:', {
+        contactId: data.contactId,
+        title: data.title,
+        startTime: data.startTime,
+        endTime
+      });
+      
+      // Use the calendars_create-appointment tool
+      const response = await this.executeTool('calendars_create-appointment', {
+        body_calendarId: process.env.GHL_DEFAULT_CALENDAR_ID || this.locationId,
+        body_locationId: this.locationId,
+        body_contactId: data.contactId,
+        body_title: data.title,
+        body_appointmentStatus: data.appointmentStatus || 'confirmed',
+        body_assignedUserId: process.env.GHL_DEFAULT_USER_ID || '',
+        body_address: data.location || '5701 Executive Center Dr, Suite 103, Charlotte, NC 28212',
+        body_notes: data.description || '',
+        body_startTime: data.startTime,
+        body_endTime: endTime || data.startTime
+      });
+      
+      if (response.success && response.data) {
+        console.log('[GHL] Appointment created successfully:', response.data.id);
+        return response.data;
+      }
+      
+      console.error('[GHL] Failed to create appointment:', response.error);
+      return null;
+    } catch (error) {
+      console.error('[GHL] Error creating appointment:', error);
+      return null;
+    }
+  }
+  
+  /**
+   * Get available calendars
+   */
+  async getUserCalendars(): Promise<any[]> {
+    if (!this.isConfigured()) return [];
+    
+    try {
+      const response = await this.executeTool('calendars_get-calendars', {
+        query_locationId: this.locationId
+      });
+      
+      if (response.success && response.data?.calendars) {
+        return response.data.calendars;
+      }
+      
+      return [];
+    } catch (error) {
+      console.error('[GHL] Error getting calendars:', error);
+      return [];
+    }
+  }
+  
+  /**
    * Send a message in a conversation
    */
   async sendMessage(contactId: string, message: string): Promise<boolean> {

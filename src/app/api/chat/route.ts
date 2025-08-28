@@ -1055,8 +1055,71 @@ function detectLanguage(message: string): 'en' | 'es' {
   return spanishScore > englishScore ? 'es' : 'en';
 }
 
+// Helper function to detect and parse appointment requests
+function detectAppointmentRequest(message: string, aiResponse: string, conversationHistory: any[] = []): {
+  isConfirmed?: boolean;
+  date?: string;
+  time?: string;
+  location?: string;
+} | null {
+  const lowerMessage = message.toLowerCase();
+  const lowerResponse = aiResponse.toLowerCase();
+  
+  // Check if this looks like appointment confirmation
+  const hasAppointmentIntent = 
+    (lowerMessage.includes('tomorrow') && lowerMessage.includes('2pm')) ||
+    (lowerMessage.includes('friday') && (lowerMessage.includes('2pm') || lowerMessage.includes('2 pm'))) ||
+    (lowerResponse.includes('appointment') && lowerResponse.includes('arrange')) ||
+    (lowerResponse.includes('appointment') && lowerResponse.includes('friday'));
+  
+  if (!hasAppointmentIntent) return null;
+  
+  // Extract date
+  let date: string | undefined;
+  const today = new Date();
+  
+  if (lowerMessage.includes('tomorrow') || lowerResponse.includes('tomorrow')) {
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    date = tomorrow.toISOString().split('T')[0];
+  } else if (lowerMessage.includes('friday') || lowerResponse.includes('friday')) {
+    const friday = new Date(today);
+    const currentDay = friday.getDay();
+    const daysUntilFriday = currentDay <= 5 ? (5 - currentDay) : (5 + 7 - currentDay);
+    friday.setDate(today.getDate() + daysUntilFriday);
+    date = friday.toISOString().split('T')[0];
+  }
+  
+  // Extract time
+  let time: string | undefined;
+  const timeMatch = (message + ' ' + aiResponse).match(/(\d{1,2})(?::(\d{2}))?\s*(pm|am|PM|AM)/);
+  if (timeMatch) {
+    let hour = parseInt(timeMatch[1]);
+    const minutes = timeMatch[2] || '00';
+    const meridiem = timeMatch[3].toLowerCase();
+    
+    if (meridiem === 'pm' && hour !== 12) {
+      hour += 12;
+    } else if (meridiem === 'am' && hour === 12) {
+      hour = 0;
+    }
+    
+    time = `${hour.toString().padStart(2, '0')}:${minutes}:00`;
+  }
+  
+  // Extract location
+  let location: string | undefined;
+  const locationText = (message + ' ' + aiResponse).toLowerCase();
+  if (locationText.includes('charlotte')) location = 'Charlotte';
+  else if (locationText.includes('raleigh')) location = 'Raleigh';
+  else if (locationText.includes('smithfield')) location = 'Smithfield';
+  else if (locationText.includes('orlando')) location = 'Orlando';
+  
+  return { isConfirmed: hasAppointmentIntent, date, time, location };
+}
+
 // Extract contact information from user message
-function extractContactInfo(message: string, conversationHistory: any[] = []): { 
+function extractContactInfo(message: string, conversationHistory: any[] = [], onlyIfRequested: boolean = true): { 
   name?: string; 
   email?: string; 
   phone?: string;
@@ -1065,19 +1128,64 @@ function extractContactInfo(message: string, conversationHistory: any[] = []): {
   const result: any = {};
   const lowerMessage = message.toLowerCase();
   
+  // Check if this message is likely a response to a name request
+  const isNameResponse = !onlyIfRequested || (() => {
+    if (conversationHistory.length === 0) return true; // First interaction, likely name request
+    
+    // Look at the last AI message to see if it asked for a name
+    const lastAiMessage = [...conversationHistory].reverse().find(msg => msg.sender === 'assistant');
+    if (!lastAiMessage?.text) return false;
+    
+    const lastAiText = lastAiMessage.text.toLowerCase();
+    const nameRequestPatterns = [
+      /may i have your name/i,
+      /what.*your name/i,
+      /could.*tell me.*name/i,
+      /can you.*name/i,
+      /¿.*nombre/i, // Spanish
+      /me.*puede.*nombre/i, // Spanish
+      /¿cuál.*nombre/i // Spanish
+    ];
+    
+    return nameRequestPatterns.some(pattern => pattern.test(lastAiText));
+  })();
+  
+  // Only extract name if this appears to be a response to a name request
+  if (!isNameResponse) {
+    return result;
+  }
+  
   // Name extraction patterns (supports both English and Spanish)
   const namePatterns = [
     /(?:my name is|i'm|i am|this is|call me)\s+([a-z]+(?:\s+[a-z]+)?)/i,
     /(?:mi nombre es|me llamo|soy)\s+([a-z]+(?:\s+[a-z]+)?)/i, // Spanish patterns
-    /^([a-z]+(?:\s+[a-z]+)?)$/i, // Just a name by itself (if short message)
   ];
+  
+  // Check for standalone names only if the message is short and likely a direct response
+  if (message.length < 30 && message.split(' ').length <= 3) {
+    const cityNames = ['charlotte', 'raleigh', 'orlando', 'smithfield'];
+    const commonWords = ['yes', 'no', 'ok', 'okay', 'thanks', 'hello', 'hi', 'bye', 'alright', 'sure', 'fine'];
+    const standaloneNamePattern = /^([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2})$/;
+    const standaloneMatch = message.match(standaloneNamePattern);
+    
+    if (standaloneMatch && standaloneMatch[1] && 
+        !cityNames.includes(standaloneMatch[1].toLowerCase()) &&
+        !commonWords.includes(standaloneMatch[1].toLowerCase())) {
+      result.name = standaloneMatch[1];
+      result.hasName = true;
+      return result; // Early return for standalone names
+    }
+  }
   
   for (const pattern of namePatterns) {
     const match = message.match(pattern);
     if (match && match[1]) {
-      // Clean up the name - remove common words
+      // Clean up the name - remove common words and location names
       let name = match[1].trim();
-      const excludeWords = ['test', 'here', 'there', 'yes', 'no', 'hello', 'hi'];
+      const excludeWords = ['test', 'here', 'there', 'yes', 'no', 'hello', 'hi',
+                           'charlotte', 'raleigh', 'orlando', 'smithfield', // city names
+                           'north', 'south', 'carolina', 'florida', // state names
+                           'bye', 'alright', 'okay', 'thanks', 'sure']; // common words
       const nameWords = name.split(' ').filter(word => 
         !excludeWords.includes(word.toLowerCase()) && 
         word.length > 1
@@ -1164,18 +1272,15 @@ export async function POST(request: NextRequest) {
     // Generate session ID if not provided
     const currentSessionId = sessionId || `session-${Date.now()}`;
 
-    // Extract contact information from message
-    const extractedInfo = extractContactInfo(message, conversationHistory);
-    
     // Check if we already have contact info from conversation history (for language switches)
-    let existingNameFromHistory = null;
-    let existingEmailFromHistory = null;
-    let existingPhoneFromHistory = null;
+    let existingNameFromHistory: string | null = null;
+    let existingEmailFromHistory: string | null = null;
+    let existingPhoneFromHistory: string | null = null;
     
     // Search through conversation history for previously collected info
     conversationHistory.forEach((msg: any) => {
       if (msg.sender === 'user') {
-        const historyInfo = extractContactInfo(msg.text, []);
+        const historyInfo = extractContactInfo(msg.text, [], false); // Don't require request context for history search
         if (historyInfo.name && !existingNameFromHistory) {
           existingNameFromHistory = historyInfo.name;
         }
@@ -1188,8 +1293,24 @@ export async function POST(request: NextRequest) {
       }
     });
     
-    // Prioritize: provided > extracted from current > extracted from history
-    let contactName = providedName || extractedInfo.name || existingNameFromHistory;
+    // Only extract from current message if we don't already have a name
+    let extractedInfo: { name?: string; email?: string; phone?: string; hasName?: boolean; } = { 
+      name: undefined, 
+      email: undefined, 
+      phone: undefined 
+    };
+    if (!providedName && !existingNameFromHistory) {
+      // Only try to extract name from current message if we don't have one already
+      extractedInfo = extractContactInfo(message, conversationHistory, true);
+    } else {
+      // Still extract email and phone from current message
+      const tempInfo = extractContactInfo(message, conversationHistory, false);
+      extractedInfo.email = tempInfo.email;
+      extractedInfo.phone = tempInfo.phone;
+    }
+    
+    // Prioritize: provided > existing from history > extracted from current message
+    let contactName = providedName || existingNameFromHistory || extractedInfo.name;
     let contactEmail = extractedInfo.email || existingEmailFromHistory;
     let contactPhone = phoneNumber || extractedInfo.phone || existingPhoneFromHistory;
     
@@ -1509,21 +1630,54 @@ export async function POST(request: NextRequest) {
         : 'I apologize, I had trouble processing your message. Please try again or call us at 1-844-967-3536.';
     }
 
-    // Check if AI response mentions appointment booking
-    const appointmentKeywords = [
-      'schedule', 'appointment', 'consultation', 'available', 
-      'book', 'meeting', 'calendar', 'time slot',
-      'cita', 'consulta', 'disponible', 'horario'
-    ];
+    // Check if AI response confirms an appointment
+    const appointmentData = detectAppointmentRequest(message, aiResponse, conversationHistory);
     
-    const wantsAppointment = appointmentKeywords.some(keyword => 
-      message.toLowerCase().includes(keyword) || 
-      aiResponse.toLowerCase().includes(keyword)
-    );
-    
-    // Process appointment booking if needed
+    // Process appointment booking if confirmed
     let appointmentInfo = null;
-    if (wantsAppointment && ghlContactId) {
+    if (appointmentData?.isConfirmed && appointmentData.date && appointmentData.time && ghlContactId) {
+      // Create the appointment in GHL
+      try {
+        console.log('[Chat] Creating appointment:', {
+          date: appointmentData.date,
+          time: appointmentData.time,
+          location: appointmentData.location,
+          contactId: ghlContactId
+        });
+        
+        // Create appointment using GHL MCP
+        const appointment = await ghlMCPClient.createAppointment({
+          contactId: ghlContactId,
+          title: `Legal Consultation - ${contactName || 'Client'}`,
+          startTime: `${appointmentData.date}T${appointmentData.time}`,
+          endTime: `${appointmentData.date}T${appointmentData.time}`, // Will be adjusted by duration
+          duration: 30, // 30-minute consultation
+          location: appointmentData.location || 'Charlotte Office',
+          description: `Traffic violation consultation scheduled via chatbot\nSession: ${currentSessionId}\nLanguage: ${language}`,
+          appointmentStatus: 'scheduled'
+        });
+        
+        if (appointment) {
+          console.log('[Chat] Appointment created successfully:', appointment.id);
+          appointmentInfo = {
+            created: true,
+            appointmentId: appointment.id,
+            date: appointmentData.date,
+            time: appointmentData.time,
+            location: appointmentData.location
+          };
+          
+          // Add confirmation to response if not already there
+          if (!aiResponse.includes('confirmation')) {
+            aiResponse += `\n\nYour appointment has been successfully scheduled for ${appointmentData.date} at ${appointmentData.time.substring(0, 5)} at our ${appointmentData.location} office.`;
+          }
+        }
+      } catch (error) {
+        logger.error('Failed to create GHL appointment:', error);
+      }
+    } else if ((message.toLowerCase().includes('appointment') || 
+                message.toLowerCase().includes('schedule') ||
+                message.toLowerCase().includes('consultation')) && ghlContactId) {
       try {
         // Extract date/time preferences from the conversation
         const dateTimeRegex = /(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})|(?:tomorrow|today|monday|tuesday|wednesday|thursday|friday|saturday|sunday)|(?:\d{1,2}(?::\d{2})?\s*(?:am|pm))/gi;
