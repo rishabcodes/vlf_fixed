@@ -55,16 +55,16 @@ export default function ExitIntentPopup({ onClose, onAction }: ExitIntentPopupPr
   return (
     <>
       {isVisible && (
-        <>
+        <div className="fixed inset-0 z-50">
           {/* Backdrop */}
           <div
-className="fixed inset-0 bg-black/60 z-50"
+            className="fixed inset-0 bg-black/60 z-50"
             onClick={handleClose}
           />
 
           {/* Popup */}
           <div
-className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-2xl"
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-2xl"
           >
             <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
               {/* Close Button */}
@@ -75,9 +75,7 @@ className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full 
 
               {/* Hero Section */}
               <div className="bg-gradient-to-br from-burgundy-700 to-burgundy-900 text-white p-8 text-center">
-                <div
-                 }}
-                >
+                <div className="flex items-center justify-center mb-6">
                   <h2 className="text-4xl font-bold mb-4">Wait! Don't Leave Empty-Handed</h2>
                   <p className="text-xl text-white/90">
                     Get FREE legal resources that could save you thousands
@@ -88,9 +86,7 @@ className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-full 
               {/* Content */}
               <div className="p-8">
                 <div className="grid md:grid-cols-3 gap-6 mb-8">
-                  <div
-className="text-center"
-                  >
+                  <div className="text-center">
                     <div className="bg-gold-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Download className="w-8 h-8 text-gold-600" />
                     </div>
@@ -168,7 +164,8 @@ className="space-y-3"
               </div>
             </div>
           </div>
-        </>
+        </div>
       )}
     </>
   );
+}

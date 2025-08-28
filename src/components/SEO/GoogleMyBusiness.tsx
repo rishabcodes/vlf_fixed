@@ -44,11 +44,10 @@ export function GoogleMyBusinessWidget({
   }, [placeId]);
 
   return (
-    <div ref={widgetRef}
-
-                id="google-reviews"}
-
-                className="google-reviews-widget">
+    <div 
+      ref={widgetRef}
+      id="google-reviews"
+      className="google-reviews-widget">
       {/* Google Reviews will be rendered here */}
     </div>
   );
@@ -169,3 +168,4 @@ export function generateGoogleMyBusinessSchema(location: {
       },
     ],
   };
+}

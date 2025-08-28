@@ -19,11 +19,11 @@ export function FAQSchema({ faqs, pageName }: FAQSchemaProps) {
 
   return (
     <Script
-      id={`faq-schema-${pageName || 'page'}` type="application/ld+json"
+      id={`faq-schema-${pageName || 'page'}`}
+      type="application/ld+json"
       dangerouslySetInnerHTML={{
         __html: JSON.stringify(faqSchema),
       }}
     />
   );
-}
 }

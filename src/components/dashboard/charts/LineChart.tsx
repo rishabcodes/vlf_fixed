@@ -89,13 +89,13 @@ export function LineChart({
             {lines.map((line) => (
               <Line
                 key={line.key}
-
                 type="monotone"
                 dataKey={line.key}
                 stroke={line.color}
                 strokeWidth={2}
                 dot={{ r: 4 }}
-                activeDot={{ r: 6, stroke: line.color, strokeWidth: 2 }} name={line.name}
+                activeDot={{ r: 6, stroke: line.color, strokeWidth: 2 }}
+                name={line.name}
               />
             ))}
           </RechartsLineChart>
@@ -103,6 +103,4 @@ export function LineChart({
       </CardContent>
     </Card>
   );
-}
-}
 }

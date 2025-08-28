@@ -39,7 +39,9 @@ export default function ResourceHints({
             const url = new URL(imgSrc);
             if (url.hostname !== window.location.hostname) {
               imageDomains.add(url.origin);
-            }} catch (e) {
+            }
+          }
+        } catch (e) {
           // Invalid URL, ignore
         }
       });
@@ -52,7 +54,9 @@ export default function ResourceHints({
             link.rel = 'dns-prefetch';
             link.href = domain;
             safeAppendChild(document.head, link);
-          }});
+          }
+        }
+      });
 
       // Preload visible images
       const observerOptions = {
@@ -107,8 +111,9 @@ export default function ResourceHints({
               prefetchLink.rel = 'prefetch';
               prefetchLink.href = link.getAttribute('href') || '';
               safeAppendChild(document.head, prefetchLink);
-                }
-};
+            }
+          }
+        };
 
         link.addEventListener('mouseenter', handleMouseEnter, { once: true });
         link.addEventListener('touchstart', handleMouseEnter, { once: true });
@@ -185,8 +190,4 @@ export default function ResourceHints({
       ))}
     </Head>
   );
-}
-}
-}
-}
 }

@@ -163,7 +163,6 @@ export const SSRSafeHeader: React.FC<SSRSafeHeaderProps> = ({
               <span className="hidden sm:inline text-primary">•</span>
               <a
                 href={`mailto:${BRAND.email}`}
-
                 className="hidden sm:inline hover:text-primary transition-colors"
               >
                 <span className="mr-1">✉️</span>
@@ -174,8 +173,7 @@ export const SSRSafeHeader: React.FC<SSRSafeHeaderProps> = ({
               variant="minimal"
               showFlags={false}
               showLabels={true}
-
-                className="text-xs"
+              className="text-xs"
             />
           </div>
         </div>
@@ -335,4 +333,3 @@ export const SSRSafeHeader: React.FC<SSRSafeHeaderProps> = ({
     </header>
   );
 };
-}

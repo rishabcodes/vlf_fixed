@@ -66,7 +66,8 @@ export function PartytownPerformanceMonitor() {
               transferSize: resourceEntry.transferSize,
               workerThread: url.includes('~partytown'),
             });
-          }});
+          }
+        });
 
       observer.observe({ entryTypes: ['resource'] });
     };

@@ -92,7 +92,7 @@ export function TestimonialsSection({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div
-className="text-center mb-12"
+          className="text-center mb-12"
         >
           <h2 className="text-4xl font-bold text-gray-900 mb-4">{title}</h2>
           <p className="text-xl text-gray-600">{subtitle}</p>
@@ -104,7 +104,6 @@ className="text-center mb-12"
             {visibleTestimonials.map((testimonial, index) => (
               <div
                 key={testimonial.id}
-
                 className="bg-white rounded-lg shadow-lg p-6 relative"
               >
                 {/* Quote Icon */}
@@ -114,8 +113,7 @@ className="text-center mb-12"
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i}
-
-                className="w-5 h-5 text-yellow-400 fill-current" />
+                      className="w-5 h-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
 
@@ -139,7 +137,9 @@ className="text-center mb-12"
           {/* Navigation Buttons - Only show if there are multiple pages */}
           {totalPages > 1 && (
             <div className="flex justify-center items-center mt-8 space-x-4">
-              <button onClick={handlePrevious} className="p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow"
+              <button
+                onClick={handlePrevious}
+                className="p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow"
                 aria-label="Previous testimonials"
               >
                 <ChevronLeft className="w-6 h-6 text-gray-600" />
@@ -150,17 +150,18 @@ className="text-center mb-12"
                 {[...Array(totalPages)].map((_, i) => (
                   <button
                     key={i}
-
-                onClick={() => setCurrentIndex(i)}
-
-                className={`w-2 h-2 rounded-full transition-colors ${
+                    onClick={() => setCurrentIndex(i)}
+                    className={`w-2 h-2 rounded-full transition-colors ${
                       i === currentIndex ? 'bg-primary-600' : 'bg-gray-300'
-                    }` aria-label={`Go to page ${i + 1}`}
+                    }`}
+                    aria-label={`Go to page ${i + 1}`}
                   />
                 ))}
               </div>
 
-              <button onClick={handleNext} className="p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow"
+              <button
+                onClick={handleNext}
+                className="p-2 rounded-full bg-white shadow-md hover:shadow-lg transition-shadow"
                 aria-label="Next testimonials"
               >
                 <ChevronRight className="w-6 h-6 text-gray-600" />
@@ -171,7 +172,7 @@ className="text-center mb-12"
 
         {/* Trust Indicators */}
         <div
-className="mt-12 text-center"
+          className="mt-12 text-center"
         >
           <div className="flex flex-wrap justify-center items-center gap-8">
             <div className="text-center">
@@ -191,5 +192,4 @@ className="mt-12 text-center"
       </div>
     </section>
   );
-}
 }

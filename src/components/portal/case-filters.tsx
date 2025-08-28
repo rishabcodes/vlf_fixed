@@ -132,13 +132,16 @@ export default function CaseFilters({ filters, onFiltersChange }: CaseFiltersPro
               <input
                 type="date"
                 id="start-date"
-                value={filters.dateRange?.start || ''} onChange={(e) => {
+                value={filters.dateRange?.start || ''}
+                onChange={(e) => {
                   const start = e.target.value;
                   const end = filters.dateRange?.end || '';
                   onFiltersChange({
                     ...filters,
                     dateRange: start || end ? { start, end } : null,
-                  }); className="block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  });
+                }}
+                className="block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 placeholder="Start date"
               />
             </div>
@@ -149,13 +152,16 @@ export default function CaseFilters({ filters, onFiltersChange }: CaseFiltersPro
               <input
                 type="date"
                 id="end-date"
-                value={filters.dateRange?.end || ''} onChange={(e) => {
+                value={filters.dateRange?.end || ''}
+                onChange={(e) => {
                   const end = e.target.value;
                   const start = filters.dateRange?.start || '';
                   onFiltersChange({
                     ...filters,
                     dateRange: start || end ? { start, end } : null,
-                  }); className="block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  });
+                }}
+                className="block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 placeholder="End date"
               />
             </div>
@@ -164,8 +170,4 @@ export default function CaseFilters({ filters, onFiltersChange }: CaseFiltersPro
       </div>
     </div>
   );
-}
-}
-}
-}
 }

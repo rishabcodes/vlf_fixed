@@ -20,7 +20,7 @@ This guide explains how to deploy the Vasquez Law Firm website to AWS S3 while e
 ┌─────────────┐      ┌──────────────┐      ┌─────────────┐
 │ API Gateway │─────►│    Lambda    │─────►│   Secrets   │
 └─────────────┘      └──────────────┘      │   Manager   │
-                            │               └─────────────┘
+                            │              └─────────────┘
                             ▼
                      ┌──────────────┐
                      │  PostgreSQL  │

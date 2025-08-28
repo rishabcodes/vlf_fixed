@@ -220,9 +220,7 @@ export default function ScholarshipsPageClient({ language = 'en' }: Scholarships
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <div
-               }}
-              >
+              <div className="animate-fade-up">
                 <div className="inline-flex items-center px-6 py-3 bg-primary/20 backdrop-blur-sm rounded-full mb-6">
                   <GraduationCap className="w-5 h-5 text-primary mr-2" />
                   <span className="text-primary font-semibold">{t.supportingDreamers}</span>
@@ -238,14 +236,14 @@ export default function ScholarshipsPageClient({ language = 'en' }: Scholarships
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
                     href="#apply"
-className="inline-flex items-center px-8 py-4 bg-primary text-black font-bold rounded-full transition-all hover:bg-primary-300"
+                    className="inline-flex items-center px-8 py-4 bg-primary text-black font-bold rounded-full transition-all hover:bg-primary-300"
                   >
                     {t.applyNow}
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </a>
                   <a
                     href="#requirements"
-className="inline-flex items-center px-8 py-4 bg-transparent text-white font-bold rounded-full border-2 border-white hover:bg-white hover:text-black transition-all"
+                    className="inline-flex items-center px-8 py-4 bg-transparent text-white font-bold rounded-full border-2 border-white hover:bg-white hover:text-black transition-all"
                   >
                     {t.viewRequirements}
                   </a>
@@ -258,9 +256,7 @@ className="inline-flex items-center px-8 py-4 bg-transparent text-white font-bol
         {/* Scholarship Details */}
         <section className="py-20 bg-gradient-to-b from-black to-neutral-950">
           <div className="container mx-auto px-4">
-            <div
-className="text-center mb-16"
-            >
+            <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
                 {t.scholarshipDetails.split(' ')[0]}{' '}
                 <span className="text-primary">{t.scholarshipDetails.split(' ')[1]}</span>
@@ -291,11 +287,9 @@ className="text-center mb-16"
               ].map((item, index) => (
                 <div
                   key={index}
-
-                className="bg-gradient-to-b from-neutral-900 to-neutral-950 rounded-2xl p-8 border border-primary/20 hover:border-primary/40 transition-all"
+                  className="bg-gradient-to-b from-neutral-900 to-neutral-950 rounded-2xl p-8 border border-primary/20 hover:border-primary/40 transition-all"
                 >
-                  <div
-                className="text-primary mb-4">{item.icon}</div>
+                  <div className="text-primary mb-4">{item.icon}</div>
                   <h3 className="text-2xl font-bold text-white mb-2">{item.title}</h3>
                   <p className="text-primary font-bold mb-2">{item.description}</p>
                   <p className="text-gray-400">{item.details}</p>
@@ -308,9 +302,7 @@ className="text-center mb-16"
         {/* Requirements Section */}
         <section id="requirements" className="py-20 bg-black">
           <div className="container mx-auto px-4">
-            <div
-className="text-center mb-16"
-            >
+            <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
                 {t.requirementsTitle.split(' ').slice(0, -1).join(' ')}{' '}
                 <span className="text-primary">{t.requirementsTitle.split(' ').slice(-1)[0]}</span>
@@ -323,12 +315,10 @@ className="text-center mb-16"
                 {t.requirements.map((requirement, index) => (
                   <div
                     key={index}
-
-                className="flex items-start"
+                    className="flex items-start"
                   >
                     <CheckCircle className="w-6 h-6 text-primary mr-3 flex-shrink-0 mt-1" />
-                    <p
-                className="text-lg text-gray-300">{requirement}</p>
+                    <p className="text-lg text-gray-300">{requirement}</p>
                   </div>
                 ))}
               </div>
@@ -339,9 +329,7 @@ className="text-center mb-16"
         {/* Application Requirements */}
         <section className="py-20 bg-gradient-to-b from-neutral-950 to-black">
           <div className="container mx-auto px-4">
-            <div
-className="text-center mb-16"
-            >
+            <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
                 {t.applicationRequirements.split(' ').slice(0, -1).join(' ')}{' '}
                 <span className="text-primary">
@@ -357,11 +345,9 @@ className="text-center mb-16"
               {t.applicationItems.map((item, index) => (
                 <div
                   key={index}
-
-                className="bg-gradient-to-b from-neutral-900 to-neutral-950 rounded-2xl p-6 border border-primary/20 hover:border-primary/40 transition-all"
+                  className="bg-gradient-to-b from-neutral-900 to-neutral-950 rounded-2xl p-6 border border-primary/20 hover:border-primary/40 transition-all"
                 >
-                  <h3
-                className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
                   <p className="text-gray-400">{item.description}</p>
                 </div>
               ))}
@@ -372,9 +358,7 @@ className="text-center mb-16"
         {/* Email Notification Section */}
         <section id="apply" className="py-20 bg-black">
           <div className="container mx-auto px-4">
-            <div
-className="max-w-4xl mx-auto"
-            >
+            <div className="max-w-4xl mx-auto">
               <div className="bg-gradient-to-b from-neutral-900 to-neutral-950 rounded-3xl p-12 border border-primary/20">
                 <div className="text-center mb-8">
                   <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
@@ -394,14 +378,13 @@ className="max-w-4xl mx-auto"
                     />
                     <button
                       type="submit"
-className="px-8 py-4 bg-primary text-black font-bold rounded-full hover:bg-primary-300 transition-all"
+                      className="px-8 py-4 bg-primary text-black font-bold rounded-full hover:bg-primary-300 transition-all"
                     >
                       {t.notifyMe}
                     </button>
                   </div>
                   {isSubscribed && (
-                    <p
-className="text-green-400 text-center mt-4"
+                    <p className="text-green-400 text-center mt-4"
                     >
                       {t.thankYou}
                     </p>
@@ -426,9 +409,7 @@ className="text-green-400 text-center mt-4"
         {/* Evaluation Criteria */}
         <section className="py-20 bg-gradient-to-b from-black to-neutral-950">
           <div className="container mx-auto px-4">
-            <div
-className="text-center mb-16"
-            >
+            <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
                 {t.evaluationCriteria.split(' ').slice(0, -1).join(' ')}{' '}
                 <span className="text-primary">{t.evaluationCriteria.split(' ').slice(-1)[0]}</span>
@@ -441,11 +422,9 @@ className="text-center mb-16"
                 {t.evaluationItems.map((criteria, index) => (
                   <div
                     key={index}
-
-                className="bg-gradient-to-r from-primary/10 to-transparent p-6 rounded-2xl border-l-4 border-primary"
+                    className="bg-gradient-to-r from-primary/10 to-transparent p-6 rounded-2xl border-l-4 border-primary"
                   >
-                    <h3
-                className="text-xl font-bold text-white mb-2">{criteria.title}</h3>
+                    <h3 className="text-xl font-bold text-white mb-2">{criteria.title}</h3>
                     <p className="text-gray-300">{criteria.description}</p>
                   </div>
                 ))}
@@ -457,9 +436,7 @@ className="text-center mb-16"
         {/* CTA Section */}
         <section className="py-20 bg-black">
           <div className="container mx-auto px-4">
-            <div
-className="max-w-4xl mx-auto text-center"
-            >
+            <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
                 {t.readyToApply.split(' ').slice(0, -1).join(' ')}{' '}
                 <span className="text-primary">{t.readyToApply.split(' ').slice(-1)[0]}</span>
@@ -468,7 +445,7 @@ className="max-w-4xl mx-auto text-center"
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="#apply"
-className="inline-flex items-center px-8 py-4 bg-primary text-black font-bold rounded-full transition-all hover:bg-primary-300"
+                  className="inline-flex items-center px-8 py-4 bg-primary text-black font-bold rounded-full transition-all hover:bg-primary-300"
                 >
                   {t.getNotification}
                   <ArrowRight className="ml-2 w-5 h-5" />

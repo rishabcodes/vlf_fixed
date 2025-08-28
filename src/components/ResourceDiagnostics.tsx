@@ -21,7 +21,7 @@ export function ResourceDiagnostics() {
               type: resourceEntry.initiatorType,
               duration: resourceEntry.duration,
             });
-          }}
+          }
     });
 
     // Start observing resource timings
@@ -116,5 +116,4 @@ export function ResourceDiagnostics() {
       Resource Diagnostics Active
     </div>
   );
-}
 }

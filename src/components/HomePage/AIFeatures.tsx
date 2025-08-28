@@ -2,63 +2,27 @@
 
 import React, { useRef } from 'react';
 
-// React Three Fiber removed - 3D not needed;
-// React Three Fiber removed - 3D not needed;
-// Three.js removed - 3D not needed;
-
+// Simplified AIBrain component without 3D dependencies
 function AIBrain() {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const particlesRef = useRef<THREE.Points>(null);
-
-  useFrame(state => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.elapsedTime * 0.1;
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.15;
-    }
-    if (particlesRef.current) {
-      particlesRef.current.rotation.z = state.clock.elapsedTime * 0.05;
-    }
-  });
-
-  const particleCount = 1000;
-  const positions = new Float32Array(particleCount * 3);
-
-  for (let i = 0; i < particleCount; i++) {
-    const theta = Math.random() * Math.PI * 2;
-    const phi = Math.acos(Math.random() * 2 - 1);
-    const radius = 2 + Math.random() * 0.5;
-
-    positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-    positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-    positions[i * 3 + 2] = radius * Math.cos(phi);
-  }
-
   return (
-    <group>
-      <mesh ref={meshRef}>
-        <icosahedronGeometry args={[1.5, 2]} />
-        <MeshDistortMaterial
-          color="#C9974D"
-          attach="material"
-          distort={0.3}
-          speed={2}
-          roughness={0.2}
-          metalness={0.8}
-        />
-      </mesh>
-      <points ref={particlesRef}>
-        <bufferGeometry>
-          <bufferAttribute
-            attach="attributes-position"
-            count={positions.length / 3}
-            array={positions}
-            itemSize={3}
-            args={[positions, 3]}
+    <div className="absolute inset-0 bg-gradient-to-br from-[#C9974D]/10 to-transparent">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_black_100%)]" />
+      {/* Animated particles effect using CSS */}
+      <div className="absolute inset-0 overflow-hidden">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-[#C9974D]/30 rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 3}s`
+            }}
           />
-        </bufferGeometry>
-        <pointsMaterial size={0.02} color="#E5B568" transparent opacity={0.6} />
-      </points>
-    </group>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -68,12 +32,6 @@ interface AIFeaturesProps {
 
 export default function AIFeatures({ language }: AIFeaturesProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
 
   const features = {
     en: [
@@ -163,23 +121,17 @@ export default function AIFeatures({ language }: AIFeaturesProps) {
   const t = features[language];
 
   return (
-    <section ref={containerRef}
-
-                className="relative overflow-hidden bg-black py-24">
-      {/* 3D Background */}
+    <section 
+      ref={containerRef}
+      className="relative overflow-hidden bg-black py-24">
+      {/* Background */}
       <div className="absolute inset-0">
-        <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} />
-          <AIBrain />
-        </Canvas>
+        <AIBrain />
       </div>
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-4">
-        <div
-className="mb-16 text-center"
-        >
+        <div className="mb-16 text-center">
           <h2 className="mb-4 text-5xl font-black text-white md:text-6xl">
             {language === 'en' ? 'AI-Powered Legal Services' : 'Servicios Legales con IA'}
           </h2>
@@ -194,8 +146,7 @@ className="mb-16 text-center"
           {t.map((feature, index) => (
             <div
               key={index}
-
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-6 backdrop-blur-sm"
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-6 backdrop-blur-sm"
             >
               {/* Glow Effect */}
               <div className="absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100">
@@ -220,16 +171,13 @@ className="mb-16 text-center"
               </div>
 
               {/* Animated Border */}
-              <div className="absolute inset-0 rounded-2xl">
-              />
+              <div className="absolute inset-0 rounded-2xl" />
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div
-className="mt-12 text-center"
-        >
+        <div className="mt-12 text-center">
           <button className="group relative overflow-hidden rounded-full bg-gradient-to-r from-[#C9974D] to-[#E5B568] px-8 py-4 font-bold text-black transition-all hover:scale-105">
             <span className="relative z-10">
               {language === 'en' ? 'Experience AI Legal Help' : 'Experimente Ayuda Legal con IA'}

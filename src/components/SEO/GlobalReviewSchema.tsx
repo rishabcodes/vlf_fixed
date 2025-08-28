@@ -110,11 +110,11 @@ export function GlobalReviewSchema({
 
   return (
     <Script
-      id={`review-schema-${practiceArea || 'global'}` type="application/ld+json"
+      id={`review-schema-${practiceArea || 'global'}`}
+      type="application/ld+json"
       dangerouslySetInnerHTML={{
         __html: JSON.stringify(reviewSchema),
       }}
     />
   );
-}
 }

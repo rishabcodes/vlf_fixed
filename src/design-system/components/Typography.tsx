@@ -52,10 +52,7 @@ export const Heading: React.FC<HeadingProps> = ({
 
   if (animate) {
     return (
-      <div
-       }}
-       }
-      >
+      <div className="animate-fadeIn">
         <Component className={classes}>{children}</Component>
       </div>
     );
