@@ -1,0 +1,12 @@
+{
+  "version": "3.0.0",
+  "deployedAt": "2024-12-29",
+  "features": {
+    "modernHomepage": true,
+    "williamVasquezHero": true,
+    "aiChatbot": true,
+    "lawPayIntegration": true,
+    "blogPosts": 55,
+    "attorneys": 7
+  }
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Daniella Wood",
+    "date": "Mar 12, 2024",
+    "review": "Extremadamente bien preparado para nuestra consulta después de leer el material y las preguntas que le proporcioné. Me brindó consejos claros y sólidos en los que me sentí muy seguro. Gracias.",
+    "rating": 5,
+    "location": "Smithfield"
+  },
+  {
+    "name": "Liam May",
+    "date": "Mar 12, 2024",
+    "review": "El abogado Vásquez y el equipo fueron extremadamente eficientes y pacientes. Tuve una buena experiencia con ellos. ¡Gracias por toda su ayuda y apoyo!",
+    "rating": 5,
+    "location": "Smithfield"
+  },
+  {
+    "name": "Jacob Hammond",
+    "date": "Mar 12, 2024",
+    "review": "El abogado Vásquez ayudó con mi consulta rápidamente y me brindó una orientación clara. muy contento con el nivel de servicio y profesionalismo",
+    "rating": 5,
+    "location": "Smithfield"
+  },
+  {
+    "name": "Zerlinda Ignacio",
+    "date": "Mar 11, 2024",
+    "review": "Gran experiencia con nuestro administrador de casos, el abogado Vásquez. Es muy honesto y responde rápido a los correos electrónicos.",
+    "rating": 5,
+    "location": "Smithfield"
+  },
+  {
+    "name": "Carter Ortiz",
+    "date": "Mar 10, 2024",
+    "review": "Tuve una consulta con el abogado Vásquez. Fue muy receptivo, transparente, amigable, atento a los detalles y un experto. Dio un enfoque destacado en el éxito y la satisfacción del cliente. Todo lo mejor, Dios los bendiga!!.",
+    "rating": 5,
+    "location": "Smithfield"
+  },
+  {
+    "name": "Nevada Herrera",
+    "date": "Mar 09, 2024",
+    "review": "¡Estoy muy contenta de haber ido con ellos porque el proceso de inmigración es largo y confuso! Lo desglosaron para que todo fuera correcto y preciso. Muy profesionales, los recomiendo!",
+    "rating": 5,
+    "location": "Smithfield"
+  },
+  {
+    "name": "Alonzo Urena",
+    "date": "Mar 09, 2024",
+    "review": "¡El abogado Vásquez es honesto y trabajador! él le dirá las buenas noticias y será honesto acerca de las malas noticias, incluso si eso significa que no acepta su caso. Gracias Abogado Vásquez por su amabilidad y honestidad.",
+    "rating": 5,
+    "location": "Smithfield"
+  },
+  {
+    "name": "Carlos M.",
+    "date": "2024",
+    "review": "Excelente servicio legal. Me ayudaron con mi caso de inmigración y ahora soy ciudadano. Muchas gracias!",
+    "rating": 5,
+    "location": "Raleigh"
+  },
+  {
+    "name": "Maria Rodriguez",
+    "date": "Feb 2024",
+    "review": "El mejor bufete de abogados de Carolina del Norte. Me ayudaron con mi caso de accidente automovilístico y obtuve una compensación justa. El equipo habla español perfectamente.",
+    "rating": 5,
+    "location": "Charlotte"
+  },
+  {
+    "name": "Juan Hernandez",
+    "date": "Jan 2024",
+    "review": "Gracias al equipo de Vasquez Law Firm por ayudarme con mi caso de compensación laboral. Fueron muy profesionales y siempre me mantuvieron informado en español.",
+    "rating": 5,
+    "location": "Durham"
+  },
+  {
+    "name": "Ana Martinez",
+    "date": "Dec 2023",
+    "review": "Excelente atención y resultados. Me ayudaron con mi proceso de inmigración familiar y todo salió perfecto. Los recomiendo 100%.",
+    "rating": 5,
+    "location": "Orlando"
+  },
+  {
+    "name": "Pedro Sanchez",
+    "date": "Nov 2023",
+    "review": "Después de mi accidente de trabajo, no sabía qué hacer. Vasquez Law Firm me guió en todo el proceso y obtuve los beneficios que merecía. Muy agradecido.",
+    "rating": 5,
+    "location": "Winston-Salem"
+  },
+  {
+    "name": "Carmen Lopez",
+    "date": "Oct 2023",
+    "review": "Increíble equipo legal. Me defendieron en mi caso criminal y lograron reducir los cargos. Siempre disponibles para responder mis preguntas en español.",
+    "rating": 5,
+    "location": "Raleigh"
+  },
+  {
+    "name": "Roberto Jimenez",
+    "date": "Sep 2023",
+    "review": "Mi familia y yo estamos muy agradecidos. Nos ayudaron con nuestras tarjetas verdes y el proceso fue mucho más fácil de lo que esperábamos.",
+    "rating": 5,
+    "location": "Charlotte"
+  },
+  {
+    "name": "Isabel Morales",
+    "date": "Aug 2023",
+    "review": "Profesionales, dedicados y con un gran corazón. Me ayudaron cuando más lo necesitaba con mi caso de lesiones personales. Obtuve justicia gracias a ellos.",
+    "rating": 5,
+    "location": "Durham"
+  }
+]

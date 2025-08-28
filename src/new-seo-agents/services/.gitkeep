@@ -1,0 +1,5 @@
+# Shared Services
+# - cache-service.ts: Intelligent caching with semantic similarity
+# - cost-tracker.ts: Real-time API cost monitoring
+# - rate-limiter.ts: API rate limiting to prevent bans
+# - scheduler.ts: Smart scheduling based on optimal times

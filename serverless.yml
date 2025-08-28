@@ -1,0 +1,323 @@
+service: vasquezlawnc-api
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  stage: ${opt:stage, 'prod'}
+  region: us-east-1
+  architecture: arm64
+  memorySize: 1024
+  timeout: 30
+  
+  # Environment variables from Secrets Manager
+  environment:
+    NODE_ENV: production
+    SECRET_NAME: vasquezlawnc/api-keys
+    REGION: ${self:provider.region}
+    STAGE: ${self:provider.stage}
+    DATABASE_URL: ${ssm:/vasquezlawnc/database_url}
+    NEXT_PUBLIC_APP_URL: https://www.vasquezlawnc.com
+    
+  # IAM Role permissions
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - secretsmanager:GetSecretValue
+          Resource:
+            - arn:aws:secretsmanager:${self:provider.region}:*:secret:vasquezlawnc/*
+        - Effect: Allow
+          Action:
+            - s3:GetObject
+            - s3:PutObject
+          Resource:
+            - arn:aws:s3:::vasquezlawnc-uploads/*
+        - Effect: Allow
+          Action:
+            - ses:SendEmail
+            - ses:SendRawEmail
+          Resource: '*'
+        - Effect: Allow
+          Action:
+            - lambda:InvokeFunction
+          Resource: '*'
+
+  # API Gateway configuration
+  httpApi:
+    cors:
+      allowedOrigins:
+        - https://www.vasquezlawnc.com
+        - https://vasquezlawnc.com
+        - http://localhost:3000  # For development
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+        - X-Api-Key
+      allowedMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+      allowCredentials: true
+
+functions:
+  # Contact form handler
+  contact:
+    handler: dist/handlers/contact.handler
+    events:
+      - httpApi:
+          path: /api/contact
+          method: POST
+    environment:
+      GHL_API_KEY: ${ssm:/vasquezlawnc/ghl_api_key~true}
+      GHL_LOCATION_ID: ${ssm:/vasquezlawnc/ghl_location_id~true}
+      SMTP_HOST: smtp.office365.com
+      SMTP_PORT: 587
+      SMTP_USER: leads@vasquezlawfirm.com
+      EMAIL_FROM: leads@vasquezlawfirm.com
+
+  # Payment processing
+  payments:
+    handler: dist/handlers/payments.handler
+    events:
+      - httpApi:
+          path: /api/payments
+          method: POST
+    environment:
+      AUTHORIZENET_LOGIN_ID: ${ssm:/vasquezlawnc/authnet_login~true}
+      AUTHORIZENET_TRANSACTION_KEY: ${ssm:/vasquezlawnc/authnet_key~true}
+
+  # AI Chat handler
+  chat:
+    handler: dist/handlers/chat.handler
+    memorySize: 2048  # More memory for AI operations
+    timeout: 60  # Longer timeout for AI responses
+    events:
+      - httpApi:
+          path: /api/chat
+          method: POST
+      - httpApi:
+          path: /api/chat/stream
+          method: POST
+    environment:
+      OPENAI_API_KEY: ${ssm:/vasquezlawnc/openai_api_key~true}
+      OPENAI_MODEL: gpt-4
+
+  # Voice/Retell webhook handler
+  retellWebhook:
+    handler: dist/handlers/retell.handler
+    events:
+      - httpApi:
+          path: /api/webhooks/retell
+          method: POST
+      - httpApi:
+          path: /api/webhooks/retell/status
+          method: POST
+    environment:
+      RETELL_API_KEY: ${ssm:/vasquezlawnc/retell_api_key~true}
+      RETELL_WEBHOOK_SECRET: ${ssm:/vasquezlawnc/retell_webhook_secret~true}
+      RETELL_AGENT_ID: agent_7c549b79a40b4cd4f3b63a98e6
+
+  # GoHighLevel webhook handler
+  ghlWebhook:
+    handler: dist/handlers/ghl-webhook.handler
+    events:
+      - httpApi:
+          path: /api/webhooks/ghl
+          method: POST
+    environment:
+      GHL_API_KEY: ${ssm:/vasquezlawnc/ghl_api_key~true}
+      GHL_WEBHOOK_SECRET: ${ssm:/vasquezlawnc/ghl_webhook_secret~true}
+
+  # Blog/Content API
+  blog:
+    handler: dist/handlers/blog.handler
+    events:
+      - httpApi:
+          path: /api/blog
+          method: GET
+      - httpApi:
+          path: /api/blog/{id}
+          method: GET
+    
+  # Sitemap generation
+  sitemap:
+    handler: dist/handlers/sitemap.handler
+    events:
+      - httpApi:
+          path: /api/sitemap.xml
+          method: GET
+      - httpApi:
+          path: /api/blog-sitemap.xml
+          method: GET
+
+  # Appointment scheduling
+  appointments:
+    handler: dist/handlers/appointments.handler
+    events:
+      - httpApi:
+          path: /api/appointments
+          method: POST
+      - httpApi:
+          path: /api/appointments/availability
+          method: GET
+    environment:
+      GHL_CALENDAR_ID: sD2DGbPvbXzGMYJsMEJu
+
+  # Lead scoring
+  leadScoring:
+    handler: dist/handlers/lead-scoring.handler
+    events:
+      - httpApi:
+          path: /api/leads/score
+          method: POST
+    environment:
+      OPENAI_API_KEY: ${ssm:/vasquezlawnc/openai_api_key~true}
+
+  # Case evaluation
+  caseEvaluation:
+    handler: dist/handlers/case-evaluation.handler
+    events:
+      - httpApi:
+          path: /api/evaluate
+          method: POST
+    environment:
+      OPENAI_API_KEY: ${ssm:/vasquezlawnc/openai_api_key~true}
+
+  # Revalidation endpoint for ISR
+  revalidate:
+    handler: dist/handlers/revalidate.handler
+    events:
+      - httpApi:
+          path: /api/revalidate
+          method: POST
+    environment:
+      REVALIDATION_TOKEN: ${ssm:/vasquezlawnc/revalidation_token~true}
+
+  # Health check
+  health:
+    handler: dist/handlers/health.handler
+    events:
+      - httpApi:
+          path: /api/health
+          method: GET
+
+# Layers for shared dependencies
+layers:
+  prismaClient:
+    path: layers/prisma
+    name: ${self:service}-prisma-${self:provider.stage}
+    description: Prisma client and dependencies
+    compatibleRuntimes:
+      - nodejs20.x
+    retain: false
+
+  nodeModules:
+    path: layers/nodejs
+    name: ${self:service}-deps-${self:provider.stage}
+    description: Shared node modules
+    compatibleRuntimes:
+      - nodejs20.x
+    retain: false
+
+# Resources
+resources:
+  Resources:
+    # S3 bucket for file uploads
+    UploadsBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: vasquezlawnc-uploads
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
+        VersioningConfiguration:
+          Status: Enabled
+        LifecycleConfiguration:
+          Rules:
+            - Id: DeleteOldVersions
+              Status: Enabled
+              NoncurrentVersionExpirationInDays: 30
+        CorsConfiguration:
+          CorsRules:
+            - AllowedHeaders: ['*']
+              AllowedMethods: [GET, PUT, POST]
+              AllowedOrigins: 
+                - https://www.vasquezlawnc.com
+                - https://vasquezlawnc.com
+              MaxAge: 3000
+
+    # CloudWatch Alarms
+    ApiGateway4xxAlarm:
+      Type: AWS::CloudWatch::Alarm
+      Properties:
+        AlarmName: ${self:service}-4xx-errors
+        MetricName: 4XXError
+        Namespace: AWS/ApiGateway
+        Statistic: Sum
+        Period: 60
+        EvaluationPeriods: 1
+        Threshold: 10
+        ComparisonOperator: GreaterThanThreshold
+
+    ApiGateway5xxAlarm:
+      Type: AWS::CloudWatch::Alarm
+      Properties:
+        AlarmName: ${self:service}-5xx-errors
+        MetricName: 5XXError
+        Namespace: AWS/ApiGateway
+        Statistic: Sum
+        Period: 60
+        EvaluationPeriods: 1
+        Threshold: 5
+        ComparisonOperator: GreaterThanThreshold
+
+    # DynamoDB table for sessions (optional, if not using Redis)
+    SessionsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: vasquezlawnc-sessions
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        TimeToLiveSpecification:
+          AttributeName: ttl
+          Enabled: true
+
+# Plugins
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-dotenv-plugin
+  - serverless-prune-plugin
+
+# Custom configuration
+custom:
+  webpack:
+    webpackConfig: webpack.serverless.js
+    includeModules:
+      forceExclude:
+        - aws-sdk
+    packager: npm
+    
+  prune:
+    automatic: true
+    number: 3
+    
+  dotenv:
+    path: .env.production
+    
+  serverless-offline:
+    httpPort: 3001
+    websocketPort: 3002
+    lambdaPort: 3003

@@ -1,0 +1,181 @@
+{
+  "deployment": {
+    "architecture": "hybrid",
+    "description": "Static frontend on S3/CloudFront, API on Lambda/API Gateway"
+  },
+  "s3": {
+    "bucketName": "vasquezlawnc-frontend",
+    "region": "us-east-1",
+    "versioning": true,
+    "encryption": "AES256"
+  },
+  "cloudfront": {
+    "distributionId": "TO_BE_CONFIGURED",
+    "defaultRootObject": "index.html",
+    "priceClass": "PriceClass_100",
+    "customErrorResponses": [
+      {
+        "errorCode": 404,
+        "responseCode": 200,
+        "responsePagePath": "/index.html",
+        "errorCachingMinTTL": 300
+      },
+      {
+        "errorCode": 403,
+        "responseCode": 200,
+        "responsePagePath": "/index.html",
+        "errorCachingMinTTL": 300
+      }
+    ],
+    "behaviors": {
+      "api/*": {
+        "targetOriginId": "api-gateway",
+        "viewerProtocolPolicy": "https-only",
+        "allowedMethods": ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"],
+        "compress": true,
+        "cachePolicyId": "DISABLED"
+      },
+      "_next/static/*": {
+        "targetOriginId": "s3-origin",
+        "viewerProtocolPolicy": "redirect-to-https",
+        "compress": true,
+        "cachePolicyId": "STATIC_CACHE_1_YEAR"
+      },
+      "default": {
+        "targetOriginId": "s3-origin",
+        "viewerProtocolPolicy": "redirect-to-https",
+        "compress": true,
+        "cachePolicyId": "DYNAMIC_CACHE"
+      }
+    }
+  },
+  "apiGateway": {
+    "name": "vasquezlawnc-api",
+    "stageName": "prod",
+    "throttling": {
+      "rateLimit": 10000,
+      "burstLimit": 5000
+    },
+    "cors": {
+      "allowOrigins": [
+        "https://www.vasquezlawnc.com",
+        "https://vasquezlawnc.com"
+      ],
+      "allowHeaders": [
+        "Content-Type",
+        "X-Amz-Date",
+        "Authorization",
+        "X-Api-Key",
+        "X-Amz-Security-Token"
+      ],
+      "allowMethods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      "allowCredentials": true
+    }
+  },
+  "lambda": {
+    "runtime": "nodejs20.x",
+    "memorySize": 1024,
+    "timeout": 30,
+    "architecture": "arm64",
+    "environment": {
+      "NODE_ENV": "production",
+      "REGION": "us-east-1"
+    },
+    "layers": [
+      "arn:aws:lambda:us-east-1:AWS_ACCOUNT_ID:layer:prisma-client:1"
+    ],
+    "vpcConfig": {
+      "subnetIds": ["TO_BE_CONFIGURED"],
+      "securityGroupIds": ["TO_BE_CONFIGURED"]
+    }
+  },
+  "secretsManager": {
+    "secretName": "vasquezlawnc/api-keys",
+    "description": "API keys and sensitive configuration for Vasquez Law Firm website",
+    "keys": [
+      "OPENAI_API_KEY",
+      "DATABASE_URL",
+      "NEXTAUTH_SECRET",
+      "GHL_API_KEY",
+      "GHL_LOCATION_ID",
+      "GHL_WEBHOOK_SECRET",
+      "RETELL_API_KEY",
+      "RETELL_WEBHOOK_SECRET",
+      "SMTP_PASSWORD",
+      "AUTHORIZENET_LOGIN_ID",
+      "AUTHORIZENET_TRANSACTION_KEY",
+      "LAWPAY_SECRET_KEY",
+      "SENTRY_AUTH_TOKEN",
+      "HUGGINGFACE_API_KEY"
+    ]
+  },
+  "environmentVariables": {
+    "public": {
+      "NEXT_PUBLIC_APP_URL": "https://www.vasquezlawnc.com",
+      "NEXT_PUBLIC_GOOGLE_MAPS_API_KEY": "${GOOGLE_MAPS_API_KEY}",
+      "NEXT_PUBLIC_RETELL_AGENT_ID": "agent_7c549b79a40b4cd4f3b63a98e6",
+      "NEXT_PUBLIC_RETELL_AGENT_VERSION": "18",
+      "GOOGLE_ANALYTICS_ID": "G-XXXXXXXXXX"
+    },
+    "serverOnly": {
+      "API_GATEWAY_URL": "https://api.vasquezlawnc.com",
+      "CLOUDFRONT_URL": "https://www.vasquezlawnc.com",
+      "S3_BUCKET_NAME": "vasquezlawnc-frontend",
+      "REVALIDATION_TOKEN": "${REVALIDATION_TOKEN}"
+    }
+  },
+  "monitoring": {
+    "cloudwatch": {
+      "logRetention": 30,
+      "alarms": {
+        "highErrorRate": {
+          "threshold": 1,
+          "evaluationPeriods": 2,
+          "period": 300
+        },
+        "highLatency": {
+          "threshold": 3000,
+          "evaluationPeriods": 2,
+          "period": 300
+        }
+      }
+    },
+    "xray": {
+      "enabled": true,
+      "samplingRate": 0.1
+    }
+  },
+  "security": {
+    "waf": {
+      "enabled": true,
+      "rules": [
+        "AWSManagedRulesCommonRuleSet",
+        "AWSManagedRulesKnownBadInputsRuleSet",
+        "AWSManagedRulesSQLiRuleSet"
+      ]
+    },
+    "rateLimiting": {
+      "enabled": true,
+      "requestsPerIp": 2000,
+      "windowMinutes": 5
+    }
+  },
+  "backup": {
+    "s3Versioning": true,
+    "databaseBackups": {
+      "enabled": true,
+      "frequency": "daily",
+      "retention": 30
+    }
+  },
+  "deployment_order": [
+    "1. Create S3 buckets",
+    "2. Set up Secrets Manager",
+    "3. Deploy Lambda functions",
+    "4. Configure API Gateway",
+    "5. Set up CloudFront distribution",
+    "6. Update DNS records",
+    "7. Test all endpoints",
+    "8. Enable monitoring"
+  ]
+}

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offline - Vasquez Law Firm</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: #000;
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 600px;
+        text-align: center;
+      }
+
+      .logo {
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #c9974d;
+        margin-bottom: 2rem;
+        letter-spacing: -1px;
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #fff;
+      }
+
+      p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #ccc;
+        margin-bottom: 2rem;
+      }
+
+      .emergency-contact {
+        background: #c9974d;
+        color: #000;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+      }
+
+      .emergency-contact h2 {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .phone-number {
+        font-size: 2rem;
+        font-weight: 900;
+        color: #000;
+        text-decoration: none;
+        display: block;
+        margin: 0.5rem 0;
+      }
+
+      .phone-number:hover {
+        opacity: 0.8;
+      }
+
+      .retry-button {
+        background: #6b1f2e;
+        color: #fff;
+        border: none;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .retry-button:hover {
+        background: #8b2635;
+        transform: translateY(-2px);
+      }
+
+      .offices {
+        margin-top: 3rem;
+        padding-top: 3rem;
+        border-top: 1px solid #333;
+      }
+
+      .offices h3 {
+        color: #c9974d;
+        margin-bottom: 1rem;
+      }
+
+      .office-list {
+        display: grid;
+        gap: 1rem;
+        text-align: left;
+      }
+
+      .office {
+        background: #111;
+        padding: 1rem;
+        border-radius: 6px;
+        border: 1px solid #222;
+      }
+
+      .office-name {
+        font-weight: 600;
+        color: #c9974d;
+        margin-bottom: 0.3rem;
+      }
+
+      .office-address {
+        font-size: 0.9rem;
+        color: #999;
+      }
+
+      @media (max-width: 480px) {
+        .logo {
+          font-size: 2rem;
+        }
+
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        .phone-number {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">VASQUEZ LAW FIRM</div>
+
+      <h1>You're Currently Offline</h1>
+
+      <p>
+        It looks like you've lost your internet connection. Don't worry - you can still reach us for
+        urgent legal help!
+      </p>
+
+      <div class="emergency-contact">
+        <h2>🚨 Need Emergency Legal Help?</h2>
+        <p>Our attorneys are available 24/7</p>
+        <a href="tel:18449673536" class="phone-number">1-844-YO-PELEO</a>
+        <p style="font-size: 0.9rem; margin: 0">
+          Save this number: <strong>1-844-967-3536</strong>
+        </p>
+      </div>
+
+      <button class="retry-button" onclick="window.location.reload()">Try Again</button>
+
+      <div class="offices">
+        <h3>Our Office Locations</h3>
+        <div class="office-list">
+          <div class="office">
+            <div class="office-name">Charlotte Office</div>
+            <div class="office-address">
+              201 N. Tryon St #1250<br />
+              Charlotte, NC 28202
+            </div>
+          </div>
+          <div class="office">
+            <div class="office-name">Raleigh Office</div>
+            <div class="office-address">
+              333 Fayetteville Street, Suite 810<br />
+              Raleigh, NC 27601
+            </div>
+          </div>
+          <div class="office">
+            <div class="office-name">Smithfield Office</div>
+            <div class="office-address">
+              328 Brightleaf Blvd<br />
+              Smithfield, NC 27577
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Check for connection restoration
+      window.addEventListener('online', function () {
+        window.location.reload();
+      });
+
+      // Retry with exponential backoff
+      let retryCount = 0;
+      function attemptReconnect() {
+        fetch('/')
+          .then(() => {
+            window.location.reload();
+          })
+          .catch(() => {
+            retryCount++;
+            const delay = Math.min(1000 * Math.pow(2, retryCount), 30000);
+            setTimeout(attemptReconnect, delay);
+          });
+      }
+
+      // Start reconnection attempts
+      setTimeout(attemptReconnect, 5000);
+    </script>
+  </body>
+</html>

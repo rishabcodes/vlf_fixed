@@ -1,0 +1,6 @@
+origin	https://github.com/Zak-neurobit/VLF-Local-DEV.git (fetch)
+origin	https://github.com/Zak-neurobit/VLF-Local-DEV.git (push)
+vercel	https://github.com/rishabcodes/vlf_for_deployment.git (fetch)
+vercel	https://github.com/rishabcodes/vlf_for_deployment.git (push)
+vlfinal	https://github.com/rishabcodes/VLF_final.git (fetch)
+vlfinal	https://github.com/rishabcodes/VLF_final.git (push)

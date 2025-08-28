@@ -1,0 +1,78 @@
+<h2 style='color: #6B1F2E;'>Appointment Confirmed</h2>
+
+<p>Dear {{clientName}},</p>
+
+<p>Your appointment with Vasquez Law Firm has been confirmed. Here are the details:</p>
+
+<div style='background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;'>
+  <table style='width: 100%; border-collapse: collapse;'>
+    <tr>
+      <td style='padding: 8px 0; font-weight: bold; color: #6B1F2E;'>Date:</td>
+      <td style='padding: 8px 0;'>{{formatDate appointmentDate}}</td>
+    </tr>
+    <tr>
+      <td style='padding: 8px 0; font-weight: bold; color: #6B1F2E;'>Time:</td>
+      <td style='padding: 8px 0;'>{{appointmentTime}}</td>
+    </tr>
+    <tr>
+      <td style='padding: 8px 0; font-weight: bold; color: #6B1F2E;'>Type:</td>
+      <td style='padding: 8px 0;'>{{appointmentType}}</td>
+    </tr>
+    <tr>
+      <td style='padding: 8px 0; font-weight: bold; color: #6B1F2E;'>Attorney:</td>
+      <td style='padding: 8px 0;'>{{attorneyName}}</td>
+    </tr>
+    <tr>
+      <td style='padding: 8px 0; font-weight: bold; color: #6B1F2E;'>Location:</td>
+      <td style='padding: 8px 0;'>{{location}}</td>
+    </tr>
+  </table>
+</div>
+
+{{#if notes}}
+  <p><strong>Additional Notes:</strong><br />
+    {{notes}}</p>
+{{/if}}
+
+<h3 style='color: #6B1F2E;'>How to Prepare for Your Appointment</h3>
+<ul>
+  <li>Please arrive 10 minutes early to complete any necessary paperwork</li>
+  <li>Bring a valid photo ID</li>
+  <li>Bring any documents related to your case</li>
+  <li>Prepare a list of questions you'd like to ask</li>
+  <li>If you need an interpreter, please let us know in advance</li>
+</ul>
+
+{{#if meetingUrl}}
+  <h3 style='color: #6B1F2E;'>Virtual Meeting Information</h3>
+  <p>This is a virtual appointment. You can join the meeting using the link below:</p>
+  <p style='text-align: center; margin: 20px 0;'>
+    <a
+      href='{{meetingUrl}}'
+      class='button'
+      style='background-color: #6B1F2E; color: white; padding: 12px 30px; text-decoration: none; border-radius: 4px; display: inline-block;'
+    >Join Virtual Meeting</a>
+  </p>
+{{/if}}
+
+<h3 style='color: #6B1F2E;'>Need to Reschedule?</h3>
+<p>If you need to reschedule or cancel your appointment, please contact us at least 24 hours in
+  advance:</p>
+<ul>
+  <li>Call: <strong>1-844-967-3536</strong></li>
+  <li>Email: <a href='mailto:appointments@vasquezlawnc.com'>appointments@vasquezlawnc.com</a></li>
+  <li>Or use your <a href='{{portalUrl}}'>client portal</a></li>
+</ul>
+
+<p
+  style='background-color: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 12px; border-radius: 4px; margin: 20px 0;'
+>
+  <strong>Important:</strong>
+  Failure to appear for your appointment without notice may result in a cancellation fee.
+</p>
+
+<p>We look forward to meeting with you!</p>
+
+<p>Best regards,<br />
+  <strong>{{attorneyName}}</strong><br />
+  Vasquez Law Firm</p>

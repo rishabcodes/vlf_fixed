@@ -1,0 +1,19 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- VLF Logo -->
+  <g>
+    <!-- V -->
+    <path d="M10 10L20 40L30 10" stroke="#6B1F2E" stroke-width="3" fill="none"/>
+    
+    <!-- L -->
+    <path d="M40 10L40 35L55 35" stroke="#6B1F2E" stroke-width="3" fill="none"/>
+    
+    <!-- F -->
+    <path d="M65 10L65 40M65 10L80 10M65 25L75 25" stroke="#6B1F2E" stroke-width="3" fill="none"/>
+  </g>
+  
+  <!-- YO PELEO Text -->
+  <text x="100" y="28" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#C9974D">YO PELEO</text>
+  
+  <!-- Vasquez Law Firm -->
+  <text x="10" y="55" font-family="Arial, sans-serif" font-size="12" fill="#333333">VASQUEZ LAW FIRM</text>
+</svg>

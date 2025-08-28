@@ -1,0 +1,85 @@
+# Vasquez Law Firm - North Carolina's #1 Immigration & Personal Injury Law Firm
+# YO PELEO POR TI - I FIGHT FOR YOU
+# https://www.vasquezlawnc.com
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /private/
+Disallow: /dashboard/
+Crawl-delay: 0
+
+# Priority crawling for major search engines
+User-agent: Googlebot
+Allow: /
+Allow: /locations/
+Allow: /practice-areas/
+Allow: /attorneys/
+Allow: /blog/
+Allow: /es/
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /
+Allow: /images/
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.webp$
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 0
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+# Allow CSS and JS for all crawlers
+User-agent: *
+Allow: /*.css$
+Allow: /*.js$
+
+# Block SEO analysis bots (protect competitive advantage)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+# Sitemaps for comprehensive indexing - Main sitemap index
+Sitemap: https://www.vasquezlawnc.com/sitemap-index.xml
+
+# Individual sitemaps for targeted crawling
+Sitemap: https://www.vasquezlawnc.com/sitemap.xml
+Sitemap: https://www.vasquezlawnc.com/sitemap-es.xml
+Sitemap: https://www.vasquezlawnc.com/sitemap-locations.xml
+Sitemap: https://www.vasquezlawnc.com/sitemap-locations-es.xml
+Sitemap: https://www.vasquezlawnc.com/sitemap-practice-areas.xml
+Sitemap: https://www.vasquezlawnc.com/sitemap-blog.xml
+Sitemap: https://www.vasquezlawnc.com/blog-sitemap.xml
+
+# Preferred host
+Host: https://www.vasquezlawnc.com

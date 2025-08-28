@@ -1,0 +1,170 @@
+/* Vasquez Law Firm Design System CSS Variables */
+/* Auto-generated from design-tokens.ts */
+
+:root {
+  /* Brand Colors - Burgundy */
+  --color-burgundy-50: #fdf2f4;
+  --color-burgundy-100: #fce7ea;
+  --color-burgundy-200: #fac5cc;
+  --color-burgundy-300: #f693a0;
+  --color-burgundy-400: #ef476f;
+  --color-burgundy-500: #a53a47;
+  --color-burgundy-600: #8b2635;
+  --color-burgundy-700: #6b1f2e;
+  --color-burgundy-800: #551825;
+  --color-burgundy-900: #4d1822;
+  --color-burgundy-950: #2a0c12;
+
+  /* Brand Colors - Gold */
+  --color-gold-50: #fbf8f3;
+  --color-gold-100: #f8f1e4;
+  --color-gold-200: #f0dfc4;
+  --color-gold-300: #e5c199;
+  --color-gold-400: #d4a574;
+  --color-gold-500: #c9974d;
+  --color-gold-600: #b08740;
+  --color-gold-700: #906431;
+  --color-gold-800: #79522c;
+  --color-gold-900: #664428;
+  --color-gold-950: #3d2818;
+
+  /* Neutral Colors */
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+  --color-neutral-950: #0a0a0a;
+  --color-neutral-1000: #000000;
+
+  /* Semantic Colors */
+  --color-success-light: #86efac;
+  --color-success: #22c55e;
+  --color-success-dark: #16a34a;
+
+  --color-warning-light: #fde68a;
+  --color-warning: #f59e0b;
+  --color-warning-dark: #d97706;
+
+  --color-error-light: #fca5a5;
+  --color-error: #ef4444;
+  --color-error-dark: #dc2626;
+
+  --color-info-light: #93c5fd;
+  --color-info: #3b82f6;
+  --color-info-dark: #2563eb;
+
+  /* Spacing */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
+  --spacing-40: 10rem;
+  --spacing-48: 12rem;
+  --spacing-56: 14rem;
+  --spacing-64: 16rem;
+
+  /* Typography - Font Sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-7xl: 4.5rem;
+  --font-size-8xl: 6rem;
+  --font-size-9xl: 8rem;
+
+  /* Typography - Font Weights */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  /* Typography - Line Heights */
+  --line-height-none: 1;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+
+  /* Typography - Letter Spacing */
+  --letter-spacing-tighter: -0.05em;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+
+  /* Shadows */
+  --shadow-none: none;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-burgundy: 0 4px 14px 0 rgba(107, 31, 46, 0.15);
+  --shadow-gold: 0 4px 14px 0 rgba(201, 151, 77, 0.15);
+  --shadow-glow-gold: 0 0 20px rgba(201, 151, 77, 0.3);
+  --shadow-glow-burgundy: 0 0 20px rgba(107, 31, 46, 0.3);
+
+  /* Border Radius */
+  --radius-none: 0;
+  --radius-sm: 0.125rem;
+  --radius: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms;
+  --transition: 300ms;
+  --transition-slow: 500ms;
+  --transition-slower: 700ms;
+
+  /* Z-Index */
+  --z-0: 0;
+  --z-10: 10;
+  --z-20: 20;
+  --z-30: 30;
+  --z-40: 40;
+  --z-50: 50;
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+}
