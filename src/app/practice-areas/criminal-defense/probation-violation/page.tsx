@@ -123,7 +123,7 @@ export default function ProbationViolationPage() {
   ];
 
   const content = {
-    introduction: `A probation violation can send you to jail or prison faster than you realize, undoing years of compliance in a single moment. Whether you missed an appointment, failed a drug test, picked up new charges, or fell behind on payments, the consequences are severe and immediate. Our experienced probation violation attorneys in Raleigh, Charlotte, Smithfield, and Orlando understand that good people make mistakes and that life circumstances can derail compliance. We fight to keep you out of jail, preserve your probation, and get you back on track. Don't wait for a warrant - early intervention often makes the difference between freedom and incarceration.`,
+    introduction: `A probation violation can send you to jail or prison faster than you realize, undoing years of compliance in a single moment. Whether you missed an appointment, failed a drug test, picked up new charges, or fell behind on payments, the consequences are severe and immediate. Our experienced probation violation attorneys in Raleigh, Charlotte, Smithfield, and Orlando understand that good people make mistakes and that life circumstances can derail compliance. We fight to keep you out of jail, preserve your probation, and get you back on track. Don\'t wait for a warrant - early intervention often makes the difference between freedom and incarceration.`,
 
     processTitle: 'Violation Defense Strategy',
     process: [
@@ -300,7 +300,7 @@ export default function ProbationViolationPage() {
             <div className="flex items-start gap-3">
               <span className="text-yellow-400 font-bold">1.</span>
               <div>
-                <p className="text-white font-bold">Don't Panic or Run</p>
+                <p className="text-white font-bold">Don\'t Panic or Run</p>
                 <p className="text-gray-300 text-sm">Absconding makes everything worse. Face it head-on with legal help.</p>
               </div>
             </div>
@@ -341,7 +341,7 @@ export default function ProbationViolationPage() {
   return (
     <StandardizedPracticeAreaTemplate
       title="Probation Violation Defense Attorney NC & FL"
-      subtitle="Don't Let a Violation Send You to Jail"
+      subtitle="Don\'t Let a Violation Send You to Jail"
       description="Aggressive defense against probation violations in Raleigh, Charlotte, Smithfield & Orlando. Keep your freedom."
       services={services}
       faqs={faqs}

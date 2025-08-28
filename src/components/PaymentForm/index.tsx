@@ -145,7 +145,7 @@ export default function PaymentForm({
           <input
             type="checkbox"
             id="trustAccount"
-            {...register('trustAccount') className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            {...register('trustAccount')} className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
           />
           <label
             htmlFor="trustAccount"
@@ -168,8 +168,8 @@ export default function PaymentForm({
           <input
             type="number"
             step="0.01"
-            {...register('amount', { valueAsNumber: true })
-        className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
+            {...register('amount', { valueAsNumber: true })}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
           />
           {errors.amount && <p className="mt-1 text-sm text-red-600">{errors.amount.message}</p>}
         </div>
@@ -183,7 +183,7 @@ export default function PaymentForm({
           </label>
           <input
             type="text"
-            {...register('description') className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
+            {...register('description')} className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
             placeholder="Legal services payment"
           />
           {errors.description && (
@@ -203,7 +203,7 @@ export default function PaymentForm({
           </label>
           <input
             type="text"
-            {...register('clientName') className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
+            {...register('clientName')} className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
           />
           {errors.clientName && (
             <p className="mt-1 text-sm text-red-600">{errors.clientName.message}</p>
@@ -219,7 +219,7 @@ export default function PaymentForm({
           </label>
           <input
             type="email"
-            {...register('clientEmail') className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
+            {...register('clientEmail')} className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800"
           />
           {errors.clientEmail && (
             <p className="mt-1 text-sm text-red-600">{errors.clientEmail.message}</p>
@@ -295,7 +295,7 @@ export default function PaymentForm({
         <input
           type="checkbox"
           id="saveCard"
-          {...register('saveCard') className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+          {...register('saveCard')} className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
         />
         <label htmlFor="saveCard" className="ml-2 block text-sm text-gray-900 dark:text-gray-100">
           Save card for future payments
@@ -348,10 +348,4 @@ export default function PaymentForm({
       </div>
     </form>
   );
-}
-}
-}
-}
-}
-}
 }

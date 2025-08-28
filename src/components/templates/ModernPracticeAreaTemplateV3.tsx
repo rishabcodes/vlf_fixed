@@ -140,7 +140,6 @@ export function ModernPracticeAreaTemplateV3({
         <div className="absolute inset-0 bg-[url('/images/law-office-bg.jpg')] bg-cover bg-center" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        >
           <div className="flex justify-center mb-6">
             <Scale className="h-16 w-16 text-blue-400" />
           </div>
@@ -175,11 +174,7 @@ export function ModernPracticeAreaTemplateV3({
 
       {/* Stats Section */}
       <section className="py-16 bg-white">
-        <div
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-
-         }
-        >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-6 gap-8">
             {[
               { icon: Award, label: t.experienceYears, color: 'text-blue-600' },
@@ -189,12 +184,8 @@ export function ModernPracticeAreaTemplateV3({
               { icon: Users, label: t.bilingualServices, color: 'text-red-600' },
               { icon: MapPin, label: t.localExperts, color: 'text-indigo-600' },
             ].map((stat, index) => (
-              <div key={index}
-
-                className="text-center">
-                <stat.icon}
-
-                className={`h-8 w-8 ${stat.color} mx-auto mb-2`} />
+              <div key={index} className="text-center">
+                <stat.icon className={`h-8 w-8 ${stat.color} mx-auto mb-2`} />
                 <p className="text-sm font-medium text-gray-900">{stat.label}</p>
               </div>
             ))}
@@ -204,11 +195,7 @@ export function ModernPracticeAreaTemplateV3({
 
       {/* Why Choose Us Section */}
       <section className="py-20 bg-slate-50">
-        <div
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-
-         }
-        >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               {t.whyChooseTitle}
@@ -232,11 +219,7 @@ export function ModernPracticeAreaTemplateV3({
 
       {/* Process Section */}
       <section className="py-20 bg-white">
-        <div
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-
-         }
-        >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
               {t.ourProcessTitle}
@@ -245,11 +228,8 @@ export function ModernPracticeAreaTemplateV3({
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {practiceArea.process[language].map((step, index) => (
-              <div key={index}
-
-                className="text-center">
-                <div
-                className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              <div key={index} className="text-center">
+                <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                   {index + 1}
                 </div>
                 <p className="text-gray-700 leading-relaxed">{step}</p>
@@ -261,11 +241,7 @@ export function ModernPracticeAreaTemplateV3({
 
       {/* FAQs Section */}
       <section className="py-20 bg-slate-50">
-        <div
-          className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
-
-         }
-        >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.faqsTitle}</h2>
           </div>
@@ -289,9 +265,7 @@ export function ModernPracticeAreaTemplateV3({
                       </div>
                     </button>
                       {expandedFaq === index && (
-                      <div
-className="px-6 pb-6"
-                      >
+                      <div className="px-6 pb-6">
                         <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
                       </div>
                     )}
@@ -306,11 +280,7 @@ className="px-6 pb-6"
       {/* Related Services */}
       {practiceArea.relatedServices[language].length > 0 && (
         <section className="py-20 bg-white">
-          <div
-            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-
-           }
-          >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                 {t.relatedServicesTitle}
@@ -338,11 +308,7 @@ className="px-6 pb-6"
 
       {/* Contact Section */}
       <section className="py-20 bg-blue-900 text-white">
-        <div
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-
-         }
-        >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">{t.contactTitle}</h2>
             <p className="text-xl text-blue-100">{t.contactSubtitle}</p>
@@ -384,3 +350,4 @@ className="px-6 pb-6"
       </section>
     </div>
   );
+}

@@ -19,7 +19,9 @@ export default function PracticeAreasContent() {
       const browserLang = navigator.language.toLowerCase();
       if (browserLang.startsWith('es')) {
         setLanguage('es');
-      }}, [searchParams]);
+      }
+    }
+  }, [searchParams]);
 
   const practiceAreas = [
     {

@@ -206,8 +206,7 @@ export default function ModernLocationTemplate({
         {/* Animated Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 via-black to-primary/10" />
-          <div className="absolute inset-0">
-          />
+          <div className="absolute inset-0" />
         </div>
 
         {/* Floating Particles */}
@@ -215,9 +214,7 @@ export default function ModernLocationTemplate({
           {[...Array(30)].map((_, i) => (
             <div
               key={i}
-
-                className="absolute h-1 w-1 rounded-full bg-primary/30"
-             }}
+              className="absolute h-1 w-1 rounded-full bg-primary/30"
             />
           ))}
         </div>
@@ -307,12 +304,8 @@ className="h-3 w-1 rounded-full bg-primary"
       {/* Practice Areas Section */}
       <section className="relative py-20 bg-neutral-950">
         <div className="mx-auto max-w-7xl px-4">
-          <div
-className="text-center mb-12"
-          >
-            <Heading level={2}
-
-                className="text-white mb-4">
+          <div className="text-center mb-12">
+            <Heading level={2} className="text-white mb-4">
               {t.practiceAreas.title}
             </Heading>
           </div>
@@ -373,12 +366,8 @@ className="text-center mb-12"
       {/* Why Choose Section */}
       <section className="relative py-20 bg-black">
         <div className="mx-auto max-w-7xl px-4">
-          <div
-className="text-center mb-12"
-          >
-            <Heading level={2}
-
-                className="text-white mb-4">
+          <div className="text-center mb-12">
+            <Heading level={2} className="text-white mb-4">
               {t.whyChoose.title}
             </Heading>
           </div>
@@ -410,12 +399,8 @@ className="text-center mb-12"
       {/* Serving Areas Section */}
       <section className="relative py-20 bg-neutral-950">
         <div className="mx-auto max-w-7xl px-4">
-          <div
-className="text-center mb-12"
-          >
-            <Heading level={2}
-
-                className="text-white mb-4">
+          <div className="text-center mb-12">
+            <Heading level={2} className="text-white mb-4">
               {t.serving.title}
             </Heading>
             <Text size="lg" className="text-gray-400">
@@ -433,9 +418,7 @@ className="text-center mb-12"
               }, [])
               .map((col, colIndex) => (
                 <div
-                  key={colIndex}}
-                 }
-                 }
+                  key={colIndex}
                 >
                   <ul className="space-y-3">
                     {col.map((area, index) => (
@@ -571,7 +554,6 @@ className="relative h-96 rounded-2xl overflow-hidden border border-primary/20"
                 src={data.mapEmbedUrl}
                 width="100%"
                 height="100%"
-               }
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -588,3 +570,4 @@ className="relative h-96 rounded-2xl overflow-hidden border border-primary/20"
       </div>
     </div>
   );
+}

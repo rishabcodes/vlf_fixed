@@ -82,18 +82,15 @@ export const VoiceCallModal: React.FC<VoiceCallModalProps> = ({
     <>
       {isOpen && (
         <div
-className="fixed inset-0 z-[10000] flex items-center justify-center p-4"
-
+          className="fixed inset-0 z-[10000] flex items-center justify-center p-4"
         >
           {/* Glassmorphic Card */}
           <div
-className="relative w-full max-w-md"
-
+            className="relative w-full max-w-md"
           >
             {/* Liquid glass effect - animated gradient */}
             <div
               className="absolute inset-0 rounded-3xl opacity-50"
-             }
             />
 
             {/* Content */}
@@ -107,9 +104,7 @@ className="relative w-full max-w-md"
 
               {/* Header */}
               <div className="text-center mb-6">
-                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-4"
-
-                >
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-4">
                   <Phone className={`w-10 h-10 text-white ${isConnected ? 'animate-pulse' : ''}`} />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">
@@ -128,11 +123,11 @@ className="relative w-full max-w-md"
                   {animatedBars.map((height, index) => (
                     <div
                       key={index}
-
-                className="w-1 bg-gradient-to-t from-gold-500 to-gold-300 rounded-full"
-                     %` : '10%',
+                      className="w-1 bg-gradient-to-t from-gold-500 to-gold-300 rounded-full"
+                      style={{
+                        transition: 'height 0.1s ease',
+                        height: isConnected ? `${height}%` : '10%',
                       }}
-                     }
                     />
                   ))}
                 </div>
@@ -141,10 +136,7 @@ className="relative w-full max-w-md"
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-white/70 text-sm font-medium">
                     {isConnected && !isConnecting && (
-                      <span
-                       }
-                       }
-                      >
+                      <span>
                         {t[language].speaking}
                       </span>
                     )}
@@ -155,9 +147,9 @@ className="relative w-full max-w-md"
               {/* Controls */}
               <div className="flex justify-center gap-4">
                 {/* Mute Button */}
-                <button onClick={onToggleMute}
-      className="p-4 rounded-full transition-all"
-
+                <button
+                  onClick={onToggleMute}
+                  className="p-4 rounded-full transition-all"
                 >
                   {isMuted ? (
                     <MicOff className="w-6 h-6 text-white" />
@@ -167,8 +159,10 @@ className="relative w-full max-w-md"
                 </button>
 
                 {/* End Call Button */}
-                <button onClick={onEndCall}
-      disabled={isConnecting} className="px-8 py-4 rounded-full transition-all flex items-center gap-3"
+                <button
+                  onClick={onEndCall}
+                  disabled={isConnecting}
+                  className="px-8 py-4 rounded-full transition-all flex items-center gap-3"
 
                 >
                   <PhoneOff className="w-5 h-5 text-white" />
@@ -178,7 +172,6 @@ className="relative w-full max-w-md"
                 {/* Volume Indicator */}
                 <button
                   className="p-4 rounded-full transition-all"
-
                 >
                   <Volume2 className="w-6 h-6 text-white" />
                 </button>
@@ -187,7 +180,6 @@ className="relative w-full max-w-md"
               {/* Animated border glow */}
               <div
                 className="absolute inset-0 rounded-3xl pointer-events-none"
-               }
               />
             </div>
           </div>

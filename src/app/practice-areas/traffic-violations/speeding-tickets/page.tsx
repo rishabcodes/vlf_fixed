@@ -117,7 +117,7 @@ export default function SpeedingTicketsPage() {
   ];
 
   const content = {
-    introduction: `Don't let a speeding ticket derail your life. What seems like a simple fine becomes thousands in insurance increases, license suspension risk, and employment problems. Our traffic attorneys fight every ticket, protecting your driving record, insurance rates, and livelihood. From basic speeding to serious violations, we know how to win.`,
+    introduction: `Don\'t let a speeding ticket derail your life. What seems like a simple fine becomes thousands in insurance increases, license suspension risk, and employment problems. Our traffic attorneys fight every ticket, protecting your driving record, insurance rates, and livelihood. From basic speeding to serious violations, we know how to win.`,
 
     processTitle: 'Ticket Defense Process',
     process: [

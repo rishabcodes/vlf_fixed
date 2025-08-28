@@ -239,8 +239,8 @@ export default function ResourceLeadCaptureForm({
       setError(err instanceof Error ? err.message : t.errorMessage);
     } finally {
       setLoading(false);
-        }
-};
+    }
+  };
 
   if (success) {
     return (
@@ -260,7 +260,8 @@ className="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-ful
         {resourceType === 'download' && resourceUrl && (
           <a
             href={resourceUrl}
-            download={resourceTitle className="inline-flex items-center gap-2 bg-[#6B1F2E] hover:bg-[#8B2635] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+            download={resourceTitle}
+            className="inline-flex items-center gap-2 bg-[#6B1F2E] hover:bg-[#8B2635] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
           >
             <Download className="w-5 h-5" />
             {t.successDownload}
@@ -299,10 +300,13 @@ className="mt-6 flex items-center justify-center gap-2 text-sm text-gray-500 dar
         <input
           type="text"
           id="name"
-          value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value )}
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors ${
+          value={formData.name}
+          onChange={e => setFormData({ ...formData, name: e.target.value })}
+          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors ${
             validationErrors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-          }` aria-invalid={!!validationErrors.name aria-describedby={validationErrors.name ? 'name-error' : undefined}
+          }`}
+          aria-invalid={!!validationErrors.name}
+          aria-describedby={validationErrors.name ? 'name-error' : undefined}
         />
         {validationErrors.name && (
           <p id="name-error" className="mt-1 text-sm text-red-600 dark:text-red-400">
@@ -322,10 +326,13 @@ className="mt-6 flex items-center justify-center gap-2 text-sm text-gray-500 dar
         <input
           type="email"
           id="email"
-          value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value )}
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors ${
+          value={formData.email}
+          onChange={e => setFormData({ ...formData, email: e.target.value })}
+          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors ${
             validationErrors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-          }` aria-invalid={!!validationErrors.email aria-describedby={validationErrors.email ? 'email-error' : undefined}
+          }`}
+          aria-invalid={!!validationErrors.email}
+          aria-describedby={validationErrors.email ? 'email-error' : undefined}
         />
         {validationErrors.email && (
           <p id="email-error" className="mt-1 text-sm text-red-600 dark:text-red-400">
@@ -345,8 +352,9 @@ className="mt-6 flex items-center justify-center gap-2 text-sm text-gray-500 dar
         <input
           type="tel"
           id="phone"
-          value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value )}
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors"
+          value={formData.phone}
+          onChange={e => setFormData({ ...formData, phone: e.target.value })}
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors"
           placeholder={language === 'es' ? '(919) 555-0123' : '(919) 555-0123'}
         />
       </div>
@@ -362,13 +370,15 @@ className="mt-6 flex items-center justify-center gap-2 text-sm text-gray-500 dar
         <input
           type="text"
           id="zipCode"
-          value={formData.zipCode} onChange={e => setFormData({ ...formData, zipCode: e.target.value )}
-              className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors ${
+          value={formData.zipCode}
+          onChange={e => setFormData({ ...formData, zipCode: e.target.value })}
+          className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors ${
             validationErrors.zipCode ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
-          }` placeholder="27601"
+          }`}
+          placeholder="27601"
           maxLength={10}
-
-                aria-invalid={!!validationErrors.zipCode aria-describedby={validationErrors.zipCode ? 'zip-error' : undefined}
+          aria-invalid={!!validationErrors.zipCode}
+          aria-describedby={validationErrors.zipCode ? 'zip-error' : undefined}
         />
         {validationErrors.zipCode && (
           <p id="zip-error" className="mt-1 text-sm text-red-600 dark:text-red-400">
@@ -383,10 +393,13 @@ className="mt-6 flex items-center justify-center gap-2 text-sm text-gray-500 dar
           <input
             type="checkbox"
             id="privacyConsent"
-            checked={formData.privacyConsent} onChange={e => setFormData({ ...formData, privacyConsent: e.target.checked )}
-              className={`mt-1 w-4 h-4 text-[#6B1F2E] border-gray-300 rounded focus:ring-[#6B1F2E] ${
+            checked={formData.privacyConsent}
+            onChange={e => setFormData({ ...formData, privacyConsent: e.target.checked })}
+            className={`mt-1 w-4 h-4 text-[#6B1F2E] border-gray-300 rounded focus:ring-[#6B1F2E] ${
               validationErrors.privacyConsent ? 'border-red-500' : ''
-            }` aria-invalid={!!validationErrors.privacyConsent aria-describedby={validationErrors.privacyConsent ? 'privacy-error' : undefined}
+            }`}
+            aria-invalid={!!validationErrors.privacyConsent}
+            aria-describedby={validationErrors.privacyConsent ? 'privacy-error' : undefined}
           />
           <label htmlFor="privacyConsent" className="text-sm text-gray-600 dark:text-gray-300">
             {t.privacyLabel} *
@@ -403,8 +416,9 @@ className="mt-6 flex items-center justify-center gap-2 text-sm text-gray-500 dar
           <input
             type="checkbox"
             id="marketingConsent"
-            checked={formData.marketingConsent} onChange={e => setFormData({ ...formData, marketingConsent: e.target.checked )}
-              className="mt-1 w-4 h-4 text-[#6B1F2E] border-gray-300 rounded focus:ring-[#6B1F2E]"
+            checked={formData.marketingConsent}
+            onChange={e => setFormData({ ...formData, marketingConsent: e.target.checked })}
+            className="mt-1 w-4 h-4 text-[#6B1F2E] border-gray-300 rounded focus:ring-[#6B1F2E]"
           />
           <label htmlFor="marketingConsent" className="text-sm text-gray-600 dark:text-gray-300">
             {t.marketingLabel}
@@ -427,7 +441,8 @@ className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg flex items-start gap-3"
       {/* Submit Button */}
       <button
         type="submit"
-        disabled={loading} className="w-full bg-gradient-to-r from-[#6B1F2E] to-[#8B2635] hover:from-[#8B2635] hover:to-[#A02E3F] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+        disabled={loading}
+        className="w-full bg-gradient-to-r from-[#6B1F2E] to-[#8B2635] hover:from-[#8B2635] hover:to-[#A02E3F] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
       >
         {loading ? (
           <>
@@ -453,19 +468,4 @@ className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg flex items-start gap-3"
       </div>
     </form>
   );
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
 }

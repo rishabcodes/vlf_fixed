@@ -85,12 +85,6 @@ export const HeroTemplate: React.FC<HeroTemplateProps> = ({
                 className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
 
         <div      className="relative z-10 text-center text-white px-4">
-          <div
-           }}
-          >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-4">{t.headline}</h1>
-            <p className="text-primary text-2xl md:text-3xl font-bold mb-2">{BRAND.tagline}</p>
-            <p className="text-xl md:text-2xl mb-8 text-white/90">{t.subheadline}</p>
           <div className="animate-fadeIn">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 leading-tight">{t.headline}</h1>
             <p className="text-primary text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2">{BRAND.tagline}</p>
@@ -117,9 +111,6 @@ export const HeroTemplate: React.FC<HeroTemplateProps> = ({
       <section className={`relative ${getHeight()} flex items-center`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div
-             }}
-            >
             <div className="animate-fadeIn">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 mb-4">
                 {t.headline}
@@ -182,13 +173,6 @@ export const HeroTemplate: React.FC<HeroTemplateProps> = ({
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
 
-      <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
-        <div
-         }}
-        >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">{t.headline}</h1>
-          <p className="text-primary text-xl md:text-2xl font-bold mb-2">{BRAND.tagline}</p>
-          <p className="text-lg md:text-xl mb-8 text-white/90 max-w-3xl mx-auto">{t.description}</p>
       <div className="relative z-10 text-center text-white px-4 sm:px-6 max-w-5xl mx-auto">
         <div className="animate-fadeIn">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">{t.headline}</h1>

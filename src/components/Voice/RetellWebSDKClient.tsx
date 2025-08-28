@@ -50,8 +50,8 @@ export const RetellWebSDKClient: React.FC<RetellWebSDKClientProps> = ({
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
-          }
-};
+      }
+    };
   }, [isActive]);
 
   // Combine microphone and AI audio levels for waveform visualization
@@ -292,8 +292,8 @@ export const RetellWebSDKClient: React.FC<RetellWebSDKClientProps> = ({
       setIsConnected(false);
       cleanup();
       onClose();
-        }
-};
+    }
+  };
 
   const endCall = () => {
     logger.info('📞 Ending call...');
@@ -351,9 +351,9 @@ export const RetellWebSDKClient: React.FC<RetellWebSDKClientProps> = ({
         retellClientRef.current.mute();
         setIsMuted(true);
         toast.success('Microphone muted');
-          }
-};
-
+      }
+    }
+  };
   // Determine who is talking for visualization
   const isSomeoneTalking = isAgentTalking || isUserTalking;
 
@@ -370,8 +370,8 @@ export const RetellWebSDKClient: React.FC<RetellWebSDKClientProps> = ({
         </h3>
         <button 
           onClick={onClose}
-                onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
-                onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
+          onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+          onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
         >
           ✕
         </button>
@@ -381,7 +381,7 @@ export const RetellWebSDKClient: React.FC<RetellWebSDKClientProps> = ({
       <div>
         {isConnecting && (
           <div>
-            <Loader2 className="animate-spin"} />
+            <Loader2 className="animate-spin" />
             <p>Initiating call. Please wait...</p>
           </div>
         )}
@@ -420,8 +420,9 @@ export const RetellWebSDKClient: React.FC<RetellWebSDKClientProps> = ({
           {Array.from({ length: 20 }).map((_, i) => (
             <div
               key={i}
-             }
-             px` : 
+              style={{
+                height: isSomeoneTalking ? 
+                  `${Math.random() * 30 + 10}px` : 
                   '10px'
               }}
             />
@@ -434,7 +435,6 @@ export const RetellWebSDKClient: React.FC<RetellWebSDKClientProps> = ({
         <div>
           <button 
             onClick={toggleMute}
-           }
             title={isMuted ? 'Unmute' : 'Mute'}
           >
             {isMuted ? <MicOff size={20} /> : <Mic size={20} />}
@@ -442,7 +442,6 @@ export const RetellWebSDKClient: React.FC<RetellWebSDKClientProps> = ({
 
           <button 
             onClick={endCall}
-           }
           >
             <PhoneOff size={20} />
             End Call

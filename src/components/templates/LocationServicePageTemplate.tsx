@@ -63,9 +63,7 @@ export function LocationServicePageTemplate({
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <div
-               }}
-              >
+              <div>
                 <h1 className="text-4xl md:text-5xl font-black mb-6 text-white">
                   {city} {service}
                 </h1>
@@ -108,9 +106,7 @@ export function LocationServicePageTemplate({
               <div className="grid md:grid-cols-2 gap-12">
                 {/* Main Content */}
                 <div>
-                  <div
-                   }}
-                  >
+                  <div>
                     <h2 className="text-3xl font-bold text-white mb-6">
                       {serviceContent.mainTitle}
                     </h2>
@@ -185,8 +181,7 @@ className="mt-8 bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/
         <section className="py-16 bg-black">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2
-className="text-3xl font-bold text-center text-white mb-12"
+              <h2 className="text-3xl font-bold text-center text-white mb-12"
               >
                 Frequently Asked Questions
               </h2>
@@ -194,13 +189,9 @@ className="text-3xl font-bold text-center text-white mb-12"
               <div className="space-y-6">
                 {serviceContent.faqs.map(
                   (faq: { question: string; answer: string }, index: number) => (
-                    <div
-                      key={index}
-
-                className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10"
+                    <div key={index} className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10"
                     >
-                      <h3
-                className="text-xl font-semibold text-primary mb-3">{faq.question}</h3>
+                      <h3 className="text-xl font-semibold text-primary mb-3">{faq.question}</h3>
                       <p className="text-gray-300">{faq.answer}</p>
                     </div>
                   )
@@ -235,7 +226,8 @@ className="text-3xl font-bold text-center text-white mb-12"
 
         {/* Schemas */}
         <Script
-          id={`service-schema-${slug}-${city.toLowerCase()}` type="application/ld+json"
+          id={`service-schema-${slug}-${city.toLowerCase()}`}
+          type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
@@ -456,3 +448,4 @@ function getServiceContent(service: string, city: string) {
   };
 
   return contents[service] || contents['Immigration Lawyer'];
+}

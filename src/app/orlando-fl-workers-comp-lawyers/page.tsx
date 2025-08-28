@@ -18,8 +18,8 @@ export default function OrlandoFlWorkersCompLawyersPage() {
   // TODO: Extract content from original file and format properly
   const post = {
     id: 'orlando-fl-workers-comp-lawyers',
-    title: "Orlando, FL Workers Comp Lawyers ,
-    slug: "'orlando-fl-workers-comp-lawyers',
+    title: "Orlando, FL Workers Comp Lawyers",
+    slug: 'orlando-fl-workers-comp-lawyers',
     excerpt: 'Blog post excerpt here - TODO: extract from content',
     content: `
       <div className="prose prose-lg max-w-none">

@@ -81,7 +81,9 @@ export const ModernPracticeAreaTemplate: React.FC<ModernPracticeAreaTemplateProp
       const browserLang = navigator.language.toLowerCase();
       if (browserLang.startsWith('es')) {
         setLanguage('es');
-      }}, []);
+      }
+    }
+  }, []);
 
   const stats = [
     {
@@ -102,13 +104,11 @@ export const ModernPracticeAreaTemplate: React.FC<ModernPracticeAreaTemplateProp
     <>
       <div className="min-h-screen bg-black">
         {/* Language Toggle */}
-        <div
-className="fixed right-4 top-20 z-40 flex gap-2 rounded-full bg-black/50 p-1 backdrop-blur-sm"
+        <div className="fixed right-4 top-20 z-40 flex gap-2 rounded-full bg-black/50 p-1 backdrop-blur-sm"
         >
           <button
             onClick={() => setLanguage('en')}
-
-                className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
+            className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
               language === 'en' ? 'bg-primary text-black' : 'text-white hover:text-primary'
             }`}
           >
@@ -116,8 +116,7 @@ className="fixed right-4 top-20 z-40 flex gap-2 rounded-full bg-black/50 p-1 bac
           </button>
           <button
             onClick={() => setLanguage('es')}
-
-                className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
+            className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
               language === 'es' ? 'bg-primary text-black' : 'text-white hover:text-primary'
             }`}
           >
@@ -130,8 +129,6 @@ className="fixed right-4 top-20 z-40 flex gap-2 rounded-full bg-black/50 p-1 bac
           {/* Animated Background */}
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 via-black to-primary/10" />
-            <div className="absolute inset-0">
-            />
             <div className="absolute inset-0" />
           </div>
 
@@ -553,9 +550,7 @@ className="text-3xl md:text-4xl font-black text-center text-white mb-12"
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-r from-primary to-primary-300">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div
-             }}
-            >
+            <div>
               <h2 className="text-3xl md:text-4xl font-black text-black mb-6">
                 {language === 'en'
                   ? 'Get Your FREE Consultation Today'

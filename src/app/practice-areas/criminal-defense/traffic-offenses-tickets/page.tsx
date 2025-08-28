@@ -123,7 +123,7 @@ export default function TrafficOffensesTicketsPage() {
   ];
 
   const content = {
-    introduction: `Traffic tickets are more than just fines - they threaten your license, skyrocket insurance rates, and can even lead to criminal records that follow you forever. From simple speeding tickets on I-40 near Raleigh to serious charges like reckless driving in Charlotte or DWI in Orlando, every traffic citation deserves a strong defense. Our experienced traffic attorneys understand the DMV point systems, insurance implications, and court procedures in Wake, Mecklenburg, Johnston, and Orange Counties. We fight to keep your record clean, your license valid, and your insurance affordable. Don't just pay that ticket - protect your driving future with aggressive legal representation.`,
+    introduction: `Traffic tickets are more than just fines - they threaten your license, skyrocket insurance rates, and can even lead to criminal records that follow you forever. From simple speeding tickets on I-40 near Raleigh to serious charges like reckless driving in Charlotte or DWI in Orlando, every traffic citation deserves a strong defense. Our experienced traffic attorneys understand the DMV point systems, insurance implications, and court procedures in Wake, Mecklenburg, Johnston, and Orange Counties. We fight to keep your record clean, your license valid, and your insurance affordable. Don\'t just pay that ticket - protect your driving future with aggressive legal representation.`,
 
     processTitle: 'Traffic Ticket Defense Process',
     process: [
@@ -354,7 +354,7 @@ export default function TrafficOffensesTicketsPage() {
               <span className="text-blue-400 text-xl font-bold">2.</span>
               <div>
                 <h3 className="font-bold text-white">Be Polite but Protected</h3>
-                <p className="text-gray-300 text-sm">Yes sir/ma'am. Provide license, registration. Don't admit guilt or speed.</p>
+                <p className="text-gray-300 text-sm">Yes sir/ma'am. Provide license, registration. Don\'t admit guilt or speed.</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
@@ -367,7 +367,7 @@ export default function TrafficOffensesTicketsPage() {
             <div className="flex items-start gap-3">
               <span className="text-blue-400 text-xl font-bold">4.</span>
               <div>
-                <h3 className="font-bold text-white">Don't Argue Roadside</h3>
+                <h3 className="font-bold text-white">Don\'t Argue Roadside</h3>
                 <p className="text-gray-300 text-sm">Sign ticket if required (not admission). Fight in court, not on roadside.</p>
               </div>
             </div>
@@ -375,7 +375,7 @@ export default function TrafficOffensesTicketsPage() {
               <span className="text-blue-400 text-xl font-bold">5.</span>
               <div>
                 <h3 className="font-bold text-white">Call Attorney Immediately</h3>
-                <p className="text-gray-300 text-sm">Don't pay online. Don't miss court. Get legal help before making any decisions.</p>
+                <p className="text-gray-300 text-sm">Don\'t pay online. Don\'t miss court. Get legal help before making any decisions.</p>
               </div>
             </div>
           </div>
@@ -387,7 +387,7 @@ export default function TrafficOffensesTicketsPage() {
   return (
     <StandardizedPracticeAreaTemplate
       title="Traffic Violation & Ticket Defense Attorney NC & FL"
-      subtitle="Don't Just Pay That Ticket - Fight It"
+      subtitle="Don\'t Just Pay That Ticket - Fight It"
       description="Experienced traffic attorneys in Raleigh, Charlotte, Smithfield & Orlando. Keep your license, avoid points, protect insurance rates."
       services={services}
       faqs={faqs}

@@ -9,15 +9,16 @@ const PersonalInjuryPageClient: React.FC = () => {
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6     }
-};
+    transition: { duration: 0.6 }
+  };
 
   const staggerContainer = {
     animate: {
       transition: {
         staggerChildren: 0.1
-          }
-};
+      }
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -110,8 +111,6 @@ const PersonalInjuryPageClient: React.FC = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-           }
-          >
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               Our Personal Injury <span className="text-primary">Expertise</span>
             </h2>
@@ -123,8 +122,6 @@ const PersonalInjuryPageClient: React.FC = () => {
           <div 
             className="grid md:grid-cols-3 gap-8"
 
-           }
-           
           >
             {[
               {
@@ -178,8 +175,6 @@ const PersonalInjuryPageClient: React.FC = () => {
           <div 
             className="grid lg:grid-cols-2 gap-12 items-center"
 
-           }
-           
           >
             <div>
               <h2 
@@ -225,8 +220,6 @@ const PersonalInjuryPageClient: React.FC = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-           }
-          >
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               Why Choose <span className="text-primary">Vasquez Law Firm?</span>
             </h2>
@@ -235,8 +228,6 @@ const PersonalInjuryPageClient: React.FC = () => {
           <div 
             className="grid md:grid-cols-4 gap-8"
 
-           }
-           
           >
             {[
               {

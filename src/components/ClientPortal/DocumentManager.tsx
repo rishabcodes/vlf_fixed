@@ -418,7 +418,8 @@ className="bg-white rounded-lg shadow-xl max-w-md w-full"
                     e.preventDefault();
                     if (e.dataTransfer.files.length > 0) {
                       handleFileUpload(e.dataTransfer.files);
-                    }}
+                    }
+                }}
                 >
                   <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                   <p className="text-gray-700 mb-2">Drop files here or click to browse</p>
@@ -427,21 +428,21 @@ className="bg-white rounded-lg shadow-xl max-w-md w-full"
 
                 <input
                   ref={fileInputRef}
-
-                type="file"
+                  type="file"
                   multiple
                   accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
                   onChange={e => {
                     if (e.target.files && e.target.files.length > 0) {
-                      handleFileUpload(e.target.files);}
-      className="hidden"
+                      handleFileUpload(e.target.files);
+                    }
+                  }}
+                  className="hidden"
                 />
 
                 <div className="mt-6 flex gap-3">
                   <button
-                onClick={() => setUploadModalOpen(false)}
-
-                className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                    onClick={() => setUploadModalOpen(false)}
+                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                   >
                     Cancel
                   </button>
@@ -453,7 +454,4 @@ className="bg-white rounded-lg shadow-xl max-w-md w-full"
       </>
     </div>
   );
-}
-}
-}
 }

@@ -134,9 +134,7 @@ export function NeighborhoodPageTemplate({ neighborhood, content }: Neighborhood
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-5xl mx-auto text-center">
-              <div
-               }}
-              >
+              <div>
                 <h1 className="text-4xl md:text-6xl font-black mb-6 text-white">
                   {content.heroTitle}
                 </h1>
@@ -152,10 +150,7 @@ export function NeighborhoodPageTemplate({ neighborhood, content }: Neighborhood
                   <p className="text-sm text-gray-400 mb-2">Proudly Serving ZIP Codes:</p>
                   <div className="flex flex-wrap justify-center gap-2">
                     {neighborhood.zipCodes.map(zip => (
-                      <span
-                        key={zip}
-
-                className="px-3 py-1 bg-white/10 rounded-full text-white text-sm"
+                      <span key={zip} className="px-3 py-1 bg-white/10 rounded-full text-white text-sm"
                       >
                         {zip}
                       </span>
@@ -192,9 +187,7 @@ export function NeighborhoodPageTemplate({ neighborhood, content }: Neighborhood
         <section className="py-16 bg-neutral-950">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2
-className="text-3xl md:text-4xl font-black text-center text-white mb-12"
-              >
+              <h2 className="text-3xl md:text-4xl font-black text-center text-white mb-12">
                 Why {neighborhood.name} Residents Choose Us
               </h2>
 
@@ -223,27 +216,20 @@ className="text-3xl md:text-4xl font-black text-center text-white mb-12"
         <section className="py-16 bg-black">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2
-className="text-3xl md:text-4xl font-black text-center text-white mb-12"
-              >
+              <h2 className="text-3xl md:text-4xl font-black text-center text-white mb-12">
                 Legal Services for {neighborhood.name}
               </h2>
 
               <div className="grid md:grid-cols-2 gap-8">
                 {content.practiceAreas.map((area, index) => (
-                  <div
-                    key={index}
-
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-primary/50 transition-all"
+                  <div key={index} className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-primary/50 transition-all"
                   >
-                    <h3
-                className="text-2xl font-bold text-primary mb-4">{area.name}</h3>
+                    <h3 className="text-2xl font-bold text-primary mb-4">{area.name}</h3>
                     <p className="text-gray-300 mb-4">{area.description}</p>
                     <p className="text-sm text-gray-400 italic">{area.localNote}</p>
                     <Link
                       href={`/practice-areas/${practiceAreaSlugs[area.name] || area.name.toLowerCase().replace(/['\s]+/g, '-')}`}
-
-                className="inline-flex items-center text-primary hover:text-primary-300 mt-4 font-semibold"
+                      className="inline-flex items-center text-primary hover:text-primary-300 mt-4 font-semibold"
                     >
                       Learn More →
                     </Link>
@@ -258,25 +244,19 @@ className="text-3xl md:text-4xl font-black text-center text-white mb-12"
         <section className="py-16 bg-neutral-950">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2
-className="text-3xl md:text-4xl font-black text-center text-white mb-12"
-              >
+              <h2 className="text-3xl md:text-4xl font-black text-center text-white mb-12">
                 We Know {neighborhood.name}
               </h2>
 
               <div className="grid md:grid-cols-3 gap-8">
                 {/* Landmarks */}
-                <div
-className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
                 >
                   <h3 className="text-xl font-bold text-primary mb-4">Local Landmarks</h3>
                   <ul className="space-y-2">
                     {content.localKnowledge.landmarks.map((landmark, index) => (
-                      <li key={index}
-
-                className="flex items-start text-gray-300">
-                        <MapPin
-                className="w-4 h-4 text-primary mt-1 mr-2 flex-shrink-0" />
+                      <li key={index} className="flex items-start text-gray-300">
+                        <MapPin className="w-4 h-4 text-primary mt-1 mr-2 flex-shrink-0" />
                         {landmark}
                       </li>
                     ))}
@@ -284,8 +264,7 @@ className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
                 </div>
 
                 {/* Demographics */}
-                <div
-className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
                 >
                   <h3 className="text-xl font-bold text-primary mb-4">Community Info</h3>
                   <dl className="space-y-3">
@@ -311,8 +290,7 @@ className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
                 </div>
 
                 {/* Nearby Services */}
-                <div
-className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
                 >
                   <h3 className="text-xl font-bold text-primary mb-4">Nearby Courts</h3>
                   <div className="space-y-3">
@@ -329,20 +307,16 @@ className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
               </div>
 
               {/* Common Legal Issues */}
-              <div
-className="mt-8 bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
+              <div className="mt-8 bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10"
               >
                 <h3 className="text-xl font-bold text-primary mb-4">
                   Common Legal Issues in {neighborhood.name}
                 </h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   {content.localKnowledge.commonIssues.map((issue, index) => (
-                    <div key={index}
-
-                className="flex items-start">
+                    <div key={index} className="flex items-start">
                       <CheckCircle className="w-5 h-5 text-primary mt-0.5 mr-3 flex-shrink-0" />
-                      <span
-                className="text-gray-300">{issue}</span>
+                      <span className="text-gray-300">{issue}</span>
                     </div>
                   ))}
                 </div>
@@ -355,18 +329,13 @@ className="mt-8 bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/
         <section className="py-16 bg-black">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              <h2
-className="text-3xl md:text-4xl font-black text-center text-white mb-12"
-              >
+              <h2 className="text-3xl md:text-4xl font-black text-center text-white mb-12">
                 {neighborhood.name} Success Stories
               </h2>
 
               <div className="grid md:grid-cols-3 gap-8">
                 {content.testimonials.map((testimonial, index) => (
-                  <div
-                    key={index}
-
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
+                  <div key={index} className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
                   >
                     <div className="flex mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
@@ -393,9 +362,7 @@ className="text-3xl md:text-4xl font-black text-center text-white mb-12"
         <section className="py-16 bg-neutral-950">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2
-className="text-3xl md:text-4xl font-black text-center text-white mb-12"
-              >
+              <h2 className="text-3xl md:text-4xl font-black text-center text-white mb-12">
                 {neighborhood.name} FAQs
               </h2>
 
@@ -462,8 +429,7 @@ className="text-3xl md:text-4xl font-black text-center text-white mb-12"
               <div className="flex flex-wrap justify-center gap-3">
                 <Link
                   href={`/locations/nc/${neighborhood.citySlug}`}
-
-                className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 text-white transition-all"
+                  className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 text-white transition-all"
                 >
                   All {neighborhood.city}
                 </Link>
@@ -475,7 +441,8 @@ className="text-3xl md:text-4xl font-black text-center text-white mb-12"
 
         {/* Schemas */}
         <Script
-          id={`neighborhood-schema-${neighborhood.slug}` type="application/ld+json"
+          id={`neighborhood-schema-${neighborhood.slug}`}
+          type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
@@ -486,3 +453,4 @@ className="text-3xl md:text-4xl font-black text-center text-white mb-12"
       </div>
     </>
   );
+}

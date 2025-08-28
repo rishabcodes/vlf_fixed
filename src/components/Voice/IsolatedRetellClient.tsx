@@ -123,8 +123,8 @@ export const IsolatedRetellClient: React.FC<IsolatedRetellClientProps> = ({
       if (animationIntervalRef.current) {
         clearInterval(animationIntervalRef.current);
         animationIntervalRef.current = null;
-          }
-};
+      }
+    };
   }, [isConnected, isActive, bars, isAgentTalking]);
 
 
@@ -337,8 +337,9 @@ export const IsolatedRetellClient: React.FC<IsolatedRetellClientProps> = ({
       } catch (err) {
         logger.error('Error toggling mute:', err);
         toast.error('Failed to toggle mute');
-          }
-};
+      }
+    }
+  };
 
   // End call
   const handleEndCall = () => {
@@ -355,8 +356,8 @@ export const IsolatedRetellClient: React.FC<IsolatedRetellClientProps> = ({
     return () => {
       if (isActive) {
         cleanupCall();
-          }
-};
+      }
+    };
   }, [isActive]);
 
   if (!isActive || !portalElement) return null;
@@ -376,7 +377,6 @@ className="relative w-full max-w-md"
             {/* Animated gradient background */}
             <div
               className="absolute inset-0 rounded-3xl opacity-50"
-             }
             />
 
             {/* Content */}
@@ -508,10 +508,11 @@ className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-blac
                               type="range"
                               min="0"
                               max="100"
-                              value={volume} onChange={(e) => handleVolumeChange(parseInt(e.target.value))}
-
-                className="w-full"
-                             %, #333 ${volume}%, #333 100%)`,
+                              value={volume}
+                              onChange={(e) => handleVolumeChange(parseInt(e.target.value))}
+                              className="w-full"
+                              style={{
+                                background: `linear-gradient(to right, #60a5fa 0%, #60a5fa ${volume}%, #333 ${volume}%, #333 100%)`
                               }}
                             />
                           </div>
@@ -520,8 +521,9 @@ className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-blac
                     </div>
 
                     {/* End Call Button */}
-                    <button onClick={handleEndCall}
-      className="px-6 py-4 rounded-full bg-red-500/20 hover:bg-red-500/30 border-2 border-red-500/50 transition-all flex items-center gap-2"
+                    <button
+                      onClick={handleEndCall}
+                      className="px-6 py-4 rounded-full bg-red-500/20 hover:bg-red-500/30 border-2 border-red-500/50 transition-all flex items-center gap-2"
                     >
                       <PhoneOff className="w-6 h-6 text-red-400" />
                       <span className="text-red-400 font-medium">{t[language].endCall}</span>

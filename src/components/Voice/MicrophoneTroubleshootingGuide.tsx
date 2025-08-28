@@ -131,7 +131,8 @@ export const MicrophoneTroubleshootingGuide: React.FC<MicrophoneTroubleshootingG
                     currentStep === index
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 hover:border-gray-300'
-                  }` onClick={() => setCurrentStep(currentStep === index ? -1 : index)}
+                  }`}
+                onClick={() => setCurrentStep(currentStep === index ? -1 : index)}
                 >
                   <div className="flex items-center gap-3">
                     <div className={`p-2 rounded-full ${
@@ -199,4 +200,3 @@ export const MicrophoneTroubleshootingGuide: React.FC<MicrophoneTroubleshootingG
     </>
   );
 };
-}

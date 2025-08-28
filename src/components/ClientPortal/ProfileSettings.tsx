@@ -367,7 +367,10 @@ className="flex items-center gap-2 text-green-600"
                     accept="image/*"
                     onChange={e => {
                       if (e.target.files?.[0]) {
-                        handleImageUpload(e.target.files[0]);} className="hidden"
+                        handleImageUpload(e.target.files[0]);
+                      }
+                    }}
+                    className="hidden"
                   />
                 </label>
               )}
@@ -386,8 +389,10 @@ className="flex items-center gap-2 text-green-600"
               <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
               <input
                 type="text"
-                value={profileData.firstName} onChange={e => setProfileData({ ...profileData, firstName: e.target.value })
-        disabled={!editing} className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
+                value={profileData.firstName}
+                onChange={e => setProfileData({ ...profileData, firstName: e.target.value })}
+                disabled={!editing}
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
               />
             </div>
 
@@ -395,8 +400,10 @@ className="flex items-center gap-2 text-green-600"
               <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
               <input
                 type="text"
-                value={profileData.lastName} onChange={e => setProfileData({ ...profileData, lastName: e.target.value })
-        disabled={!editing} className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
+                value={profileData.lastName}
+                onChange={e => setProfileData({ ...profileData, lastName: e.target.value })}
+                disabled={!editing}
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
               />
             </div>
 
@@ -406,8 +413,10 @@ className="flex items-center gap-2 text-green-600"
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   type="email"
-                  value={profileData.email} onChange={e => setProfileData({ ...profileData, email: e.target.value })
-        disabled={!editing} className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
+                  value={profileData.email}
+                  onChange={e => setProfileData({ ...profileData, email: e.target.value })}
+                  disabled={!editing}
+                  className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
                 />
               </div>
             </div>
@@ -418,8 +427,10 @@ className="flex items-center gap-2 text-green-600"
                 <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   type="tel"
-                  value={profileData.phone} onChange={e => setProfileData({ ...profileData, phone: e.target.value })
-        disabled={!editing} className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
+                  value={profileData.phone}
+                  onChange={e => setProfileData({ ...profileData, phone: e.target.value })}
+                  disabled={!editing}
+                  className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
                 />
               </div>
             </div>
@@ -438,8 +449,9 @@ className="flex items-center gap-2 text-green-600"
                       setProfileData({
                         ...profileData,
                         address: { ...profileData.address, street: e.target.value },
-                      })
-        disabled={!editing} className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
+                      })}
+                  disabled={!editing}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
                   />
                 </div>
                 <input
@@ -449,8 +461,9 @@ className="flex items-center gap-2 text-green-600"
                     setProfileData({
                       ...profileData,
                       address: { ...profileData.address, city: e.target.value },
-                    })
-        disabled={!editing} className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
+                    })}
+                  disabled={!editing}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
                 />
                 <div className="grid grid-cols-2 gap-4">
                   <input
@@ -460,8 +473,9 @@ className="flex items-center gap-2 text-green-600"
                       setProfileData({
                         ...profileData,
                         address: { ...profileData.address, state: e.target.value },
-                      })
-        disabled={!editing} className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
+                      })}
+                  disabled={!editing}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
                   />
                   <input
                     type="text"
@@ -470,8 +484,9 @@ className="flex items-center gap-2 text-green-600"
                       setProfileData({
                         ...profileData,
                         address: { ...profileData.address, zip: e.target.value },
-                      })
-        disabled={!editing} className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
+                      })}
+                  disabled={!editing}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
                   />
                 </div>
               </div>
@@ -487,8 +502,9 @@ className="flex items-center gap-2 text-green-600"
                     setProfileData({
                       ...profileData,
                       emergencyContact: { ...profileData.emergencyContact, name: e.target.value },
-                    })
-        disabled={!editing} className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
+                    })}
+                  disabled={!editing}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
                 />
                 <input
                   type="tel"
@@ -497,8 +513,9 @@ className="flex items-center gap-2 text-green-600"
                     setProfileData({
                       ...profileData,
                       emergencyContact: { ...profileData.emergencyContact, phone: e.target.value },
-                    })
-        disabled={!editing} className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
+                    })}
+                  disabled={!editing}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
                 />
                 <input
                   type="text"
@@ -510,8 +527,9 @@ className="flex items-center gap-2 text-green-600"
                         ...profileData.emergencyContact,
                         relationship: e.target.value,
                       },
-                    })
-        disabled={!editing} className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
+                    })}
+                  disabled={!editing}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent disabled:bg-gray-50"
                 />
               </div>
             </div>
@@ -549,8 +567,10 @@ className="flex items-center gap-2 text-green-600"
                   </label>
                   <div className="relative">
                     <input
-                      type={showPasswords.current ? 'text' : 'password' value={passwords.current} onChange={e => setPasswords({ ...passwords, current: e.target.value )}
-              className="w-full pr-10 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent"
+                      type={showPasswords.current ? 'text' : 'password'}
+                      value={passwords.current}
+                      onChange={e => setPasswords({ ...passwords, current: e.target.value })}
+                      className="w-full pr-10 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent"
                     />
                     <button
                       type="button"
@@ -574,8 +594,10 @@ className="flex items-center gap-2 text-green-600"
                   </label>
                   <div className="relative">
                     <input
-                      type={showPasswords.new ? 'text' : 'password' value={passwords.new} onChange={e => setPasswords({ ...passwords, new: e.target.value )}
-              className="w-full pr-10 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent"
+                      type={showPasswords.new ? 'text' : 'password'}
+                      value={passwords.new}
+                      onChange={e => setPasswords({ ...passwords, new: e.target.value })}
+                      className="w-full pr-10 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent"
                     />
                     <button
                       type="button"
@@ -599,8 +621,10 @@ className="flex items-center gap-2 text-green-600"
                   </label>
                   <div className="relative">
                     <input
-                      type={showPasswords.confirm ? 'text' : 'password' value={passwords.confirm} onChange={e => setPasswords({ ...passwords, confirm: e.target.value )}
-              className="w-full pr-10 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent"
+                      type={showPasswords.confirm ? 'text' : 'password'}
+                      value={passwords.confirm}
+                      onChange={e => setPasswords({ ...passwords, confirm: e.target.value })}
+                      className="w-full pr-10 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent"
                     />
                     <button
                       type="button"
@@ -622,12 +646,15 @@ className="flex items-center gap-2 text-green-600"
                   <button
                     onClick={() => {
                       setChangePassword(false);
-                      setPasswords({ current: '', new: '', confirm: '' }); className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                      setPasswords({ current: '', new: '', confirm: '' });
+                    }}
+                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                   >
                     Cancel
                   </button>
                   <button
-                    onClick={handlePasswordChange} className="flex-1 px-4 py-2 bg-[#6B1F2E] text-white rounded-lg hover:bg-[#8B2635] transition-colors"
+                    onClick={handlePasswordChange}
+                    className="flex-1 px-4 py-2 bg-[#6B1F2E] text-white rounded-lg hover:bg-[#8B2635] transition-colors"
                   >
                     Update Password
                   </button>
@@ -736,8 +763,8 @@ className="flex items-center gap-2 text-green-600"
                             ...profileData.preferences,
                             [item.key]: e.target.checked,
                           },
-                        })
-        className="w-4 h-4 text-[#6B1F2E] rounded focus:ring-[#6B1F2E]"
+                        })}
+                      className="w-4 h-4 text-[#6B1F2E] rounded focus:ring-[#6B1F2E]"
                     />
                   </label>
                 ))}
@@ -762,8 +789,8 @@ className="flex items-center gap-2 text-green-600"
                         ...profileData.preferences,
                         smsNotifications: e.target.checked,
                       },
-                    })
-        className="w-4 h-4 text-[#6B1F2E] rounded focus:ring-[#6B1F2E]"
+                    })}
+                  className="w-4 h-4 text-[#6B1F2E] rounded focus:ring-[#6B1F2E]"
                 />
               </label>
             </div>
@@ -796,8 +823,8 @@ className="flex items-center gap-2 text-green-600"
                       ...profileData.preferences,
                       language: e.target.value,
                     },
-                  })
-        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent"
+                  })}
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent"
               >
                 <option value="en">English</option>
                 <option value="es">Español</option>
@@ -880,28 +907,4 @@ className="flex items-center gap-2 text-green-600"
       )}
     </div>
   );
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
 }

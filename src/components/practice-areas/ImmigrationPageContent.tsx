@@ -143,8 +143,7 @@ export default function ImmigrationPageContent({ language }: ImmigrationPageCont
         <div className="absolute inset-0 bg-black/20" />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
-           }}
-          >
+>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">{t.title}</h1>
             <p className="text-xl text-[#C9974D] font-semibold mb-6">{t.subtitle}</p>
             <p className="text-xl max-w-3xl">{t.description}</p>
@@ -157,8 +156,6 @@ export default function ImmigrationPageContent({ language }: ImmigrationPageCont
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             <div
-             }}
-             }
             >
               <h2 className="text-3xl font-bold text-[#6B1F2E] mb-6">{t.whyChoose}</h2>
               <ul className="space-y-4">
@@ -175,8 +172,6 @@ export default function ImmigrationPageContent({ language }: ImmigrationPageCont
             </div>
 
             <div
-             }}
-             }
             >
               <h2 className="text-3xl font-bold text-[#6B1F2E] mb-6">{t.howWeHelp}</h2>
               <ul className="space-y-4">
@@ -227,8 +222,7 @@ className="text-center mb-12"
       <section className="py-16 bg-[#C9974D]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div
-           }}
-          >
+>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.ctaTitle}</h2>
             <p className="text-xl text-white/90 mb-8">{t.ctaDescription}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -252,3 +246,4 @@ className="text-center mb-12"
       </section>
     </div>
   );
+}

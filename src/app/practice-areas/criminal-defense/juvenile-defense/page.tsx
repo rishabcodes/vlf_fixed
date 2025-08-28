@@ -310,7 +310,7 @@ export default function JuvenileDefensePage() {
             <div className="flex items-start gap-3">
               <span className="text-green-400 text-xl font-bold">1.</span>
               <div>
-                <h3 className="font-bold text-white">Don't Let Police Question Without Attorney</h3>
+                <h3 className="font-bold text-white">Don\'t Let Police Question Without Attorney</h3>
                 <p className="text-gray-300 text-sm">Invoke right to remain silent and request lawyer immediately. Juveniles often confess without understanding consequences.</p>
               </div>
             </div>

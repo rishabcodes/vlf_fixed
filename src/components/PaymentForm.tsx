@@ -149,7 +149,7 @@ export function PaymentForm({
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit) className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {error && (
         <div className="rounded-md bg-red-50 p-4">
           <div className="flex">
@@ -168,7 +168,7 @@ export function PaymentForm({
             Amount ($)
           </label>
           <input
-            {...register('amount') type="number"
+            {...register('amount')} type="number"
             step="0.01"
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             placeholder="0.00"
@@ -181,7 +181,7 @@ export function PaymentForm({
             Description
           </label>
           <input
-            {...register('description') type="text"
+            {...register('description')} type="text"
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             placeholder="Legal services"
           />
@@ -198,7 +198,7 @@ export function PaymentForm({
             Full Name
           </label>
           <input
-            {...register('clientName') type="text"
+            {...register('clientName')} type="text"
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
           />
           {errors.clientName && (
@@ -212,7 +212,7 @@ export function PaymentForm({
               Email
             </label>
             <input
-              {...register('clientEmail') type="email"
+              {...register('clientEmail')} type="email"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             />
             {errors.clientEmail && (
@@ -225,7 +225,7 @@ export function PaymentForm({
               Phone (Optional)
             </label>
             <input
-              {...register('clientPhone') type="tel"
+              {...register('clientPhone')} type="tel"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             />
           </div>
@@ -236,7 +236,7 @@ export function PaymentForm({
       <div className="rounded-lg bg-gray-50 p-4">
         <div className="flex items-center">
           <input
-            {...register('trustAccount') type="checkbox"
+            {...register('trustAccount')} type="checkbox"
             className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
           />
           <label htmlFor="trustAccount" className="ml-2 block text-sm text-gray-900">
@@ -253,7 +253,7 @@ export function PaymentForm({
         <label className="block text-sm font-medium text-gray-700">Payment Method</label>
         <div className="mt-2 grid grid-cols-2 gap-3">
           <label className="relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none">
-            <input {...register('paymentType') type="radio" value="card" className="sr-only" />
+            <input {...register('paymentType')} type="radio" value="card" className="sr-only" />
             <div className="flex flex-1">
               <div className="flex flex-col">
                 <CreditCard className="h-5 w-5 text-gray-400" />
@@ -270,7 +270,7 @@ export function PaymentForm({
           </label>
 
           <label className="relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none">
-            <input {...register('paymentType') type="radio" value="ach" className="sr-only" />
+            <input {...register('paymentType')} type="radio" value="ach" className="sr-only" />
             <div className="flex flex-1">
               <div className="flex flex-col">
                 <Building2 className="h-5 w-5 text-gray-400" />
@@ -296,7 +296,7 @@ export function PaymentForm({
               Card Number
             </label>
             <input
-              {...register('cardNumber') type="text"
+              {...register('cardNumber')} type="text"
               placeholder="1234 5678 9012 3456"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             />
@@ -311,7 +311,7 @@ export function PaymentForm({
                 Expiry Date
               </label>
               <input
-                {...register('expiryDate') type="text"
+                {...register('expiryDate')} type="text"
                 placeholder="MM/YY"
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
               />
@@ -325,7 +325,7 @@ export function PaymentForm({
                 CVV
               </label>
               <input
-                {...register('cvv') type="text"
+                {...register('cvv')} type="text"
                 placeholder="123"
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
               />
@@ -343,7 +343,7 @@ export function PaymentForm({
               Routing Number
             </label>
             <input
-              {...register('routingNumber') type="text"
+              {...register('routingNumber')} type="text"
               placeholder="123456789"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             />
@@ -357,7 +357,7 @@ export function PaymentForm({
               Account Number
             </label>
             <input
-              {...register('accountNumber') type="text"
+              {...register('accountNumber')} type="text"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
             />
             {errors.accountNumber && (
@@ -405,18 +405,4 @@ export function PaymentForm({
       </div>
     </form>
   );
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
-}
 }

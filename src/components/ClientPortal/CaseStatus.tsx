@@ -156,7 +156,8 @@ export default function CaseStatus({ clientData }: { clientData: ClientData }) {
 
                 className={`bg-white rounded-lg shadow-sm border p-4 cursor-pointer transition-all ${
                 selectedCase?.id === caseItem.id ? 'border-[#6B1F2E] shadow-md' : 'hover:shadow-md'
-              }` onClick={() => setSelectedCase(caseItem)}
+              }`}
+              onClick={() => setSelectedCase(caseItem)}
             >
               <div className="flex justify-between items-start mb-2">
                 <div>
@@ -381,5 +382,4 @@ export default function CaseStatus({ clientData }: { clientData: ClientData }) {
       )}
     </div>
   );
-}
 }

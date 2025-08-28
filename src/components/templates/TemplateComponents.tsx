@@ -58,7 +58,7 @@ interface ExtendedHeadingProps {
 export const Heading: React.FC<ExtendedHeadingProps> = ({ style, ...props }) => {
   if (style) {
     return (
-      <BaseHeading {...props className={`${props.className || ''}`}>
+      <BaseHeading {...props} className={`${props.className || ''}`}>
         <span style={style}>{props.children}</span>
       </BaseHeading>
     );
@@ -79,12 +79,10 @@ interface ExtendedTextProps {
 export const Text: React.FC<ExtendedTextProps> = ({ style, ...props }) => {
   if (style) {
     return (
-      <BaseText {...props className={`${props.className || ''}`}>
+      <BaseText {...props} className={`${props.className || ''}`}>
         <span style={style}>{props.children}</span>
       </BaseText>
     );
   }
   return <BaseText {...props} />;
 };
-}
-}

@@ -121,8 +121,6 @@ export default function ModernServiceLocationTemplate({
         {/* Dynamic Background */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-black to-secondary/10" />
-          <div className="absolute inset-0">
-          />
         </div>
 
         {/* Hero Content */}
@@ -130,8 +128,7 @@ export default function ModernServiceLocationTemplate({
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               {/* Location Badge */}
-              <div
-className="mb-8 inline-flex items-center gap-2 rounded-full bg-primary/20 px-6 py-3 backdrop-blur-sm"
+              <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-primary/20 px-6 py-3 backdrop-blur-sm"
               >
                 <MapPin className="h-5 w-5 text-primary" />
                 <span className="text-sm font-bold text-primary uppercase tracking-wider">
@@ -140,29 +137,25 @@ className="mb-8 inline-flex items-center gap-2 rounded-full bg-primary/20 px-6 p
               </div>
 
               {/* Title */}
-              <h1
-className="mb-6 text-4xl sm:text-5xl md:text-7xl font-black text-white leading-tight"
+              <h1 className="mb-6 text-4xl sm:text-5xl md:text-7xl font-black text-white leading-tight"
               >
                 {data.heroTitle}
               </h1>
 
               {/* Trademark Subtitle */}
-              <p
-className="mb-8 text-3xl sm:text-4xl md:text-5xl font-bold text-primary"
+              <p className="mb-8 text-3xl sm:text-4xl md:text-5xl font-bold text-primary"
               >
                 {data.heroSubtitle}
               </p>
 
               {/* Description */}
-              <p
-className="mb-12 max-w-3xl mx-auto text-lg sm:text-xl text-gray-300 leading-relaxed"
+              <p className="mb-12 max-w-3xl mx-auto text-lg sm:text-xl text-gray-300 leading-relaxed"
               >
                 {data.heroDescription}
               </p>
 
               {/* CTAs */}
-              <div
-className="flex flex-col sm:flex-row gap-4 justify-center"
+              <div className="flex flex-col sm:flex-row gap-4 justify-center"
               >
                 <Button href="/contact" size="lg" className="text-lg px-8 py-4">
                   Get Free Case Evaluation
@@ -187,9 +180,7 @@ className="flex flex-col sm:flex-row gap-4 justify-center"
           {[...Array(40)].map((_, i) => (
             <div
               key={i}
-
-                className="absolute h-1 w-1 rounded-full bg-primary/40"
-             }}
+              className="absolute h-1 w-1 rounded-full bg-primary/40"
             />
           ))}
         </div>
@@ -200,13 +191,9 @@ className="flex flex-col sm:flex-row gap-4 justify-center"
         <div className="mx-auto max-w-7xl px-4">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {Object.values(data.localStats).map((stat, index) => (
-              <div
-                key={index}
-
-                className="text-center"
+              <div key={index} className="text-center"
               >
-                <div
-                className="text-4xl sm:text-5xl md:text-6xl font-black text-primary mb-2">
+                <div className="text-4xl sm:text-5xl md:text-6xl font-black text-primary mb-2">
                   {stat.value}
                 </div>
                 <div className="text-sm sm:text-base text-gray-400 font-medium">{stat.label}</div>
@@ -219,12 +206,8 @@ className="flex flex-col sm:flex-row gap-4 justify-center"
       {/* Service Details Section */}
       <section className="relative py-20 bg-neutral-950">
         <div className="mx-auto max-w-7xl px-4">
-          <div
-className="text-center mb-16"
-          >
-            <Heading level={2}
-
-                className="text-white mb-4">
+          <div className="text-center mb-16">
+            <Heading level={2} className="text-white mb-4">
               {data.serviceDetails.title}
             </Heading>
             <Text size="lg" className="text-gray-400 max-w-3xl mx-auto">
@@ -234,17 +217,13 @@ className="text-center mb-16"
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {data.serviceDetails.services.map((service, index) => (
-              <div
-                key={index}
-
-                className="group relative"
+              <div key={index} className="group relative"
               >
                 <div className="h-full bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm rounded-2xl p-8 border border-primary/20 hover:border-primary/40 transition-all duration-300">
                   <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary/20 group-hover:bg-primary/30 transition-colors">
                     <Scale className="h-7 w-7 text-primary" />
                   </div>
-                  <h3
-                className="mb-3 text-xl font-bold text-white">{service.name}</h3>
+                  <h3 className="mb-3 text-xl font-bold text-white">{service.name}</h3>
                   <p className="text-gray-400 mb-4">{service.description}</p>
                   <div className="pt-4 border-t border-primary/10">
                     <p className="text-sm text-primary font-medium">
@@ -263,9 +242,7 @@ className="text-center mb-16"
       <section className="relative py-20 bg-black">
         <div className="mx-auto max-w-7xl px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div
-             }}
-            >
+            <div>
               <Heading level={2}
 
                 className="text-white mb-8">
@@ -273,14 +250,10 @@ className="text-center mb-16"
               </Heading>
               <div className="space-y-4">
                 {data.localExpertise.points.map((point, index) => (
-                  <div
-                    key={index}
-
-                className="flex items-start gap-3"
+                  <div key={index} className="flex items-start gap-3"
                   >
                     <CheckCircle className="h-6 w-6 text-primary mt-0.5 flex-shrink-0" />
-                    <Text
-                className="text-gray-300">{point}</Text>
+                    <Text className="text-gray-300">{point}</Text>
                   </div>
                 ))}
               </div>
@@ -288,8 +261,7 @@ className="text-center mb-16"
 
             {/* Court Info Card */}
             {data.courtInfo && (
-              <div
-className="bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm rounded-2xl p-8 border border-primary/20"
+              <div className="bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm rounded-2xl p-8 border border-primary/20"
               >
                 <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-full bg-primary/20">
                   <Building className="h-7 w-7 text-primary" />
@@ -325,12 +297,8 @@ className="bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm ro
       {/* Testimonials Section */}
       <section className="relative py-20 bg-neutral-950">
         <div className="mx-auto max-w-7xl px-4">
-          <div
-className="text-center mb-16"
-          >
-            <Heading level={2}
-
-                className="text-white mb-4">
+          <div className="text-center mb-16">
+            <Heading level={2} className="text-white mb-4">
               What {data.cityName} Clients Say
             </Heading>
             <Text size="lg" className="text-gray-400">
@@ -340,16 +308,11 @@ className="text-center mb-16"
 
           <div className="grid md:grid-cols-3 gap-8">
             {data.testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-
-                className="bg-black/50 backdrop-blur-sm rounded-2xl p-8 border border-primary/20"
+              <div key={index} className="bg-black/50 backdrop-blur-sm rounded-2xl p-8 border border-primary/20"
               >
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i}
-
-                className="h-5 w-5 text-primary fill-primary" />
+                    <Star key={i} className="h-5 w-5 text-primary fill-primary" />
                   ))}
                 </div>
                 <p className="text-gray-300 mb-6 italic">&ldquo;{testimonial.text}&rdquo;</p>
@@ -371,12 +334,8 @@ className="text-center mb-16"
       {/* Case Results Section */}
       <section className="relative py-20 bg-black">
         <div className="mx-auto max-w-7xl px-4">
-          <div
-className="text-center mb-16"
-          >
-            <Heading level={2}
-
-                className="text-white mb-4">
+          <div className="text-center mb-16">
+            <Heading level={2} className="text-white mb-4">
               Recent {data.cityName} Case Results
             </Heading>
             <Text size="lg" className="text-gray-400">
@@ -394,8 +353,7 @@ className="text-center mb-16"
                 className="flex items-start gap-3 pb-4 border-b border-primary/10 last:border-0 last:pb-0"
                   >
                     <Award className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                    <Text
-                className="text-gray-300">{result}</Text>
+                    <Text className="text-gray-300">{result}</Text>
                   </div>
                 ))}
               </div>
@@ -407,12 +365,8 @@ className="text-center mb-16"
       {/* FAQs Section */}
       <section className="relative py-20 bg-neutral-950">
         <div className="mx-auto max-w-4xl px-4">
-          <div
-className="text-center mb-16"
-          >
-            <Heading level={2}
-
-                className="text-white mb-4">
+          <div className="text-center mb-16">
+            <Heading level={2} className="text-white mb-4">
               Frequently Asked Questions
             </Heading>
             <Text size="lg" className="text-gray-400">
@@ -422,15 +376,10 @@ className="text-center mb-16"
 
           <div className="space-y-4">
             {data.faqs.map((faq, index) => (
-              <div
-                key={index}
-               }
-               }
-              >
+              <div key={index}>
                 <button
                   onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
-
-                className="w-full bg-black/50 backdrop-blur-sm rounded-xl p-6 border border-primary/20 hover:border-primary/40 transition-all text-left"
+                  className="w-full bg-black/50 backdrop-blur-sm rounded-xl p-6 border border-primary/20 hover:border-primary/40 transition-all text-left"
                 >
                   <div className="flex justify-between items-center">
                     <h3 className="text-lg font-semibold text-white pr-4">{faq.question}</h3>
@@ -442,8 +391,7 @@ className="text-center mb-16"
                   </div>
                   <>
                     {openFaqIndex === index && (
-                      <div
-className="overflow-hidden"
+                      <div className="overflow-hidden"
                       >
                         <p className="text-gray-400 mt-4">{faq.answer}</p>
                       </div>
@@ -460,12 +408,9 @@ className="overflow-hidden"
       {data.whyHireUs && (
         <section className="relative py-20 bg-black">
           <div className="mx-auto max-w-4xl px-4">
-            <div
-className="bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-primary/20"
+            <div className="bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-primary/20"
             >
-              <Heading level={2}
-
-                className="text-white mb-6">
+              <Heading level={2} className="text-white mb-6">
                 {data.whyHireUs.title}
               </Heading>
               <Text size="lg" className="text-gray-300 leading-relaxed">
@@ -480,12 +425,8 @@ className="bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm ro
       {data.localChallenges && (
         <section className="relative py-20 bg-neutral-950">
           <div className="mx-auto max-w-4xl px-4">
-            <div
-             }}
-            >
-              <Heading level={2}
-
-                className="text-white mb-6">
+            <div>
+              <Heading level={2} className="text-white mb-6">
                 {data.localChallenges.title}
               </Heading>
               <Text size="lg" className="text-gray-300 leading-relaxed">
@@ -502,9 +443,7 @@ className="bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm ro
           <div
 className="text-center mb-12"
           >
-            <Heading level={2}
-
-                className="text-white mb-4">
+            <Heading level={2} className="text-white mb-4">
               Serving All of Greater {data.cityName}
             </Heading>
             <Text size="lg" className="text-gray-400">
@@ -514,13 +453,9 @@ className="text-center mb-12"
 
           <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
             {data.servingAreas.map((area, index) => (
-              <div
-                key={index}
-
-                className="bg-black/50 backdrop-blur-sm rounded-lg px-4 py-3 border border-primary/20 hover:border-primary/40 transition-all text-center"
+              <div key={index} className="bg-black/50 backdrop-blur-sm rounded-lg px-4 py-3 border border-primary/20 hover:border-primary/40 transition-all text-center"
               >
-                <Text
-                className="text-gray-300 font-medium">{area}</Text>
+                <Text className="text-gray-300 font-medium">{area}</Text>
               </div>
             ))}
           </div>
@@ -534,14 +469,11 @@ className="text-center mb-12"
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Office Info */}
               <div>
-                <Heading level={3}
-
-                className="text-white mb-8">
+                <Heading level={3} className="text-white mb-8">
                   Contact Our {data.officeInfo.name}
                 </Heading>
                 <div className="space-y-6">
-                  <div
-className="flex items-start gap-4"
+                  <div className="flex items-start gap-4"
                   >
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20">
                       <MapPin className="h-6 w-6 text-primary" />
@@ -555,8 +487,7 @@ className="flex items-start gap-4"
                     </div>
                   </div>
 
-                  <div
-className="flex items-start gap-4"
+                  <div className="flex items-start gap-4"
                   >
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20">
                       <Phone className="h-6 w-6 text-primary" />
@@ -565,8 +496,7 @@ className="flex items-start gap-4"
                       <p className="font-semibold text-white text-lg">Phone</p>
                       <a
                         href={`tel:${data.officeInfo.phone}`}
-
-                className="text-primary hover:text-primary-400 transition-colors text-xl font-bold"
+                        className="text-primary hover:text-primary-400 transition-colors text-xl font-bold"
                       >
                         {data.officeInfo.phone}
                       </a>
@@ -575,8 +505,7 @@ className="flex items-start gap-4"
                           Local:{' '}
                           <a
                             href={`tel:${data.officeInfo.localPhone}`}
-
-                className="text-primary hover:text-primary-400"
+                            className="text-primary hover:text-primary-400"
                           >
                             {data.officeInfo.localPhone}
                           </a>
@@ -585,8 +514,7 @@ className="flex items-start gap-4"
                     </div>
                   </div>
 
-                  <div
-className="flex items-start gap-4"
+                  <div className="flex items-start gap-4"
                   >
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20">
                       <Mail className="h-6 w-6 text-primary" />
@@ -595,16 +523,14 @@ className="flex items-start gap-4"
                       <p className="font-semibold text-white text-lg">Email</p>
                       <a
                         href={`mailto:${data.officeInfo.email}`}
-
-                className="text-primary hover:text-primary-400 transition-colors"
+                        className="text-primary hover:text-primary-400 transition-colors"
                       >
                         {data.officeInfo.email}
                       </a>
                     </div>
                   </div>
 
-                  <div
-className="flex items-start gap-4"
+                  <div className="flex items-start gap-4"
                   >
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/20">
                       <Clock className="h-6 w-6 text-primary" />
@@ -659,14 +585,12 @@ className="flex items-start gap-4"
       {data.mapEmbedUrl && (
         <section className="relative py-20 bg-black">
           <div className="mx-auto max-w-7xl px-4">
-            <div
-className="relative h-[500px] rounded-2xl overflow-hidden border border-primary/20"
+            <div className="relative h-[500px] rounded-2xl overflow-hidden border border-primary/20"
             >
               <iframe
                 src={data.mapEmbedUrl}
                 width="100%"
                 height="100%"
-               }
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -680,12 +604,8 @@ className="relative h-[500px] rounded-2xl overflow-hidden border border-primary/
       {/* Final CTA Section */}
       <section className="relative py-20 bg-gradient-to-t from-black to-neutral-950">
         <div className="mx-auto max-w-4xl px-4 text-center">
-          <div
-           }}
-          >
-            <Heading level={2}
-
-                className="text-white mb-6">
+          <div>
+            <Heading level={2} className="text-white mb-6">
               Don't Face {data.serviceName} Issues Alone
             </Heading>
             <Text size="xl" className="text-gray-300 mb-8">
@@ -706,3 +626,4 @@ className="relative h-[500px] rounded-2xl overflow-hidden border border-primary/
       </div>
     </div>
   );
+}

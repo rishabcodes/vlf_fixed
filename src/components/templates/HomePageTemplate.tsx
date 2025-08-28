@@ -122,10 +122,8 @@ export const HomePageTemplate: React.FC<HomePageTemplateProps> = ({
       {/* Hero Section - Full Screen with Parallax */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Animated Background */}
-        <div className="absolute inset-0"}>
+        <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-black via-burgundy-900/20 to-gold-900/10" />
-          <div className="absolute inset-0">
-          />
           <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5" />
         </div>
 
@@ -135,14 +133,12 @@ export const HomePageTemplate: React.FC<HomePageTemplateProps> = ({
 
         >
           {/* Language Toggle - Floating */}
-          <div
-className="absolute right-4 top-4 flex items-center gap-2"
+          <div className="absolute right-4 top-4 flex items-center gap-2"
           >
             <Globe className="w-5 h-5 text-gold-400" />
             <button
               onClick={() => setLanguage('en')}
-
-                className={cn(
+              className={cn(
                 'px-3 py-1 rounded-full text-sm font-semibold transition-all',
                 language === 'en' ? 'bg-gold-500 text-black' : 'text-white/70 hover:text-white'
               )}
@@ -152,8 +148,7 @@ className="absolute right-4 top-4 flex items-center gap-2"
             <span className="text-white/30">|</span>
             <button
               onClick={() => setLanguage('es')}
-
-                className={cn(
+              className={cn(
                 'px-3 py-1 rounded-full text-sm font-semibold transition-all',
                 language === 'es' ? 'bg-gold-500 text-black' : 'text-white/70 hover:text-white'
               )}
@@ -163,17 +158,14 @@ className="absolute right-4 top-4 flex items-center gap-2"
           </div>
 
           {/* Main Hero Content */}
-          <div
-           }}
-          >
+          <div>
             <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
               {heroTitle}
             </h1>
 
             <div className="text-3xl md:text-4xl text-gold-400 font-bold mb-6 h-12">
               {displayText}
-              <span
-className="inline-block w-1 h-8 bg-gold-400 ml-1"
+              <span className="inline-block w-1 h-8 bg-gold-400 ml-1"
               />
             </div>
 
@@ -183,7 +175,6 @@ className="inline-block w-1 h-8 bg-gold-400 ml-1"
 
             {/* CTA Buttons with Animation */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            >
               <EnhancedCTA variant="primary" size="lg" href="/contact" className="group">
                 {language === 'en' ? 'Get Free Case Review' : 'Evaluación Gratuita'}
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -216,7 +207,6 @@ className="flex flex-wrap justify-center gap-6 text-sm text-gray-400"
 
           {/* Scroll Indicator */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          >
             <ChevronDown className="w-8 h-8 text-gold-400" />
           </div>
         </div>
@@ -234,8 +224,7 @@ className="flex flex-wrap justify-center gap-6 text-sm text-gray-400"
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gold-900/5 to-transparent" />
 
         <div className="relative z-10 container mx-auto px-4">
-          <div
-className="text-center mb-16"
+          <div className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
               {language === 'en' ? 'How Can We Help You?' : '¿Cómo Podemos Ayudarte?'}
@@ -249,13 +238,9 @@ className="text-center mb-16"
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {practiceAreas.map((area, index) => (
-              <div
-                key={area.id}
-
-                className="group"
+              <div key={area.id} className="group"
               >
-                <Link
-                href={area.href}>
+                <Link href={area.href}>
                   <div className="relative bg-gradient-to-br from-neutral-900 to-neutral-800 rounded-xl p-6 border border-gold-500/20 hover:border-gold-500 transition-all overflow-hidden">
                     {/* Urgency Badge */}
                     {area.urgency !== 'low' && (
@@ -299,8 +284,7 @@ className="text-center mb-16"
       {/* Features Section */}
       <section className="py-24 bg-gradient-to-br from-neutral-900 via-burgundy-950/10 to-neutral-900">
         <div className="container mx-auto px-4">
-          <div
-className="text-center mb-16"
+          <div className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
               {language === 'en'

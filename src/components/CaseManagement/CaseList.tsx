@@ -128,9 +128,8 @@ export default function CaseList() {
             />
           </div>
           <button
-           } onClick={() => setShowFilters(!showFilters)}
-
-                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+            onClick={() => setShowFilters(!showFilters)}
+            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
           >
             <Filter className="w-4 h-4" />
             Filters
@@ -140,7 +139,8 @@ export default function CaseList() {
         {showFilters && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 pt-4 border-t">
             <select
-              value={filters.practiceArea} onChange={e => setFilters({ ...filters, practiceArea: e.target.value )}
+              value={filters.practiceArea}
+              onChange={e => setFilters({ ...filters, practiceArea: e.target.value })}
               className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent"
             >
               <option value="">All Practice Areas</option>
@@ -154,7 +154,8 @@ export default function CaseList() {
             </select>
 
             <select
-              value={filters.status} onChange={e => setFilters({ ...filters, status: e.target.value )}
+              value={filters.status}
+              onChange={e => setFilters({ ...filters, status: e.target.value })}
               className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#6B1F2E] focus:border-transparent"
             >
               <option value="">All Statuses</option>
@@ -170,7 +171,9 @@ export default function CaseList() {
             <button
               onClick={() => {
                 setFilters({ practiceArea: '', status: '', attorneyId: '' });
-                setSearchQuery(''); className="text-[#6B1F2E] hover:text-[#8B2635] font-medium"
+                setSearchQuery('');
+              }}
+              className="text-[#6B1F2E] hover:text-[#8B2635] font-medium"
             >
               Clear Filters
             </button>
@@ -228,7 +231,7 @@ export default function CaseList() {
                           <div className="w-24 bg-gray-200 rounded-full h-2">
                             <div
                               className="bg-green-500 h-2 rounded-full"
-                             %` }}
+                              style={{ width: `${Math.round(case_.metrics.taskCompletion)}%` }}
                             />
                           </div>
                           <span className="text-sm text-gray-600">
@@ -287,5 +290,4 @@ export default function CaseList() {
       )}
     </div>
   );
-}
 }

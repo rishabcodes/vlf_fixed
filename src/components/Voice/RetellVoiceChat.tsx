@@ -80,7 +80,10 @@ export const RetellVoiceChat: React.FC<RetellVoiceChatProps> = ({
             throw new Error('MICROPHONE_NOT_FOUND');
           } else {
             throw new Error(`MICROPHONE_ERROR: ${fallbackError.message}`);
-          }}
+          }
+        }
+      }
+      
       logger.info('Audio tracks:', stream.getAudioTracks().map(track => ({
         label: track.label,
         enabled: track.enabled,
@@ -162,8 +165,8 @@ export const RetellVoiceChat: React.FC<RetellVoiceChatProps> = ({
       mediaRecorderRef.current.ondataavailable = (event) => {
         if (event.data.size > 0) {
           audioChunksRef.current.push(event.data);
-            }
-};
+        }
+      };
 
       mediaRecorderRef.current.onstop = async () => {
         logger.info('🎵 Processing audio data...');
@@ -183,7 +186,6 @@ export const RetellVoiceChat: React.FC<RetellVoiceChatProps> = ({
       
       logger.info('✅ Voice call session started');
       // Remove toast since we have the modal now
-
     } catch (error: any) {
       logger.error('❌ Failed to start voice call:', error);
       logger.error('Error details:', { name: error.name, message: error.message });
@@ -229,8 +231,8 @@ export const RetellVoiceChat: React.FC<RetellVoiceChatProps> = ({
       logger.info('3. Make sure no other apps are using the microphone');
       logger.info('4. Try refreshing the page');
       logger.info('5. Check browser settings for microphone permissions');
-        }
-};
+    }
+  };
 
   const processAudio = async (audioBlob: Blob) => {
     try {
@@ -254,10 +256,12 @@ export const RetellVoiceChat: React.FC<RetellVoiceChatProps> = ({
         }
         if (result.response) {
           onResponse?.(result.response);
-        }} catch (error) {
-      logger.error('Error processing audio:', error);
         }
-};
+      }
+    } catch (error) {
+      logger.error('Error processing audio:', error);
+    }
+  };
 
   const endVoiceCall = () => {
     logger.info('🛑 Ending voice call...');
@@ -309,8 +313,9 @@ export const RetellVoiceChat: React.FC<RetellVoiceChatProps> = ({
       } else {
         mediaRecorderRef.current.start();
         setIsRecording(true);
-          }
-};
+      }
+    }
+  };
 
   // Check microphone permission status on mount
   useEffect(() => {
@@ -328,8 +333,9 @@ export const RetellVoiceChat: React.FC<RetellVoiceChatProps> = ({
           };
         } catch (error) {
           logger.warn('Could not check microphone permission:', error);
-            }
-};
+        }
+      }
+    };
     
     checkPermissionStatus();
   }, []);
@@ -478,7 +484,3 @@ className="absolute bottom-full mb-2 left-0 right-0 bg-black/80 text-white p-2 r
     </div>
   );
 };
-}
-}
-}
-}
