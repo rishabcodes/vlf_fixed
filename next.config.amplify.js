@@ -157,11 +157,7 @@ const nextConfig = {
       poll: false,
     };
     
-    // Increase build timeouts
-    config.output = {
-      ...config.output,
-      timeout: 120000, // 2 minutes
-    };
+    // Remove invalid timeout property - already set chunkLoadTimeout above
     
     return config;
   },
