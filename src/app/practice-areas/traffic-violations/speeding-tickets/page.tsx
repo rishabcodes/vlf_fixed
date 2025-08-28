@@ -134,7 +134,7 @@ export default function SpeedingTicketsPage() {
       {
         step: '3',
         title: 'Court Appearance',
-        description: "We appear so you don\'t have to',
+        description: "We appear so you don't have to",
       },
       {
         step: '4',

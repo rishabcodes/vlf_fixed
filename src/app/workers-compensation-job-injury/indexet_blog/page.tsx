@@ -24,8 +24,8 @@ export default function IndexetBlogPage() {
   // TODO: Extract content from original file and format properly
   const post = {
     id: 'indexet_blog',
-    title: "Raleigh, NC Workers Compensation Attorneys ,
-    slug: "'indexet_blog',
+    title: "Raleigh, NC Workers Compensation Attorneys",
+    slug: "indexet_blog",
     excerpt: 'Blog post excerpt here - TODO: extract from content',
     content: `
       <div class="prose prose-lg max-w-none">

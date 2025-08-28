@@ -202,10 +202,10 @@ export function BlogSEO({ post, isListingPage = false }: BlogSEOProps) {
         if ((script as HTMLScriptElement).text.includes(post.title)) {
           if (script.parentNode) {
             script.parentNode.removeChild(script);
-          }});
+          }
+        });
     };
   }, [post.title, structuredData, organizationSchema, faqSchema]);
 
   return null; // This component doesn't render anything visible
-}
 }

@@ -22,12 +22,12 @@ export function AffirmativeClient() {
           const chatWidget = document.querySelector('chat-widget');
           if (chatWidget) {
             (chatWidget as any).open();
-          }}
+          }
+        }}
       >
         <MessageCircle className="mr-2 h-5 w-5" />
         Start Live Chat
       </Button>
     </div>
   );
-}
 }

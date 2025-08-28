@@ -11,7 +11,7 @@ console.log('Starting Next.js development server...');
 console.log('This may take a moment...');
 
 // Use PORT environment variable or default to 3002
-const port = process.env.PORT || '3002';
+const port = process.env.PORT || '3003';
 console.log(`Using port ${port}...`);
 
 // Just run Next.js directly using npx

@@ -63,7 +63,7 @@ export default function ReturntoWorkPage() {
     },
     {
       title: 'Vocational Rehabilitation',
-      description: "Job retraining when you can\'t return to old position',
+      description: "Job retraining when you can't return to old position",
       icon: '🎓',
       features: [
         'Skills assessment',

@@ -211,7 +211,7 @@ export default function AsylumRefugeePage() {
 
     urgencyTitle: 'URGENT: One-Year Asylum Deadline Approaching?',
     urgencyMessage:
-      'You have only ONE YEAR from arrival to file asylum applications (with limited exceptions). Don't wait - contact us immediately for emergency consultation.',
+      'You have only ONE YEAR from arrival to file asylum applications (with limited exceptions). Don\'t wait - contact us immediately for emergency consultation.',
 
     successStats: [
       { number: '3,000+', label: 'Asylum Cases Won' },

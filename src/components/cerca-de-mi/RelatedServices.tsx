@@ -115,8 +115,7 @@ className="text-center mb-12"
           {relatedServices.map((service, index) => (
             <div
               key={index}
-             }
-             }
+              className="group"
             >
               <Link
                 href={language === 'es' ? service.linkEs : service.link}

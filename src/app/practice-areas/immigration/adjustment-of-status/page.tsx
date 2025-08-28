@@ -210,7 +210,7 @@ export default function AdjustmentOfStatusPage() {
 
     urgencyTitle: 'Priority Date Current? Act Now!',
     urgencyMessage:
-      'When your priority date becomes current, you have a limited window to file your adjustment application. Don't miss your opportunity for permanent residence.',
+      "When your priority date becomes current, you have a limited window to file your adjustment application. Don't miss your opportunity for permanent residence.",
 
     successStats: [
       { number: '12,000+', label: 'Green Cards Obtained' },

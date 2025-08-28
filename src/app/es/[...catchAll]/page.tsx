@@ -175,7 +175,9 @@ export default async function CatchAllPage({
 
       if (area && areaMap[area]) {
         redirect(`/practice-areas/${areaMap[area]}/${subpage}`);
+      }
     }
+  }
 
   // Log missing route for monitoring
   logMissingRoute(fullPath, referrer);

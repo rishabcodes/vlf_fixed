@@ -76,7 +76,7 @@ export default function HitandRunPage() {
     },
     {
       title: 'Evidence Challenges',
-      description: "Fighting prosecution\'s case',
+      description: "Fighting prosecution's case",
       icon: '🔍',
       features: [
         'Witness identification issues',

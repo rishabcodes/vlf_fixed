@@ -190,4 +190,3 @@ export function trackSocialShare(platform: string, postSlug: string, language: '
     }),
   }).catch(() => {});
 }
-}

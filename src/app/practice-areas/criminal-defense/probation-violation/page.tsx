@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   keywords: 'probation violation lawyer Raleigh NC, Charlotte probation attorney, violation of probation Smithfield, Orlando VOP lawyer, failed drug test probation, missed appointments attorney, new arrest on probation, technical violation defense, absconding warrant lawyer, probation revocation hearing NC',
   openGraph: {
     title: 'Probation Violation Defense Attorney | NC & FL VOP Lawyer | Vasquez Law',
-    description: "Don\'t go to jail for probation violation. Former prosecutors defending violations. Emergency representation.',
+    description: "Don't go to jail for probation violation. Former prosecutors defending violations. Emergency representation.",
     type: 'website',
     locale: 'en_US',
   },
