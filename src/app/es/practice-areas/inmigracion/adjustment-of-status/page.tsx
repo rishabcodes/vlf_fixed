@@ -210,7 +210,7 @@ export default function AdjustmentOfStatusPage() {
     ],
 
     urgencyTitle: 'Priority Date Current? Act Now!',
-    urgencyMessage:
+    urgencyMessage: 'If your priority date is current, don\'t delay. Contact us immediately to begin your adjustment of status application.',
 
     successStats: [
       { number: '12,000+', label: 'Green Cards Obtained' },

@@ -211,7 +211,7 @@ export default function AsylumRefugeePage() {
     ],
 
     urgencyTitle: 'URGENT: One-Year Asylum Deadline Approaching?',
-    urgencyMessage:
+    urgencyMessage: 'Si se acerca el plazo de un año para presentar su caso de asilo, el tiempo es crítico. Comuníquese con nuestra línea de consulta de emergencia para obtener asistencia inmediata.',
 
     successStats: [
       { number: '3,000+', label: 'Asylum Cases Won' },

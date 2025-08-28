@@ -64,13 +64,8 @@ export const HeroTemplate: React.FC<HeroTemplateProps> = ({
         return 'min-h-[60vh]';
       default:
         return 'min-h-screen';
-<<<<<<< HEAD
-        }
-};
-=======
     }
   };
->>>>>>> origin/Mahesh-Syntax-Fix
 
   if (variant === 'video' && videoUrl) {
     return (

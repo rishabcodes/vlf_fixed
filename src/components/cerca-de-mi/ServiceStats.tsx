@@ -127,3 +127,4 @@ className="text-center mb-12"
       </div>
     </section>
   );
+}

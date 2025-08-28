@@ -210,7 +210,7 @@ export default function AsylumRefugeePage() {
     ],
 
     urgencyTitle: 'URGENT: One-Year Asylum Deadline Approaching?',
-    urgencyMessage:
+    urgencyMessage: 'If you\'re approaching the one-year deadline to file your asylum case, time is critical. Contact our emergency consultation line for immediate assistance.',
 
     successStats: [
       { number: '3,000+', label: 'Asylum Cases Won' },
