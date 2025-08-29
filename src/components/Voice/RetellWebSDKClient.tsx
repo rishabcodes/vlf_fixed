@@ -93,7 +93,7 @@ export const RetellWebSDKClient: React.FC<RetellWebSDKClientProps> = ({
         // Calculate RMS (Root Mean Square) for better voice detection
         let sum = 0;
         for (let i = 0; i < dataArray.length; i++) {
-          const normalized = (dataArray[i] - 128) / 128; // Normalize to -1 to 1
+          const normalized = (dataArray![i] - 128) / 128; // Normalize to -1 to 1
           sum += normalized * normalized;
         }
         const rms = Math.sqrt(sum / dataArray.length);

@@ -32,6 +32,7 @@ export interface ContactData {
   email: string;
   phone?: string;
   tags?: string[];
+  source?: string;
   customFields?: Record<string, any>;
 }
 
@@ -573,7 +574,7 @@ ${divider}
 
       return { available: false, slots: [] };
     } catch (error) {
-      console.error('[GHL] Failed to check calendar availability:', error);
+      logger.error('[GHL] Failed to check calendar availability:', error);
       // Fallback to some default availability
       return {
         available: true,
@@ -642,7 +643,7 @@ ${divider}
 
       if (response.success && response.data) {
         const appointmentId = response.data.id || response.data.appointment?.id;
-        console.log(`[GHL] Appointment booked: ${appointmentId}`);
+        logger.info(`[GHL] Appointment booked: ${appointmentId}`);
         
         // Add a tag to the contact
         await this.addContactTags(contactId, ['appointment-booked']);
@@ -658,7 +659,7 @@ ${divider}
         error: response.error || 'Failed to book appointment'
       };
     } catch (error) {
-      console.error('[GHL] Failed to book appointment:', error);
+      logger.error('[GHL] Failed to book appointment:', error);
       return {
         success: false,
         error: error instanceof Error ? error.message : 'Failed to book appointment'
@@ -690,7 +691,7 @@ ${divider}
 
       return [];
     } catch (error) {
-      console.error('[GHL] Failed to get calendars:', error);
+      logger.error('[GHL] Failed to get calendars:', error);
       return [];
     }
   }

@@ -46,7 +46,7 @@ class VoiceErrorBoundary extends Component<
     return { hasError: true };
   }
 
-  componentDidCatch(error: any, errorInfo: any) {
+  override componentDidCatch(error: any, errorInfo: any) {
     logger.error('[VoiceErrorBoundary] Error details:', error, errorInfo);
     
     // Increment error count
@@ -65,7 +65,7 @@ class VoiceErrorBoundary extends Component<
     }
   }
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       if (this.state.errorCount >= 3) {
         // Don't render anything after 3 failures

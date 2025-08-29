@@ -101,7 +101,6 @@ export const RetellVoiceClient: React.FC<RetellWebClientProps> = ({
       // Start the call
       await retellClient.startCall({
         accessToken: access_token,
-        callId: call_id,
         sampleRate: 24000,
         enableUpdate: true,
         emitRawAudioSamples: false // Set to true if you want to visualize audio

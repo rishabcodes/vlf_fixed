@@ -26,7 +26,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/custom-select';
+} from '@/components/ui/select';
 import {
   Dialog,
   DialogContent,

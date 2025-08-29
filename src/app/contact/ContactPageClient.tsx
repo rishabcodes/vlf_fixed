@@ -282,8 +282,8 @@ export default function ContactPageClient({ language = 'en' }: ContactPageClient
       {/* Trademark */}
       <section className="py-8 bg-primary text-white text-center">
         <div className="container mx-auto px-4">
-          <p className="text-2xl font-bold mb-2">{TRADEMARK.slogan}</p>
-          <p className="text-lg">{TRADEMARK.sloganSpanish}</p>
+          <p className="text-2xl font-bold mb-2">{TRADEMARK.YO_PELEO_POR_TI}</p>
+          <p className="text-lg">{TRADEMARK.I_FIGHT_FOR_YOU}</p>
         </div>
       </section>
     </div>

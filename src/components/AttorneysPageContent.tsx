@@ -391,7 +391,10 @@ export default function AttorneysPageContent({ language }: AttorneysPageContentP
           id={`attorney-schema-${attorney.id}`}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(generateAttorneySchema(attorney)),
+            __html: JSON.stringify(generateAttorneySchema({
+              ...attorney,
+              jobTitle: attorney.title,
+            })),
           }}
         />
       ))}

@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
             firstName: contactName?.split(' ')[0] || 'Chat',
             lastName: contactName?.split(' ').slice(1).join(' ') || 'User',
             phone: contactPhone,
-            email: undefined,
+            email: '',
             tags: ['Website-chatbot']
           }, summary);
           

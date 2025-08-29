@@ -1,0 +1,79 @@
+// Additional models to be added to schema.prisma
+
+model EmailCampaign {
+  id          String               @id @default(cuid())
+  userId      String
+  user        User                 @relation(fields: [userId], references: [id])
+  type        String               // hot-lead, standard, cold-lead, re-engagement
+  status      EmailCampaignStatus  @default(ACTIVE)
+  metadata    Json                 @default("{}")
+  startedAt   DateTime             @default(now())
+  pausedAt    DateTime?
+  completedAt DateTime?
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+
+  emailLogs EmailLog[]
+
+  @@index([userId])
+  @@index([status])
+}
+
+model EmailLog {
+  id           String    @id @default(cuid())
+  userId       String
+  user         User      @relation(fields: [userId], references: [id])
+  campaignId   String?
+  campaign     EmailCampaign? @relation(fields: [campaignId], references: [id])
+  type         String    // campaign, transactional, notification
+  template     String
+  recipient    String
+  subject      String
+  status       EmailStatus @default(PENDING)
+  openedAt     DateTime?
+  clickedAt    DateTime?
+  bouncedAt    DateTime?
+  deliveredAt  DateTime?
+  metadata     Json      @default("{}")
+  error        String?
+  createdAt    DateTime  @default(now())
+
+  @@index([userId])
+  @@index([campaignId])
+  @@index([status])
+}
+
+model ActivityLog {
+  id          String   @id @default(cuid())
+  userId      String?
+  user        User?    @relation(fields: [userId], references: [id])
+  action      String   // login, page_view, form_submit, etc
+  resource    String?  // what was acted upon
+  resourceId  String?
+  metadata    Json     @default("{}")
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime @default(now())
+
+  @@index([userId])
+  @@index([action])
+  @@index([createdAt])
+}
+
+enum EmailCampaignStatus {
+  DRAFT
+  ACTIVE
+  PAUSED
+  COMPLETED
+  CANCELLED
+}
+
+enum EmailStatus {
+  PENDING
+  SENT
+  DELIVERED
+  OPENED
+  CLICKED
+  BOUNCED
+  FAILED
+}

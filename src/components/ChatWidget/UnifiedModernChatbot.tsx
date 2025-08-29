@@ -264,24 +264,27 @@ export const UnifiedModernChatbot: React.FC<ChatbotProps> = ({ language: initial
 
   // Load GHL services when needed
   const loadGHLServices = async () => {
-    if (!ghlServicesRef.current.createGHLContact) {
-      const [contacts, appointments, documents] = await Promise.all([
-        import('@/services/gohighlevel/contacts'),
-        import('@/services/gohighlevel/appointments'),
-        import('@/services/gohighlevel/documents'),
-      ]);
-      ghlServicesRef.current = {
-        createGHLContact: contacts.createGHLContact,
-        addGHLNote: contacts.addGHLNote,
-        scheduleGHLAppointment: appointments.scheduleGHLAppointment,
-        uploadToGHL: documents.uploadToGHL,
-      };
-    }
+    // Old GHL services removed - using GHL MCP client instead
+    // if (!ghlServicesRef.current.createGHLContact) {
+    //   const [contacts, appointments, documents] = await Promise.all([
+    //     import('@/services/gohighlevel/contacts'),
+    //     import('@/services/gohighlevel/appointments'),
+    //     import('@/services/gohighlevel/documents'),
+    //   ]);
+    //   ghlServicesRef.current = {
+    //     createGHLContact: contacts.createGHLContact,
+    //     addGHLNote: contacts.addGHLNote,
+    //     scheduleGHLAppointment: appointments.scheduleGHLAppointment,
+    //     uploadToGHL: documents.uploadToGHL,
+    //   };
+    // }
     return ghlServicesRef.current;
   };
 
   // Create or update GHL contact
   const ensureGHLContact = async () => {
+    // Disabled - old GHL service removed, using GHL MCP instead
+    /*
     if (!ghlContactId && (contactInfo.email || contactInfo.phone)) {
       try {
         const services = await loadGHLServices();
@@ -299,6 +302,7 @@ export const UnifiedModernChatbot: React.FC<ChatbotProps> = ({ language: initial
         console.error('Failed to create GHL contact:', error);
       }
     }
+    */
     return ghlContactId;
   };
 
@@ -368,13 +372,13 @@ export const UnifiedModernChatbot: React.FC<ChatbotProps> = ({ language: initial
       
       // Update contact info if extracted
       if (response.extractedInfo?.name) {
-        setContactInfo(prev => ({ ...prev, name: response.extractedInfo.name }));
+        setContactInfo(prev => ({ ...prev, name: response.extractedInfo?.name || '' }));
       }
       if (response.extractedInfo?.email) {
-        setContactInfo(prev => ({ ...prev, email: response.extractedInfo.email }));
+        setContactInfo(prev => ({ ...prev, email: response.extractedInfo?.email || '' }));
       }
       if (response.extractedInfo?.phone) {
-        setContactInfo(prev => ({ ...prev, phone: response.extractedInfo.phone }));
+        setContactInfo(prev => ({ ...prev, phone: response.extractedInfo?.phone || '' }));
       }
       if (response.ghlContactId) {
         setGhlContactId(response.ghlContactId);

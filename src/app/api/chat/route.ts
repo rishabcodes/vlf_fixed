@@ -1094,9 +1094,9 @@ function detectAppointmentRequest(message: string, aiResponse: string, conversat
   let time: string | undefined;
   const timeMatch = (message + ' ' + aiResponse).match(/(\d{1,2})(?::(\d{2}))?\s*(pm|am|PM|AM)/);
   if (timeMatch) {
-    let hour = parseInt(timeMatch[1]);
+    let hour = parseInt(timeMatch[1] || '12');
     const minutes = timeMatch[2] || '00';
-    const meridiem = timeMatch[3].toLowerCase();
+    const meridiem = (timeMatch[3] || 'am').toLowerCase();
     
     if (meridiem === 'pm' && hour !== 12) {
       hour += 12;
@@ -1205,7 +1205,7 @@ function extractContactInfo(message: string, conversationHistory: any[] = [], on
   const emailPattern = /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/;
   const emailMatch = message.match(emailPattern);
   if (emailMatch) {
-    result.email = emailMatch[1].toLowerCase();
+    result.email = emailMatch[1]?.toLowerCase() || '';
   }
   
   // Phone extraction (US phone numbers)
@@ -1696,7 +1696,7 @@ export async function POST(request: NextRequest) {
             // Keep current date
           } else {
             // Try to parse specific date
-            const dateMatch = dateTimeMatches.find(m => m.includes('/') || m.includes('-'));
+            const dateMatch = dateTimeMatches.find((m: any) => typeof m === 'string' && (m.includes('/') || m.includes('-')));
             if (dateMatch) {
               requestedDate = new Date(dateMatch);
             }
@@ -1707,7 +1707,7 @@ export async function POST(request: NextRequest) {
           const endDate = new Date(requestedDate.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
           
           const availability = await ghlMCPClient.checkCalendarAvailability(
-            defaultCalendar,
+            defaultCalendar || '',
             startDate,
             endDate
           );

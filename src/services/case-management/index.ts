@@ -6,7 +6,7 @@ import { cache } from '@/lib/cache';
 import { generateCaseNumber } from '@/lib/utils/case-utils';
 import { createNotification } from '@/services/notifications';
 import { sendEmail } from '@/services/email';
-import { GoHighLevelService } from '@/services/gohighlevel';
+// import { GoHighLevelService } from '@/services/gohighlevel';  // Removed - using GHL MCP instead
 import type { CaseMetadata, CaseNote, CaseFinancials } from '@/types/services';
 import {
   PracticeArea,

@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, Briefcase, Clock, MessageSquare, FileText, Bell, Users } from 'lucide-react';
-import { Bell, Briefcase, Calendar, MessageSquare, File, Clock } from '@heroicons/react/24/outline';
 
 export const metadata: Metadata = {
   title: 'Panel de Cliente - Bufete de Abogados Vásquez',

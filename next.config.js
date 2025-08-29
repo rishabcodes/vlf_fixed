@@ -83,11 +83,10 @@ const nextConfig = {
   // Compress output
   compress: true,
 
-  // TypeScript and ESLint configuration - production-ready with transitional safety
+  // TypeScript and ESLint configuration - production-ready
   typescript: {
-    // Enable strict checking but allow builds to succeed with non-critical errors
-    // Critical errors (undefined variables, missing imports) will still fail
-    ignoreBuildErrors: true, // TEMPORARY: One false positive in PerformanceMonitor.tsx line 138
+    // Enable strict checking - builds will fail on TypeScript errors
+    ignoreBuildErrors: false,
     tsconfigPath: './tsconfig.json',
   },
   eslint: {

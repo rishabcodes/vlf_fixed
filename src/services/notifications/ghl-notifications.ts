@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { getPrismaClient } from '@/lib/prisma';
 import { logger } from '@/lib/safe-logger';
 import { errorToLogMeta } from '@/lib/safe-logger';
-import { ghlService } from '@/services/gohighlevel';
+// import { ghlService } from '@/services/gohighlevel';  // Removed - using GHL MCP instead
 
 // Schemas for validation
 const SendSMSSchema = z.object({

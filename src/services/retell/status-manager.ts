@@ -1,7 +1,7 @@
 import { logger } from '@/lib/safe-logger';
 import { errorToLogMeta } from '@/lib/safe-logger';
 import { getPrismaClient } from '@/lib/prisma';
-import { ghlService } from '@/services/gohighlevel';
+// import { ghlService } from '@/services/gohighlevel'; // Removed - using GHL MCP instead
 import type { VoiceCallStatus, Prisma } from '@prisma/client';
 import { delay } from '@/lib/utils/async';
 

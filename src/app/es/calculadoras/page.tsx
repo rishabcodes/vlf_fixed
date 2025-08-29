@@ -29,7 +29,7 @@ const calculators = [
     id: 'car-accident',
     title: 'Calculadora de Accidente de Auto',
     description: 'Calcule la compensación potencial por accidentes vehiculares',
-    icon: TruckIcon,
+    icon: Truck,
     href: '/es/calculadoras/accidente-auto',
     popular: true,
     fields: ['Daños al vehículo', 'Tratamiento médico', 'Pérdida de ingresos'],
@@ -38,7 +38,7 @@ const calculators = [
     id: 'workers-comp',
     title: 'Compensación al Trabajador',
     description: 'Determine los beneficios por lesiones laborales',
-    icon: Building2,
+    icon: Building,
     href: '/es/calculadoras/compensacion-trabajador',
     fields: ['Salario semanal', 'Porcentaje de discapacidad', 'Duración'],
   },
@@ -94,7 +94,7 @@ export default function CalculatorsPage() {
         <section className="bg-gradient-to-b from-white to-gray-50 py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <CalculatorIcon className="mx-auto h-16 w-16 text-secondary mb-6" />
+              <Calculator className="mx-auto h-16 w-16 text-secondary mb-6" />
               <h1 className="text-4xl font-bold text-gray-900 mb-4">
                 Calculadoras Legales Gratuitas
               </h1>
@@ -138,8 +138,7 @@ export default function CalculatorsPage() {
                                 <li key={index}
 
                 className="flex items-center">
-                                  <ChartBarIcon
-                className="h-4 w-4 mr-2 text-gray-400" />
+                                  <BarChart className="h-4 w-4 mr-2 text-gray-400" />
                                   {field}
                                 </li>
                               ))}

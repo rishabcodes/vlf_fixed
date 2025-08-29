@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sparkles, MessageSquare, FileText, Scale, Clock, Shield, BarChart, Globe, Lightbulb, Users } from 'lucide-react';
+import { Sparkles, MessageSquare, FileText, Scale, Clock, Shield, ShieldCheck, BarChart, Globe, Lightbulb, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Agentes de IA Legal - Bufete de Abogados Vásquez',
@@ -116,7 +116,7 @@ export default function AIAgentsPage() {
             <div className="text-center">
               <div className="flex justify-center mb-6">
                 <div className="p-3 bg-secondary/10 rounded-full">
-                  <SparklesIcon className="h-12 w-12 text-secondary" />
+                  <Sparkles className="h-12 w-12 text-secondary" />
                 </div>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -184,7 +184,7 @@ export default function AIAgentsPage() {
                           <li key={index}
 
                 className="flex items-start">
-                            <ChartBarIcon className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                            <BarChart className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
                             <span
                 className="text-sm text-gray-600">{feature}</span>
                           </li>

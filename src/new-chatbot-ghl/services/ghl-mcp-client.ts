@@ -31,6 +31,7 @@ export interface ContactData {
   email: string;
   phone?: string;
   tags?: string[];
+  source?: string;
   customFields?: Record<string, any>;
 }
 
@@ -828,27 +829,6 @@ ${divider}
     }
   }
   
-  /**
-   * Get available calendars
-   */
-  async getUserCalendars(): Promise<any[]> {
-    if (!this.isConfigured()) return [];
-    
-    try {
-      const response = await this.executeTool('calendars_get-calendars', {
-        query_locationId: this.locationId
-      });
-      
-      if (response.success && response.data?.calendars) {
-        return response.data.calendars;
-      }
-      
-      return [];
-    } catch (error) {
-      console.error('[GHL] Error getting calendars:', error);
-      return [];
-    }
-  }
   
   /**
    * Send a message in a conversation

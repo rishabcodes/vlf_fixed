@@ -124,7 +124,7 @@ export default function CaseEvaluator({ onComplete }: CaseEvaluatorProps) {
     const successProbability = Math.min(95, (caseScore.base + evidencePoints) * severityMult);
 
     // Use a deterministic value based on form data instead of Math.random()
-    const baseValue = formData.hasPriorCase === 'yes' ? 500000 : 250000;
+    const baseValue = formData.previousAttempts === 'yes' ? 500000 : 250000;
     const severityMultiplier = formData.severity === 'very-serious' ? 2 : 1;
     const calculatedValue = baseValue * severityMultiplier;
     

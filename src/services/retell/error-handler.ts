@@ -1,7 +1,7 @@
 import { logger } from '@/lib/safe-logger';
 import { errorToLogMeta } from '@/lib/safe-logger';
 import { securityLogger } from '@/lib/safe-logger';
-import { ghlService } from '@/services/gohighlevel';
+// import { ghlService } from '@/services/gohighlevel';  // Removed - using GHL MCP instead
 import { getPrismaClient } from '@/lib/prisma';
 import { Prisma } from '@prisma/client';
 import type { TaskType } from '@prisma/client';

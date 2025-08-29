@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, Clock, Video, MapPin, Phone, Edit, Trash,  } from 'lucide-react';
+import { Calendar, Clock, Video, MapPin, Phone, Edit, Trash2 } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Gestionar Citas - Bufete de Abogados Vásquez',
@@ -172,7 +172,7 @@ export default function ManageAppointmentsPage() {
 
                         <div className="flex gap-2 mt-4 md:mt-0 md:ml-6">
                           <Button variant="outline" size="sm">
-                            <Pencil className="h-4 w-4 mr-1" />
+                            <Edit className="h-4 w-4 mr-1" />
                             Editar
                           </Button>
                           <Button

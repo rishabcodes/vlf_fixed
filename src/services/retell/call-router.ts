@@ -1,6 +1,6 @@
 import { getRetellService } from './index';
 import { RetellAgentManager } from './agent-manager';
-import { ghlService } from '@/services/gohighlevel';
+// import { ghlService } from '@/services/gohighlevel';  // Removed - using GHL MCP instead
 import { logger } from '@/lib/safe-logger';
 import { errorToLogMeta } from '@/lib/safe-logger';
 import { getPrismaClient } from '@/lib/prisma';

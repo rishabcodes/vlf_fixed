@@ -483,6 +483,7 @@ ${conversationText}
           firstName: contactName?.split(' ')[0] || 'Unknown',
           lastName: contactName?.split(' ').slice(1).join(' ') || '',
           phone: phoneNumber,
+          email: '',
           tags
         });
       } catch (error) {

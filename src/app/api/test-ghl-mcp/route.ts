@@ -101,8 +101,8 @@ Integration: MCP endpoint connected
         mcpEndpoint: process.env.GHL_MCP_ENDPOINT,
         contactCreated: {
           id: testContact.id,
-          name: `${testContact.firstName} ${testContact.lastName}`,
-          email: testContact.email
+          created: testContact.created,
+          updated: testContact.updated
         },
         notesAdded: !!noteResult,
         tagsAdded: tagsAdded,
@@ -167,8 +167,8 @@ export async function POST(request: NextRequest) {
       success: true,
       contact: {
         id: contact.id,
-        name: `${contact.firstName} ${contact.lastName}`,
-        email: contact.email
+        created: contact.created,
+        updated: contact.updated
       },
       noteAdded: !!message
     });

@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 
 // Lazy load the actual chat component
 const LazyChat = dynamic(
-  () => import('./LazyChat').then(mod => ({ default: mod.LazyChat })),
+  () => import('./LazyChat'),
   { 
     ssr: false,
     loading: () => null

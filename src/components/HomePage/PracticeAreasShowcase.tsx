@@ -190,7 +190,7 @@ const PracticeAreasShowcase = React.memo(({ language }: PracticeAreasShowcasePro
                       activeArea === index ? 'bg-[#C9974D]' : 'bg-white/20'
                     }`}
 
-                aria-label={`View ${areas[index].title}`}
+                aria-label={`View ${areas[index]?.title || 'area'}`}
                   />
                 ))}
               </div>

@@ -343,13 +343,14 @@ export default function CaseEvaluator({ language }: CaseEvaluatorProps) {
     setShowResults(true);
 
     // Celebrate high eligibility
-    if (eligibility > 80) {
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-      });
-        }
+    // TODO: Re-add confetti celebration when canvas-confetti is installed
+    // if (eligibility > 80) {
+    //   confetti({
+    //     particleCount: 100,
+    //     spread: 70,
+    //     origin: { y: 0.6 },
+    //   });
+    // }
 };
 
   const nextStep = () => {

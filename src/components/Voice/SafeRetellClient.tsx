@@ -41,12 +41,12 @@ class RetellErrorBoundary extends React.Component<
     return { hasError: true };
   }
 
-  componentDidCatch(error: any, errorInfo: any) {
+  override componentDidCatch(error: any, errorInfo: any) {
     logger.error('Voice Assistant Error:', error, errorInfo);
     this.props.onError();
   }
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       return null; // Don't render anything if there's an error
     }

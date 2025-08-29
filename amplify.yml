@@ -3,9 +3,9 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Set memory optimization flags for 72GB instance
+        # Set memory optimization flags for 72GB XLarge instance
         - echo "Setting memory optimization for XLarge instance..."
-        - export NODE_OPTIONS="--max-old-space-size=16384 --max-semi-space-size=512"
+        - export NODE_OPTIONS="--max-old-space-size=48000"
         - export NEXT_TELEMETRY_DISABLED=1
         - export GENERATE_SOURCEMAP=false
         

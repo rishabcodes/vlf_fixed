@@ -550,7 +550,7 @@ export async function POST(request: NextRequest) {
       temperature: classification.isEmergency ? 0.3 : 0.7, // Lower temperature for emergencies
     });
 
-    const reply = completion.choices[0].message.content || 'I apologize, but I am having trouble processing your request. Please try again or call us at 1-844-YO-PELEO.';
+    const reply = completion.choices[0]?.message?.content || 'I apologize, but I am having trouble processing your request. Please try again or call us at 1-844-YO-PELEO.';
 
     // Update conversation history
     conversationHistory.push(
@@ -700,7 +700,7 @@ async function processWithSpecialistAgent(
       return handleEmergency(message, context);
       
     default:
-      return `I'm ${agentConfig.name} and I'm here to help with your ${agentConfig.practiceAreas.join(', ')} needs. ${agentConfig.description}. How can I assist you today?`;
+      return `I'm ${agentConfig.name} and I'm here to help with your legal needs. How can I assist you today?`;
   }
 }
 
