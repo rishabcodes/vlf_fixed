@@ -45,10 +45,9 @@ frontend:
         - export FAST_BUILD=true
         - export SKIP_STATIC_GENERATION=true
         
-        # Run fast build script for core pages only
-        - echo "Starting FAST BUILD - Core Pages Only..."
-        - echo "Skipping blog pre-generation for rapid deployment"
-        - npm run build:amplify:fast
+        # Run Next.js build directly with proper memory allocation
+        - echo "Starting Next.js production build..."
+        - NODE_OPTIONS='--max-old-space-size=48000' npx next build
         
         # Clean up after build to free memory
         - echo "Post-build cleanup..."
@@ -67,6 +66,7 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
+      - .next/cache/**/*
       
 customHeaders:
   - pattern: '**/*'

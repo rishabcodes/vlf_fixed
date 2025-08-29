@@ -126,6 +126,12 @@ export default async function AttorneyPage({ params }: PageProps) {
 
 // Generate static params for all known attorneys
 export async function generateStaticParams() {
+  // Skip pre-generation in fast/ultra-fast build mode
+  if (process.env.ULTRA_FAST_BUILD === 'true' || process.env.FAST_BUILD === 'true') {
+    console.log('[Ultra-Fast Build] Skipping attorney page pre-generation');
+    return [];
+  }
+  
   return Object.keys(attorneyPages).map(slug => ({
     slug,
   }));

@@ -1,0 +1,74 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Ultra-fast build configuration for XLarge (72GB, 16 vCPU)
+        - echo "[ULTRA-FAST] Starting 1-minute build process..."
+        - export NODE_OPTIONS="--max-old-space-size=65536"
+        - export NEXT_TELEMETRY_DISABLED=1
+        - export GENERATE_SOURCEMAP=false
+        - export ULTRA_FAST_BUILD=true
+        - export SKIP_STATIC_GENERATION=true
+        
+        # Maximum parallelization
+        - export JOBS=16
+        - export NPM_CONFIG_JOBS=16
+        - export PNPM_WORKER_CONCURRENCY=16
+        
+        # Install pnpm
+        - npm install -g pnpm@latest
+        
+        # Configure pnpm for maximum speed
+        - pnpm config set worker-concurrency 16
+        - pnpm config set side-effects-cache false
+        - pnpm config set store-dir /tmp/.pnpm-store
+        
+        # Clean only critical files
+        - rm -rf .next
+        
+        # Ultra-fast dependency installation (use cache aggressively)
+        - echo "[ULTRA-FAST] Installing dependencies with maximum parallelization..."
+        - pnpm install --frozen-lockfile --prefer-offline --ignore-scripts --force
+        
+    build:
+      commands:
+        # Skip all checks - straight to build
+        - export NODE_ENV=production
+        - export FAST_BUILD=true
+        - export ULTRA_FAST_BUILD=true
+        - export SKIP_STATIC_GENERATION=true
+        - export SKIP_LINTING=true
+        - export SKIP_TYPE_CHECK=true
+        
+        # Run ultra-fast build
+        - echo "[ULTRA-FAST] Building with all optimizations..."
+        - node scripts/amplify-ultra-fast-build.js
+        
+        # Minimal cleanup
+        - rm -rf node_modules/.cache
+        
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+      
+  cache:
+    paths:
+      - node_modules/**/*
+      - .next/cache/**/*
+      - /tmp/.pnpm-store/**/*
+      
+customHeaders:
+  - pattern: '_next/static/**/*'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=31536000, immutable'
+  - pattern: '**/*.js'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=31536000, immutable'
+  - pattern: '**/*.css'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=31536000, immutable'

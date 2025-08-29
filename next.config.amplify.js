@@ -11,20 +11,11 @@ const nextConfig = {
     workerThreads: false,
     cpus: 1,
     
-    // Disable parallel route building
-    parallelRoutes: false,
-    
     // Memory optimization flags
     optimizePackageImports: ['@mui/material', '@mui/icons-material'],
     
     // Reduce memory usage during build
     webpackBuildWorker: false,
-    
-    // Use incremental cache with limits
-    incrementalCacheHandlerPath: undefined,
-    
-    // Disable build activity indicator to save resources
-    webpackBuildActivity: false,
   },
   
   // Webpack configuration for memory optimization
@@ -188,20 +179,11 @@ const nextConfig = {
   // Output configuration
   output: 'standalone',
   
-  // Reduce build output verbosity
-  silent: false,
-  
   // Compress output
   compress: true,
   
-  // Power off prefetching to reduce memory usage
-  prefetch: false,
-  
   // Limit static page generation
   staticPageGenerationTimeout: 180, // 3 minutes per page
-  
-  // SWC minification (more memory efficient than Terser)
-  swcMinify: true,
   
   // Compiler options for optimization
   compiler: {

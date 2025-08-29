@@ -1,11 +1,12 @@
-import { enhancedChatService } from './enhanced-chat-service';
+// import { enhancedChatService } from './enhanced-chat-service';
 import { aiTranslationService } from './translation-service';
-import { AgentOrchestrator } from '@/lib/agents/agent-orchestrator';
+// import { AgentOrchestrator } from '@/lib/agents/agent-orchestrator';
 import { logger } from '@/lib/safe-logger';
 import { errorToLogMeta } from '@/lib/safe-logger';
 
 // Import the actual metrics type from agent-orchestrator
-import type { AgentPerformanceMetrics as AgentMetrics } from '@/lib/agents/agent-orchestrator';
+// import type { AgentPerformanceMetrics as AgentMetrics } from '@/lib/agents/agent-orchestrator';
+type AgentMetrics = any; // Temporary fix
 
 export interface AIServiceHealth {
   status: 'healthy' | 'degraded' | 'unhealthy';
@@ -43,16 +44,19 @@ class AIHealthChecker {
     const startTime = Date.now();
 
     try {
-      // Check Enhanced Chat Service
-      const chatHealth = enhancedChatService.getHealth();
+      // Check Enhanced Chat Service - commented out as service removed
+      // const chatHealth = enhancedChatService.getHealth();
+      const chatHealth = { status: 'unavailable', openai: false, orchestrator: false, circuitBreaker: false };
 
       // Check Translation Service
       const translationStats = aiTranslationService.getStats();
 
-      // Check Agent Orchestrator
-      const orchestrator = AgentOrchestrator.getInstance();
-      const agentStatus = orchestrator.getAgentStatus();
-      const agentMetrics = orchestrator.getAllMetrics();
+      // Check Agent Orchestrator - commented out as service removed
+      // const orchestrator = AgentOrchestrator.getInstance();
+      // const agentStatus = orchestrator.getAgentStatus();
+      // const agentMetrics = orchestrator.getAllMetrics();
+      const agentStatus = {};
+      const agentMetrics = {};
 
       const services = {
         enhancedChat: {
@@ -77,7 +81,7 @@ class AIHealthChecker {
       // Determine overall status
       let status: 'healthy' | 'degraded' | 'unhealthy' = 'healthy';
 
-      if (!services.enhancedChat.available || !services.agentOrchestrator.available) {
+      if (!services.enhancedChat.available) {
         status = 'unhealthy';
       } else if (!services.enhancedChat.openai || !services.translation.aiAvailable) {
         status = 'degraded';
@@ -173,10 +177,10 @@ class AIHealthChecker {
       results.translation.error = error instanceof Error ? error.message : 'Unknown error';
     }
 
-    // Test agent routing
+    // Test agent routing - commented out as service removed
     try {
       const startTime = Date.now();
-      const orchestrator = AgentOrchestrator.getInstance();
+      // const orchestrator = AgentOrchestrator.getInstance();
       const testContext = {
         userId: 'health-check',
         sessionId: 'health-check-session',
@@ -185,8 +189,10 @@ class AIHealthChecker {
         metadata: { source: 'health-check' },
       };
 
-      const response = await orchestrator.routeMessage('I need help with immigration', testContext);
-      results.agentRouting.success = !!response.response;
+      // const response = await orchestrator.routeMessage('I need help with immigration', testContext);
+      // results.agentRouting.success = !!response.response;
+      results.agentRouting.success = false;
+      results.agentRouting.error = 'Agent orchestrator service removed';
       results.agentRouting.responseTime = Date.now() - startTime;
     } catch (error) {
       results.agentRouting.error = error instanceof Error ? error.message : 'Unknown error';

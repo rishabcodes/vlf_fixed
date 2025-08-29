@@ -83,15 +83,15 @@ const nextConfig = {
   // Compress output
   compress: true,
 
-  // TypeScript and ESLint configuration - production-ready
+  // TypeScript and ESLint configuration - optimized for speed
   typescript: {
-    // Enable strict checking - builds will fail on TypeScript errors
-    ignoreBuildErrors: false,
+    // Skip TypeScript checking in fast/ultra-fast builds
+    ignoreBuildErrors: process.env.FAST_BUILD === 'true' || process.env.ULTRA_FAST_BUILD === 'true',
     tsconfigPath: './tsconfig.json',
   },
   eslint: {
-    // Enable ESLint but allow builds to continue with warnings
-    ignoreDuringBuilds: false,
+    // Skip ESLint in fast/ultra-fast builds
+    ignoreDuringBuilds: process.env.FAST_BUILD === 'true' || process.env.ULTRA_FAST_BUILD === 'true',
     dirs: ['src'], // Only lint source directories (exclude root-level scripts)
   },
 

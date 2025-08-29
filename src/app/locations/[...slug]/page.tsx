@@ -6,6 +6,12 @@ import { Metadata } from 'next';
 // Generate only the most important location pages at build time
 // Others will be generated on-demand using ISR
 export async function generateStaticParams() {
+  // Skip all pre-generation in ultra-fast build mode
+  if (process.env.ULTRA_FAST_BUILD === 'true' || process.env.FAST_BUILD === 'true') {
+    console.log('[Ultra-Fast Build] Skipping location page pre-generation');
+    return [];
+  }
+  
   // Only pre-generate major cities to reduce build time
   const majorCities = {
     nc: ['charlotte', 'raleigh', 'durham', 'greensboro', 'winston-salem'],
