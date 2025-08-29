@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { NewsTicker } from '@/components/ui/news-ticker';
 import { Banner } from '@/components/ui/banner';
 import { ClientOnlyWrapper } from '@/components/ClientOnlyWrapper';
-import { componentLogger } from '@/lib/safe-logger';
+// import { componentLogger } from '@/lib/safe-logger';
 
 interface MasterLayoutProps {
   children: React.ReactNode;
@@ -60,7 +60,7 @@ export const MasterLayout: React.FC<MasterLayoutProps> = ({
   // Debug: Log when MasterLayout renders (only in development)
   React.useEffect(() => {
     if (process.env.NODE_ENV === 'development') {
-      componentLogger.mount('MasterLayout', {
+      console.log('[MasterLayout] Mounted:', {
         variant,
         currentLanguage,
         pathname: safePathname,
