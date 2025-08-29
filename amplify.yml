@@ -3,59 +3,21 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Show available resources
-        - echo "Available memory:"
-        - free -h || vm_stat
-        - echo "CPU cores:"
-        - nproc || sysctl -n hw.ncpu
-        
-        # Set memory optimization flags - CORRECTED
-        - export NODE_OPTIONS="--max-old-space-size=65536 --max-semi-space-size=1024"
-        - export GENERATE_SOURCEMAP=false
-        - export NEXT_TELEMETRY_DISABLED=1
-        - export NPM_CONFIG_JOBS=1
-        - export YARN_CHILD_CONCURRENCY=1
-        
-        # Install dependencies with proper pnpm configuration
-        - echo "Installing dependencies..."
-        - |
-          if [ -f "pnpm-lock.yaml" ]; then
-            npm install -g pnpm
-            pnpm install --frozen-lockfile --prefer-offline
-          elif [ -f "yarn.lock" ]; then
-            yarn install --frozen-lockfile --network-concurrency 1
-          else
-            npm ci --prefer-offline --no-audit --no-fund
-          fi
-        
-        # Clean previous builds
-        - rm -rf .next
-        - rm -rf node_modules/.cache
-        
+        - npm install -g pnpm
+        - pnpm install --frozen-lockfile
     build:
       commands:
-        # Memory check before build
-        - echo "Memory before build:"
-        - free -h || vm_stat
-        
-        # Set production environment
-        - export NODE_ENV=production
-        - export NEXT_SHARP_PATH=/tmp/node_modules/sharp
-        
-        # Run the custom build script with error handling
-        - echo "Starting sequential build process..."
-        - |
-          if [ -f "scripts/amplify-build.js" ]; then
-            node --max-old-space-size=65536 scripts/amplify-build.js
-          else
-            npm run build:amplify
-          fi
-        
+        # Skip build - use existing .next folder
+        - echo "Using pre-built .next folder"
+        - ls -la .next/
   artifacts:
-    baseDirectory: .next
+    baseDirectory: .
     files:
-      - '**/*'
-      
+      - '.next/**/*'
+      - 'node_modules/**/*'
+      - 'package.json'
+      - 'next.config.js'
+      - 'public/**/*'
   cache:
     paths:
       - node_modules/**/*

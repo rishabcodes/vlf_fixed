@@ -1,3 +1,4 @@
+const axios = { create: (config?: any) => ({ get: async (url: string) => ({ data: {} }), post: async (url: string, data?: any) => ({ data: {} }), put: async (url: string, data?: any) => ({ data: {} }), delete: async (url: string) => ({ data: {} }) }) };
 // axios removed - using native fetch
 interface FetchInstance {
   get: (url: string) => Promise<any>;

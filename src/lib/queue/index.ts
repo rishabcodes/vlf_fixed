@@ -1,4 +1,4 @@
-// Bull Queue Mock - Complete with ALL exports
+// Mock Queue Implementation for Build
 import { logger } from '@/lib/safe-logger';
 
 export class Queue {
@@ -19,18 +19,15 @@ export class Queue {
     return this;
   }
 
-  add(jobName: string | any, data?: any, options?: any) {
-    // Handle both signatures: add(data) and add(jobName, data)
-    const actualData = data !== undefined ? data : jobName;
-    const actualJobName = typeof jobName === 'string' ? jobName : 'job';
+  add(jobName: string, data: any, options?: any) {
+    logger.debug(`Job ${jobName} added to queue ${this.name}`);
     
-    logger.debug(`Job ${actualJobName} added to queue ${this.name}`);
-    
+    // Execute handler immediately in mock
     if (this.handler) {
       setTimeout(() => {
         const job = { 
-          data: actualData, 
-          name: actualJobName, 
+          data, 
+          name: jobName, 
           id: Date.now(),
           progress: (percent: number) => {},
           log: (msg: string) => logger.info(msg),
@@ -39,7 +36,7 @@ export class Queue {
       }, 0);
     }
     
-    return Promise.resolve({ id: Date.now(), data: actualData });
+    return Promise.resolve({ id: Date.now(), data });
   }
 
   on(event: string, handler: Function) {
@@ -74,20 +71,9 @@ export class Queue {
   }
 }
 
-// Create specific queue instances that are being imported
-export const emailQueue = new Queue('email');
-export const callAnalysisQueue = new Queue('call-analysis');
-export const smsQueue = new Queue('sms');
-export const notificationQueue = new Queue('notification');
-export const leadProcessingQueue = new Queue('lead-processing');
-export const documentQueue = new Queue('document');
-export const analyticsQueue = new Queue('analytics');
-export const paymentQueue = new Queue('payment');
-
 // Default export
 export default Queue;
 
 // Named exports for compatibility
 export const createQueue = (name: string, options?: any) => new Queue(name, options);
 export const MockQueue = Queue;
-export const Bull = Queue;

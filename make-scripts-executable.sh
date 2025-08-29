@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# Make all fix scripts executable
-chmod +x fix-dependencies.sh
-chmod +x comprehensive-build-fix.sh
-chmod +x quick-import-fixes.sh
+# Make all scripts executable
+chmod +x scripts/*.sh
+chmod +x scripts/*.js
 
-echo "✅ All fix scripts are now executable!"
+echo "✅ All scripts are now executable"
