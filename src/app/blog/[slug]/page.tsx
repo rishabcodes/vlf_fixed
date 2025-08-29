@@ -11,6 +11,12 @@ interface BlogPostPageProps {
 }
 
 export async function generateStaticParams() {
+  // Skip pre-generation in fast build mode
+  if (process.env.FAST_BUILD === 'true' || process.env.SKIP_STATIC_GENERATION === 'true') {
+    console.log('[Fast Build] Skipping blog post pre-generation for faster builds');
+    return [];
+  }
+
   try {
     // Add timeout protection for database queries during build
     const timeoutPromise = new Promise<never>((_, reject) =>

@@ -40,12 +40,15 @@ frontend:
         - echo "Memory status before build:"
         - free -h || true
         
-        # Set production environment
+        # Set production environment and fast build mode
         - export NODE_ENV=production
+        - export FAST_BUILD=true
+        - export SKIP_STATIC_GENERATION=true
         
-        # Run sequential build script
-        - echo "Starting optimized sequential build..."
-        - npm run build:amplify
+        # Run fast build script for core pages only
+        - echo "Starting FAST BUILD - Core Pages Only..."
+        - echo "Skipping blog pre-generation for rapid deployment"
+        - npm run build:amplify:fast
         
         # Clean up after build to free memory
         - echo "Post-build cleanup..."
