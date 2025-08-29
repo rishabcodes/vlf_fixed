@@ -3,59 +3,53 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Set memory optimization flags for 72GB instance
-        - echo "Setting memory optimization for XLarge instance..."
-        - export NODE_OPTIONS="--max-old-space-size=16384 --max-semi-space-size=512"
-        - export NEXT_TELEMETRY_DISABLED=1
-        - export GENERATE_SOURCEMAP=false
+        # Show available resources
+        - echo "Available memory:"
+        - free -h || vm_stat
+        - echo "CPU cores:"
+        - nproc || sysctl -n hw.ncpu
         
-        # Disable all parallelism
-        - export JOBS=1
+        # Set memory optimization flags - CORRECTED
+        - export NODE_OPTIONS="--max-old-space-size=65536 --max-semi-space-size=1024"
+        - export GENERATE_SOURCEMAP=false
+        - export NEXT_TELEMETRY_DISABLED=1
         - export NPM_CONFIG_JOBS=1
         - export YARN_CHILD_CONCURRENCY=1
         
-        # Install pnpm with memory limits
-        - echo "Installing pnpm..."
-        - npm install -g pnpm@latest
-        
-        # Configure pnpm for sequential operation
-        - pnpm config set node-options "--max-old-space-size=16384"
-        - pnpm config set worker-concurrency 1
-        - pnpm config set side-effects-cache false
+        # Install dependencies with proper pnpm configuration
+        - echo "Installing dependencies..."
+        - |
+          if [ -f "pnpm-lock.yaml" ]; then
+            npm install -g pnpm
+            pnpm install --frozen-lockfile --prefer-offline
+          elif [ -f "yarn.lock" ]; then
+            yarn install --frozen-lockfile --network-concurrency 1
+          else
+            npm ci --prefer-offline --no-audit --no-fund
+          fi
         
         # Clean previous builds
-        - echo "Cleaning previous build artifacts..."
         - rm -rf .next
         - rm -rf node_modules/.cache
-        - rm -rf .swc
-        - rm -rf .turbo
-        
-        # Install dependencies sequentially
-        - echo "Installing dependencies..."
-        - pnpm install --frozen-lockfile --prefer-offline --ignore-scripts
-        - pnpm rebuild --recursive
         
     build:
       commands:
-        # Monitor memory before build
-        - echo "Memory status before build:"
-        - free -h || true
+        # Memory check before build
+        - echo "Memory before build:"
+        - free -h || vm_stat
         
         # Set production environment
         - export NODE_ENV=production
+        - export NEXT_SHARP_PATH=/tmp/node_modules/sharp
         
-        # Run sequential build script
-        - echo "Starting optimized sequential build..."
-        - npm run build:amplify
-        
-        # Clean up after build to free memory
-        - echo "Post-build cleanup..."
-        - rm -rf node_modules/.cache
-        - rm -rf .swc
-        
-        # Monitor memory after build
-        - echo "Memory status after build:"
-        - free -h || true
+        # Run the custom build script with error handling
+        - echo "Starting sequential build process..."
+        - |
+          if [ -f "scripts/amplify-build.js" ]; then
+            node --max-old-space-size=65536 scripts/amplify-build.js
+          else
+            npm run build:amplify
+          fi
         
   artifacts:
     baseDirectory: .next
@@ -65,17 +59,3 @@ frontend:
   cache:
     paths:
       - node_modules/**/*
-      
-customHeaders:
-  - pattern: '**/*'
-    headers:
-      - key: 'Cache-Control'
-        value: 'public, max-age=31536000, immutable'
-  - pattern: '_next/static/**/*'
-    headers:
-      - key: 'Cache-Control'
-        value: 'public, max-age=31536000, immutable'
-  - pattern: '**/*.html'
-    headers:
-      - key: 'Cache-Control'
-        value: 'public, max-age=0, must-revalidate'

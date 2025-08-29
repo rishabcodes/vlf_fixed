@@ -1,7 +1,8 @@
-'use client';
-
+// Placeholder component to fix import errors
 import React from 'react';
 
-export function QwikHeaderWrapper({ children }: { children?: React.ReactNode }) {
-  return <>{children}</>;
-}
+export const QwikHeaderWrapper: React.FC<{children?: React.ReactNode}> = ({children}) => {
+  return <div className="qwik-header-wrapper">{children}</div>;
+};
+
+export default QwikHeaderWrapper;

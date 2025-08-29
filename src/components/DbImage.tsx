@@ -152,7 +152,7 @@ export default function DbImage({
   }, [id, filename, category, entityType, entityId, useThumbnail, width, height, alt, onError]);
 
   // Fallback image
-  const fallbackSrc = '/images/placeholder.jpg';
+  const fallbackSrc = '/images/logo.png';
 
   if (loading) {
     return (

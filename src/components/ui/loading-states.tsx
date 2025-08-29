@@ -4,6 +4,19 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import { block } from 'million/react';
 
+// Simple Skeleton component
+function Skeleton({ variant = 'text', className }: { variant?: 'text' | 'circular'; className?: string }) {
+  return (
+    <div 
+      className={cn(
+        'animate-pulse bg-gray-200 dark:bg-gray-700',
+        variant === 'circular' ? 'rounded-full' : 'rounded',
+        className
+      )}
+    />
+  );
+}
+
 interface LoadingSpinnerProps {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
@@ -82,8 +95,8 @@ function ContentLoaderComponent({ lines = 3, showAvatar = false, className }: Co
         <div className="flex items-center space-x-3">
           <Skeleton variant="circular" className="h-10 w-10" />
           <div className="flex-1 space-y-2">
-            <Skeleton variant="text" className="h-4 w-1/4" />
-            <Skeleton variant="text" className="h-3 w-1/3" />
+            <Skeleton className="h-4 w-1/4" />
+            <Skeleton className="h-3 w-1/3" />
           </div>
         </div>
       )}
@@ -91,7 +104,6 @@ function ContentLoaderComponent({ lines = 3, showAvatar = false, className }: Co
       {Array.from({ length: lines }).map((_, i) => (
         <Skeleton
           key={i}
-          variant="text"
           className={cn('h-4', i === lines - 1 ? 'w-4/5' : 'w-full')}
         />
       ))}
@@ -126,7 +138,7 @@ export function LoadingOverlay({
       )}
     >
       <div className="text-center">
-        <LoadingSpinner size="lg" className="mb-4" />
+        <LoadingSpinner size="lg" className="mx-auto mb-4" />
         {message && (
           <p className="text-sm font-medium text-gray-600 dark:text-gray-400">{message}</p>
         )}
