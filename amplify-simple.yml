@@ -1,0 +1,27 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Memory optimization for XLarge instance
+        - export NODE_OPTIONS="--max-old-space-size=65536"
+        - export NEXT_TELEMETRY_DISABLED=1
+        - export GENERATE_SOURCEMAP=false
+        
+        # Use npm instead of pnpm for simplicity
+        - echo "Installing dependencies with npm..."
+        - npm ci --prefer-offline --no-audit --no-fund
+        
+    build:
+      commands:
+        - echo "Building Next.js application..."
+        - npm run build
+        
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+      
+  cache:
+    paths:
+      - node_modules/**/*
