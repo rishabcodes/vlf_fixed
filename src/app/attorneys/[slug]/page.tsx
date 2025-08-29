@@ -13,7 +13,7 @@ const attorneyPages = {
   'christopher-afanador': () => import('../christopher-afanador/page').then(mod => mod.default),
   'mark-kelsey': () => import('../mark-kelsey/page').then(mod => mod.default),
   'judith-parkes': () => import('../judith-parkes/page').then(mod => mod.default),
-  'roselyn-v-torrellas': () => import('../roselyn-torrellas/page').then(mod => mod.default),
+  'roselyn-v-torrellas': () => import('../roselyn-v-torrellas/page').then(mod => mod.default),
   'william-vasquez': () => import('../william-vasquez/page').then(mod => mod.default),
   'rebecca-sommer': () => import('../rebecca-sommer/page').then(mod => mod.default),
 } as const;

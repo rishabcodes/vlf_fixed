@@ -5,7 +5,8 @@ import { authOptions } from '@/lib/auth';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Calendar, DocumentTextIcon, UserGroupIcon, Briefcase, Clock, MessageSquare, FileText, Bell,  } from 'lucide-react';
+import { Calendar, Briefcase, Clock, MessageSquare, FileText, Bell, Users } from 'lucide-react';
+import { BellIcon, BriefcaseIcon, CalendarIcon, ChatBubbleLeftRightIcon, DocumentIcon, ClockIcon } from '@heroicons/react/24/outline';
 
 export const metadata: Metadata = {
   title: 'Panel de Cliente - Bufete de Abogados Vásquez',
@@ -114,7 +115,7 @@ export default async function DashboardPage() {
                 </Link>
                 <Link href="/es/dashboard/documentos/subir">
                   <Button className="w-full" variant="outline">
-                    <DocumentTextIcon className="mr-2 h-4 w-4" />
+                    <FileText className="mr-2 h-4 w-4" />
                     Subir Documento
                   </Button>
                 </Link>

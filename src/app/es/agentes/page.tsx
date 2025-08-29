@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { SparklesIcon, MessageSquare, DocumentTextIcon, Scale, Clock, Shield, ChartBarIcon, Globe, LightBulbIcon, UserGroupIcon,  } from 'lucide-react';
+import { Sparkles, MessageSquare, FileText, Scale, Clock, Shield, BarChart, Globe, Lightbulb, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Agentes de IA Legal - Bufete de Abogados Vásquez',
@@ -23,7 +23,7 @@ const agents = [
     name: 'Asistente Legal Virtual',
     description:
       'Su asistente personal de IA disponible 24/7 para responder preguntas legales generales',
-    icon: ChatBubbleLeftRightIcon,
+    icon: MessageSquare,
     features: [
       'Respuestas instantáneas en español e inglés',
       'Información sobre áreas de práctica',
@@ -38,7 +38,7 @@ const agents = [
     id: 'document-analyzer',
     name: 'Analizador de Documentos',
     description: 'Analice y comprenda documentos legales complejos con ayuda de IA',
-    icon: DocumentTextIcon,
+    icon: FileText,
     features: [
       'Resumen de documentos largos',
       'Identificación de cláusulas importantes',
@@ -52,7 +52,7 @@ const agents = [
     id: 'case-evaluator',
     name: 'Evaluador de Casos',
     description: 'Obtenga una evaluación preliminar de la fortaleza de su caso',
-    icon: ScaleIcon,
+    icon: Scale,
     features: [
       'Análisis de méritos del caso',
       'Estimación de compensación',
@@ -67,7 +67,7 @@ const agents = [
     id: 'immigration-guide',
     name: 'Guía de Inmigración',
     description: 'Navegue el complejo sistema de inmigración con orientación personalizada',
-    icon: GlobeAltIcon,
+    icon: Globe,
     features: [
       'Elegibilidad para diferentes visas',
       'Listas de documentos requeridos',
@@ -81,7 +81,7 @@ const agents = [
     id: 'deadline-tracker',
     name: 'Rastreador de Plazos',
     description: 'Nunca pierda una fecha límite legal importante',
-    icon: ClockIcon,
+    icon: Clock,
     features: [
       'Recordatorios automáticos',
       'Cálculo de estatutos de limitaciones',
@@ -95,7 +95,7 @@ const agents = [
     id: 'rights-advisor',
     name: 'Asesor de Derechos',
     description: 'Conozca sus derechos legales en diferentes situaciones',
-    icon: ShieldCheckIcon,
+    icon: Shield,
     features: [
       'Derechos durante arrestos',
       'Derechos laborales',

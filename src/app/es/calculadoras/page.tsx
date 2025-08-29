@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { CalculatorIcon, CurrencyDollarIcon, Scale, DocumentTextIcon, ChartBarIcon, Clock, TruckIcon, UserGroupIcon, Building, Heart,  } from 'lucide-react';
+import { Calculator, DollarSign, Scale, FileText, BarChart, Clock, Truck, Users, Building, Heart } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Calculadoras Legales - Bufete de Abogados Vásquez',
@@ -54,7 +54,7 @@ const calculators = [
     id: 'child-support',
     title: 'Manutención Infantil',
     description: 'Calcule los pagos de manutención según las pautas de NC',
-    icon: UserGroupIcon,
+    icon: Users,
     href: '/es/calculadoras/manutencion-infantil',
     fields: ['Ingresos', 'Número de hijos', 'Custodia'],
   },
@@ -78,7 +78,7 @@ const calculators = [
     id: 'immigration-costs',
     title: 'Costos de Inmigración',
     description: 'Calcule las tarifas totales para diferentes procesos migratorios',
-    icon: DocumentTextIcon,
+    icon: FileText,
     href: '/es/calculadoras/costos-inmigracion',
     fields: ['Tipo de visa/petición', 'Tarifas gubernamentales', 'Honorarios legales'],
   },
@@ -241,7 +241,7 @@ export default function CalculatorsPage() {
               </div>
               <div className="text-center">
                 <div className="mx-auto h-12 w-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
-                  <DocumentTextIcon className="h-6 w-6 text-secondary" />
+                  <FileText className="h-6 w-6 text-secondary" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Resultados Detallados</h3>
                 <p className="text-gray-600">

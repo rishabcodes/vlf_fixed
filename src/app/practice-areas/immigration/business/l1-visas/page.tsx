@@ -3,8 +3,7 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // 1 hour cache
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Globe, Building } from 'lucide-react';
-import { UserCog, Brain, TrendingUp, Handshake, Globe, Building } from 'lucide-react';
+import { Globe, Building, UserCog, Brain, TrendingUp, Handshake } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'L1 Visa Services | Intracompany Transfer Visas | Vasquez Law Firm',

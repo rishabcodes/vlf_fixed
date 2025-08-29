@@ -3,8 +3,7 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // 1 hour cache
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Globe } from 'lucide-react';
-import { TrendingUp, Handshake, DollarSign, ClipboardCheck, UserCheck, Globe } from 'lucide-react';
+import { Globe, TrendingUp, Handshake, DollarSign, ClipboardCheck, UserCheck } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'E2 Investor Visa Services | Treaty Investor Visas | Vasquez Law Firm',

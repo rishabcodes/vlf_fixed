@@ -64,54 +64,6 @@ const nextConfig = {
     ],
   },
 
-  // Build optimizations to reduce memory usage
-  webpack: (config, { dev, isServer }) => {
-    // Production optimizations
-    if (!dev && !isServer) {
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        cacheGroups: {
-          default: false,
-          vendors: false,
-          // Only create commons chunk
-          commons: {
-            name: 'commons',
-            chunks: 'all',
-            minChunks: 2,
-          },
-        },
-      };
-    }
-
-    // Reduce parallelism to save memory
-    config.parallelism = 2; // Increased slightly for better performance
-
-    // Additional memory optimizations
-    config.optimization = {
-      ...config.optimization,
-      minimize: !dev,
-      concatenateModules: true,
-      sideEffects: false,
-      usedExports: true,
-      // Limit memory usage
-      minimizer: config.optimization.minimizer?.map(minimizer => {
-        if (minimizer.constructor.name === 'TerserPlugin') {
-          minimizer.options.parallel = 1;
-          minimizer.options.terserOptions = {
-            ...minimizer.options.terserOptions,
-            compress: {
-              ...minimizer.options.terserOptions?.compress,
-              drop_console: true,
-              drop_debugger: true,
-            },
-          };
-        }
-        return minimizer;
-      }),
-    };
-
-    return config;
-  },
 
   // Increase build timeout for generating many pages
   staticPageGenerationTimeout: 600, // 10 minutes per page

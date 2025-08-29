@@ -3,8 +3,7 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 3600; // 1 hour cache
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { Briefcase, Globe, Building } from 'lucide-react';
-import { TrendingUp, UserCheck, Handshake, Globe, Briefcase, Building } from 'lucide-react';
+import { Briefcase, Globe, Building, TrendingUp, UserCheck, Handshake } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Business Inmigración Services | Vasquez Law Firm PLLC',

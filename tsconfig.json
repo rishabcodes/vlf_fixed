@@ -1,29 +1,36 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["node"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
+    // ---- Module & resolution ----
     "module": "esnext",
     "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
+    "target": "ES2022",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
+    "jsx": "preserve",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "noEmit": true,
+    "incremental": true,
+    // ---- Base & Paths (fix @/* -> src/*) ----
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
-    // TypeScript 5.6+ features - enabled for stricter type checking
+    // ---- Type acquisition ----
+    "types": [
+      "node"
+    ], // If you later need test types, add "jest" in a test-only tsconfig.
+    // ---- Strictness & safety ----
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    // TS 5.6+ goodies (kept practical; avoids over-breaking app code)
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": false,
     "noPropertyAccessFromIndexSignature": false,
@@ -32,8 +39,14 @@
     "noImplicitOverride": true,
     "noFallthroughCasesInSwitch": true,
     "useUnknownInCatchVariables": true,
-    // Strict type checking enabled
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    // Next.js plugin
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "isolatedModules": true
   },
   "include": [
     "next-env.d.ts",
@@ -44,10 +57,18 @@
   ],
   "exclude": [
     "node_modules",
+    ".next",
+    // Keep non-app folders out of the compiler
     "backup-untracked-files",
     "vasquez-law-website",
     "tools",
-    ".next",
+    // Exclude tests from prod build to prevent Jest type errors in CI
+    "**/__tests__/**",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    // Long-running script not needed in build
     "scripts/test-trained-agents.ts"
   ]
 }
