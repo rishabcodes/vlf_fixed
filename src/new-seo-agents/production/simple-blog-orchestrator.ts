@@ -123,14 +123,13 @@ export class SimpleBlogOrchestrator {
       const contentPrompt = topicTracker.getContentPrompt(topicData.contentType);
       
       // Use content factory to generate a blog post
-      const blogPost = await contentFactory.blogGenerator.generateBlogPost({
+      const blogPost = await contentFactory.getBlogGenerator().generateBlogPost({
         topic: topicData.topic,
         practiceArea: topicData.practiceArea,
         language: 'en',
         targetKeywords: topicData.keywords,
         includeLocalCaseStudy: topicData.contentType === 'case-study',
         optimizeForVoiceSearch: topicData.contentType === 'faq',
-        contentGuidance: contentPrompt,
         location: topicData.location
       });
       
@@ -237,7 +236,7 @@ export class SimpleBlogOrchestrator {
       nextDay = scheduleDays[0]; // Next Monday
     }
     
-    const daysUntilNext = (nextDay - dayOfWeek + 7) % 7 || 7;
+    const daysUntilNext = ((nextDay ?? 0) - dayOfWeek + 7) % 7 || 7;
     const nextRun = new Date(now);
     nextRun.setDate(now.getDate() + daysUntilNext);
     nextRun.setHours(10, 0, 0, 0);
@@ -258,7 +257,7 @@ export class SimpleBlogOrchestrator {
       
       // If specific topic provided, use it directly
       if (params.topic && params.practiceArea) {
-        const blogPost = await contentFactory.blogGenerator.generateBlogPost({
+        const blogPost = await contentFactory.getBlogGenerator().generateBlogPost({
           topic: params.topic,
           practiceArea: params.practiceArea,
           language: 'en',

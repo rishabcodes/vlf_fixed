@@ -50,6 +50,13 @@ export class ContentFactory {
   }
 
   /**
+   * Get blog generator instance
+   */
+  getBlogGenerator() {
+    return this.blogGenerator;
+  }
+
+  /**
    * Initialize the content factory with all necessary setup
    */
   async initialize() {

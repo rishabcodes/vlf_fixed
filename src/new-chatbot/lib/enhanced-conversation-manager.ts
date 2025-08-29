@@ -175,7 +175,7 @@ export class EnhancedConversationManager {
           }
 };
       
-      await this.orchestrator.processMessage(context, content, role);
+      await this.orchestrator.processMessage(context, content, role === 'system' ? 'assistant' : role);
     }
   }
   
@@ -213,7 +213,7 @@ export class EnhancedConversationManager {
     
     for (const pattern of namePatterns) {
       const match = message.match(pattern);
-      if (match) {
+      if (match && match[1]) {
         const fullName = match[1].trim();
         const parts = fullName.split(/\s+/);
         

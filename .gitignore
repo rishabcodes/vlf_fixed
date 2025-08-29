@@ -225,3 +225,5 @@ extras/
 rishabs-changes/
 test-integration/
 test-integrations/
+amplify-env-full.json
+amplify-env-vars.json

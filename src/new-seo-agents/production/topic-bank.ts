@@ -223,15 +223,15 @@ export function getTimeVariables(): Record<string, string> {
   
   return {
     year: now.getFullYear().toString(),
-    month: months[now.getMonth()],
-    season: seasons[now.getMonth()],
+    month: months[now.getMonth()] || 'January',
+    season: seasons[now.getMonth() as keyof typeof seasons] || 'Winter',
     quarter: `Q${Math.floor(now.getMonth() / 3) + 1}`
   };
 }
 
 // Get a random location
 export function getRandomLocation(): string {
-  return LOCATIONS[Math.floor(Math.random() * LOCATIONS.length)];
+  return LOCATIONS[Math.floor(Math.random() * LOCATIONS.length)] || 'New York';
 }
 
 // Format topic with variables
