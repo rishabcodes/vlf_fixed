@@ -3,110 +3,75 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Display system resources
-        - echo "Available memory:"
-        - free -h || vm_stat
-        - echo "CPU cores:"
-        - nproc || sysctl -n hw.ncpu
-        
-        # Set aggressive memory limits for Node.js
-        - export NODE_OPTIONS="--max-old-space-size=65536 --max-semi-space-size=1024"
-        - export GENERATE_SOURCEMAP=false
+        # Set memory optimization flags for 72GB instance
+        - echo "Setting memory optimization for XLarge instance..."
+        - export NODE_OPTIONS="--max-old-space-size=16384 --max-semi-space-size=512"
         - export NEXT_TELEMETRY_DISABLED=1
+        - export GENERATE_SOURCEMAP=false
         
-        # Disable parallel installations
+        # Disable all parallelism
+        - export JOBS=1
         - export NPM_CONFIG_JOBS=1
         - export YARN_CHILD_CONCURRENCY=1
         
-        # Install dependencies with reduced parallelism
-        - echo "Installing dependencies..."
-        - |
-          if [ -f "pnpm-lock.yaml" ]; then
-            npm install -g pnpm
-            pnpm config set node-options "--max-old-space-size=8192"
-            pnpm config set worker-concurrency 1
-            pnpm install --frozen-lockfile --prefer-offline
-          elif [ -f "yarn.lock" ]; then
-            yarn install --frozen-lockfile --network-concurrency 1
-          else
-            npm ci --prefer-offline --no-audit --no-fund
-          fi
+        # Install pnpm with memory limits
+        - echo "Installing pnpm..."
+        - npm install -g pnpm@latest
         
-        # Clear any existing build cache
+        # Configure pnpm for sequential operation
+        - pnpm config set node-options "--max-old-space-size=16384"
+        - pnpm config set worker-concurrency 1
+        - pnpm config set side-effects-cache false
+        
+        # Clean previous builds
+        - echo "Cleaning previous build artifacts..."
         - rm -rf .next
         - rm -rf node_modules/.cache
+        - rm -rf .swc
+        - rm -rf .turbo
+        
+        # Install dependencies sequentially
+        - echo "Installing dependencies..."
+        - pnpm install --frozen-lockfile --prefer-offline --ignore-scripts
+        - pnpm rebuild --recursive
         
     build:
       commands:
-        # Display memory usage before build
-        - echo "Memory before build:"
-        - free -h || vm_stat
+        # Monitor memory before build
+        - echo "Memory status before build:"
+        - free -h || true
         
-        # Set build environment variables
+        # Set production environment
         - export NODE_ENV=production
-        - export NEXT_SHARP_PATH=/tmp/node_modules/sharp
         
-        # Use custom build script with sequential processing
-        - echo "Starting sequential build process..."
-        - |
-          if [ -f "scripts/amplify-build.js" ]; then
-            node --max-old-space-size=65536 scripts/amplify-build.js
-          else
-            npm run build:amplify
-          fi
+        # Run sequential build script
+        - echo "Starting optimized sequential build..."
+        - npm run build:amplify
         
-        # Display memory usage after build
-        - echo "Memory after build:"
-        - free -h || vm_stat
+        # Clean up after build to free memory
+        - echo "Post-build cleanup..."
+        - rm -rf node_modules/.cache
+        - rm -rf .swc
+        
+        # Monitor memory after build
+        - echo "Memory status after build:"
+        - free -h || true
         
   artifacts:
     baseDirectory: .next
     files:
       - '**/*'
+      
   cache:
     paths:
-      # Minimal caching to reduce memory overhead
       - node_modules/**/*
-      - .pnpm-store/**/*
-  
-  # Custom build settings for Amplify
-  buildSpec:
-    configurePhase:
-      nodeVersion: 20
-    env:
-      variables:
-        # Memory optimization variables
-        NODE_OPTIONS: "--max-old-space-size=65536 --max-semi-space-size=1024"
-        GENERATE_SOURCEMAP: "false"
-        NEXT_TELEMETRY_DISABLED: "1"
-        
-        # Webpack optimization variables
-        WEBPACK_PARALLELISM: "1"
-        WEBPACK_MAX_WORKERS: "1"
-        
-        # Next.js build optimization
-        NEXT_CONCURRENT_FEATURES: "false"
-        EXPERIMENTAL_PAGE_LIMIT: "50"
-        
-        # TypeScript optimization
-        TSC_COMPILE_ON_ERROR: "true"
-        TSC_WATCHFILE: "prioritypollinginterval"
-        
-        # Build timeout (30 minutes)
-        AMPLIFY_BUILD_TIMEOUT: "1800"
-        
-  # Custom compute settings for XLarge instance
-  compute:
-    runtime: nodejs20.x
-    memory: 73728  # 72GB in MB
-    
-# Additional custom headers and redirects
+      
 customHeaders:
   - pattern: '**/*'
     headers:
       - key: 'Cache-Control'
         value: 'public, max-age=31536000, immutable'
-  - pattern: '/_next/static/**'
+  - pattern: '_next/static/**/*'
     headers:
       - key: 'Cache-Control'
         value: 'public, max-age=31536000, immutable'
