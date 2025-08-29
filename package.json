@@ -21,6 +21,7 @@
     "build:analyze": "node scripts/unified-build.js --analyze",
     "build:amplify": "cross-env NODE_OPTIONS='--max-old-space-size=48000' node scripts/amplify-build.js",
     "build:amplify:fast": "cross-env NODE_OPTIONS='--max-old-space-size=48000' FAST_BUILD=true node scripts/amplify-fast-build.js",
+    "build:amplify:ultra": "cross-env NODE_OPTIONS='--max-old-space-size=65536' ULTRA_FAST_BUILD=true node scripts/amplify-ultra-fast-build.js",
     "build:amplify:fallback": "cross-env NODE_OPTIONS='--max-old-space-size=48000' NEXT_TELEMETRY_DISABLED=1 GENERATE_SOURCEMAP=false next build",
     "prebuild:amplify": "rm -rf .next && rm -rf node_modules/.cache",
     "start": "next start",

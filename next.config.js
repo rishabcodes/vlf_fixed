@@ -44,11 +44,16 @@ const nextConfig = {
   },
   
   experimental: {
-    // Optimize for speed with reduced memory usage
+    // Optimize for ULTRA-FAST builds on XLarge compute
     workerThreads: true,
-    cpus: 2, // Reduced from 4 to save memory
+    cpus: process.env.ULTRA_FAST_BUILD === 'true' ? 16 : 2, // Use all 16 vCPUs in ultra-fast mode
     serverMinification: true,
     serverSourceMaps: false,
+    // Enable parallel compilation in ultra-fast mode
+    ...(process.env.ULTRA_FAST_BUILD === 'true' && {
+      parallelServerCompiles: true,
+      parallelServerBuildTraces: true,
+    }),
     // Optimize package imports (removed framer-motion)
     optimizePackageImports: [
       'lucide-react',
