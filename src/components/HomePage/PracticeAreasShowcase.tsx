@@ -93,6 +93,11 @@ const PracticeAreasShowcase = React.memo(({ language }: PracticeAreasShowcasePro
 
   const currentArea = areas[activeArea];
 
+  // Safety check for TypeScript
+  if (!currentArea) {
+    return null;
+  }
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-black via-burgundy-950/5 to-black py-24">
       {/* Floating gradient orbs */}

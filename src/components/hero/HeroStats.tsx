@@ -16,17 +16,12 @@ interface HeroStatsProps {
 
 export default function HeroStats({ stats }: HeroStatsProps) {
   useEffect(() => {
-    // Animate stats on scroll
+    // Animate stats on scroll using CSS classes
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            gsap.to(entry.target, {
-              scale: 1,
-              opacity: 1,
-              duration: 0.5,
-              stagger: 0.1,
-            });
+            entry.target.classList.add('animate-in');
           }
         });
       },
@@ -47,8 +42,7 @@ className="grid grid-cols-2 gap-6 md:grid-cols-4"
     >
       {stats.map((stat, index) => (
         <div key={index}
-
-                className="stat-card transform scale-0 opacity-0 text-center">
+                className="stat-card text-center opacity-0 transition-all duration-500 ease-out [&.animate-in]:opacity-100 [&.animate-in]:scale-100 scale-95">
           <div
                 className="text-3xl font-black text-[#C9974D] md:text-4xl">{stat.value}</div>
           <div className="mt-1 text-sm text-gray-400">{stat.label}</div>

@@ -119,7 +119,7 @@ className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20"
               href="tel:1-844-967-3536"
               className="bg-white text-blue-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
             >
-              <PhoneIcon className="h-5 w-5" />
+              <Phone className="h-5 w-5" />
               {isSpanish ? 'Llame Ahora' : 'Call Now'}: 1-844-YO-PELEO
             </a>
             <Link
@@ -144,21 +144,21 @@ className="py-16 bg-white"
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="flex items-start gap-4">
-                <MapPinIcon className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
+                <MapPin className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="font-semibold mb-1">{isSpanish ? 'Dirección' : 'Address'}</h3>
                   <p className="text-gray-600">{office.address}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <PhoneIcon className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
+                <Phone className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="font-semibold mb-1">{isSpanish ? 'Teléfono' : 'Phone'}</h3>
                   <p className="text-gray-600">{office.phone}</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <ClockIcon className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
+                <Clock className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="font-semibold mb-1">{isSpanish ? 'Horario' : 'Hours'}</h3>
                   <p className="text-gray-600">{office.hours}</p>
@@ -260,7 +260,7 @@ className="py-16 bg-white"
               href="tel:1-844-967-3536"
               className="bg-white text-blue-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2"
             >
-              <PhoneIcon className="h-5 w-5" />
+              <Phone className="h-5 w-5" />
               1-844-YO-PELEO
             </a>
             <Link

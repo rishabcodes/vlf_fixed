@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import { Suspense, useState, useEffect } from 'react';
 import { ClientChat } from '@/components/ChatWidget/ClientChat';
 import { LanguageTogglePortal } from '@/components/lang/LanguageTogglePortal';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 
 export function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
@@ -15,7 +16,7 @@ export function ClientLayoutWrapper({ children }: { children: React.ReactNode })
   
   // Always render MasterLayout for SSR, but wrap client-only components
   return (
-    <>
+    <ErrorBoundary>
       <MasterLayout>
         {children}
         {mounted && <Toaster position="bottom-right" />}
@@ -28,6 +29,6 @@ export function ClientLayoutWrapper({ children }: { children: React.ReactNode })
       </MasterLayout>
       {/* Language Toggle Portal - only render after mount */}
       {mounted && <LanguageTogglePortal />}
-    </>
+    </ErrorBoundary>
   );
 }

@@ -17,17 +17,7 @@ import {
   FileText,
   Phone,
 } from 'lucide-react';
-import {
-  format,
-  addDays,
-  startOfWeek,
-  endOfWeek,
-  startOfMonth,
-  endOfMonth,
-  isSameDay,
-  isToday,
-  isFuture,
-} from 'date-fns';
+import { format, addDays, startOfWeek, endOfWeek, startOfMonth, endOfMonth, isSameDay, isToday, isFuture,  } from 'date-fns';
 
 interface Appointment {
   id: string;

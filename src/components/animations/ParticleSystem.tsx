@@ -232,3 +232,6 @@ export function ParticleExplosion({
     </div>
   );
 }
+
+// Export ParticleExplosion as ConfettiExplosion for compatibility
+export const ConfettiExplosion = ParticleExplosion;

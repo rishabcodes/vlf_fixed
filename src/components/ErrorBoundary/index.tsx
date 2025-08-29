@@ -24,6 +24,22 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   override componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    // Check if it's a DOM-related error
+    const isDOMError = error.message && (
+      error.message.includes('removeChild') ||
+      error.message.includes('appendChild') ||
+      error.message.includes('Cannot read properties of null') ||
+      error.message.includes('null is not an object')
+    );
+
+    if (isDOMError) {
+      // Log DOM errors differently (less severe)
+      logger.debug('DOM-related error caught:', error.message);
+      // Don't show error UI for DOM errors - just recover
+      this.setState({ hasError: false });
+      return;
+    }
+
     logger.error('ErrorBoundary caught an error:', error, errorInfo);
 
     // Temporarily disabled Sentry due to missing dependencies

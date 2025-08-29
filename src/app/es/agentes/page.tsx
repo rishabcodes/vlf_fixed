@@ -129,7 +129,7 @@ export default function AIAgentsPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link href="/es/consulta-ia">
                   <Button size="lg" className="bg-secondary hover:bg-secondary-dark">
-                    <ChatBubbleLeftRightIcon className="mr-2 h-5 w-5" />
+                    <MessageSquare className="mr-2 h-5 w-5" />
                     Probar Asistente Virtual
                   </Button>
                 </Link>
@@ -218,7 +218,7 @@ export default function AIAgentsPage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
                 <div className="mx-auto h-16 w-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
-                  <ClockIcon className="h-8 w-8 text-secondary" />
+                  <Clock className="h-8 w-8 text-secondary" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Disponible 24/7</h3>
                 <p className="text-gray-600">
@@ -228,7 +228,7 @@ export default function AIAgentsPage() {
 
               <div className="text-center">
                 <div className="mx-auto h-16 w-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
-                  <GlobeAltIcon className="h-8 w-8 text-secondary" />
+                  <Globe className="h-8 w-8 text-secondary" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Bilingüe</h3>
                 <p className="text-gray-600">Asistencia completa en español e inglés</p>
@@ -236,7 +236,7 @@ export default function AIAgentsPage() {
 
               <div className="text-center">
                 <div className="mx-auto h-16 w-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
-                  <ShieldCheckIcon className="h-8 w-8 text-secondary" />
+                  <ShieldCheck className="h-8 w-8 text-secondary" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Confidencial</h3>
                 <p className="text-gray-600">Sus conversaciones son privadas y seguras</p>
@@ -244,7 +244,7 @@ export default function AIAgentsPage() {
 
               <div className="text-center">
                 <div className="mx-auto h-16 w-16 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
-                  <LightBulbIcon className="h-8 w-8 text-secondary" />
+                  <Lightbulb className="h-8 w-8 text-secondary" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Siempre Actualizado</h3>
                 <p className="text-gray-600">Información basada en las leyes más recientes</p>
@@ -289,7 +289,7 @@ export default function AIAgentsPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/es/consulta-ia">
                 <Button size="lg" className="bg-white text-secondary hover:bg-gray-100">
-                  <ChatBubbleLeftRightIcon className="mr-2 h-5 w-5" />
+                  <MessageSquare className="mr-2 h-5 w-5" />
                   Comenzar Ahora
                 </Button>
               </Link>
@@ -299,7 +299,7 @@ export default function AIAgentsPage() {
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-secondary"
                 >
-                  <UserGroupIcon className="mr-2 h-5 w-5" />
+                  <Users className="mr-2 h-5 w-5" />
                   Hablar con un Abogado
                 </Button>
               </Link>

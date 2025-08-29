@@ -234,3 +234,6 @@ export function LiquidLoader({ className = '' }: { className?: string }) {
     </div>
   );
 }
+
+// Export LiquidBlob as BlobAnimation for compatibility
+export const BlobAnimation = LiquidBlob;

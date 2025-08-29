@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, Briefcase, Clock, MessageSquare, FileText, Bell, Users } from 'lucide-react';
-import { BellIcon, BriefcaseIcon, CalendarIcon, ChatBubbleLeftRightIcon, DocumentIcon, ClockIcon } from '@heroicons/react/24/outline';
+import { Bell, Briefcase, Calendar, MessageSquare, File, Clock } from '@heroicons/react/24/outline';
 
 export const metadata: Metadata = {
   title: 'Panel de Cliente - Bufete de Abogados Vásquez',
@@ -41,7 +41,7 @@ export default async function DashboardPage() {
               </div>
               <div className="flex items-center space-x-4">
                 <button className="p-2 rounded-full hover:bg-gray-100">
-                  <BellIcon className="h-6 w-6 text-gray-400" />
+                  <Bell className="h-6 w-6 text-gray-400" />
                 </button>
                 <Link href="/es/dashboard/configuracion">
                   <Button variant="outline">Configuración</Button>
@@ -58,7 +58,7 @@ export default async function DashboardPage() {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Casos Activos</CardTitle>
-                <BriefcaseIcon className="h-4 w-4 text-muted-foreground" />
+                <Briefcase className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">3</div>
@@ -69,7 +69,7 @@ export default async function DashboardPage() {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Próximas Citas</CardTitle>
-                <CalendarIcon className="h-4 w-4 text-muted-foreground" />
+                <Calendar className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">2</div>
@@ -80,7 +80,7 @@ export default async function DashboardPage() {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Documentos</CardTitle>
-                <DocumentIcon className="h-4 w-4 text-muted-foreground" />
+                <File className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">12</div>
@@ -91,7 +91,7 @@ export default async function DashboardPage() {
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Mensajes</CardTitle>
-                <ChatBubbleLeftRightIcon className="h-4 w-4 text-muted-foreground" />
+                <MessageSquare className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">5</div>
@@ -109,7 +109,7 @@ export default async function DashboardPage() {
               <CardContent className="grid grid-cols-2 gap-4">
                 <Link href="/es/citas/nueva">
                   <Button className="w-full" variant="outline">
-                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    <Calendar className="mr-2 h-4 w-4" />
                     Programar Cita
                   </Button>
                 </Link>
@@ -121,13 +121,13 @@ export default async function DashboardPage() {
                 </Link>
                 <Link href="/es/dashboard/mensajes">
                   <Button className="w-full" variant="outline">
-                    <ChatBubbleLeftRightIcon className="mr-2 h-4 w-4" />
+                    <MessageSquare className="mr-2 h-4 w-4" />
                     Enviar Mensaje
                   </Button>
                 </Link>
                 <Link href="/es/pago">
                   <Button className="w-full" variant="outline">
-                    <BriefcaseIcon className="mr-2 h-4 w-4" />
+                    <Briefcase className="mr-2 h-4 w-4" />
                     Hacer Pago
                   </Button>
                 </Link>
@@ -143,7 +143,7 @@ export default async function DashboardPage() {
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <div className="p-2 bg-blue-100 rounded-full mr-3">
-                      <DocumentIcon className="h-4 w-4 text-blue-600" />
+                      <File className="h-4 w-4 text-blue-600" />
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-medium">Documento agregado</p>
@@ -152,7 +152,7 @@ export default async function DashboardPage() {
                   </div>
                   <div className="flex items-center">
                     <div className="p-2 bg-green-100 rounded-full mr-3">
-                      <CalendarIcon className="h-4 w-4 text-green-600" />
+                      <Calendar className="h-4 w-4 text-green-600" />
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-medium">Cita confirmada</p>
@@ -161,7 +161,7 @@ export default async function DashboardPage() {
                   </div>
                   <div className="flex items-center">
                     <div className="p-2 bg-purple-100 rounded-full mr-3">
-                      <ChatBubbleLeftRightIcon className="h-4 w-4 text-purple-600" />
+                      <MessageSquare className="h-4 w-4 text-purple-600" />
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-medium">Nuevo mensaje</p>
@@ -201,7 +201,7 @@ export default async function DashboardPage() {
                       Última actualización: Documentos adicionales solicitados
                     </p>
                     <div className="flex items-center text-xs text-gray-500">
-                      <ClockIcon className="h-3 w-3 mr-1" />
+                      <Clock className="h-3 w-3 mr-1" />
                       Actualizado hace 3 días
                     </div>
                   </div>
@@ -220,7 +220,7 @@ export default async function DashboardPage() {
                       Última actualización: Negociando con aseguradora
                     </p>
                     <div className="flex items-center text-xs text-gray-500">
-                      <ClockIcon className="h-3 w-3 mr-1" />
+                      <Clock className="h-3 w-3 mr-1" />
                       Actualizado hace 1 semana
                     </div>
                   </div>

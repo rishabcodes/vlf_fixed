@@ -17,7 +17,7 @@ import {
   Info,
   Percent,
 } from 'lucide-react';
-import { formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNow, format } from 'date-fns';
 
 interface CalculatorResult {
   calculatorType: string;

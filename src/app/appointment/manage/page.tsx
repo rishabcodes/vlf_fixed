@@ -5,6 +5,12 @@ import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { logger, errorToLogMeta } from '@/lib/safe-logger';
+import { isFuture, isPast, isToday, format, parseISO } from 'date-fns';
+import { 
+  Calendar, Clock, MapPin, Phone, Video, 
+  CheckCircle, XCircle, AlertCircle, Search, 
+  Edit2, X, ChevronLeft, ChevronRight 
+} from 'lucide-react';
 
 interface Appointment {
   id: string;

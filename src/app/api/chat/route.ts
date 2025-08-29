@@ -660,21 +660,21 @@ async function fetchPreviousContext(phoneNumber: string, language: 'en' | 'es' =
     // Format context based on language
     const context = language === 'es' 
       ? `CLIENTE QUE REGRESA - ${contact.firstName || ''} ${contact.lastName || ''}
-Visita anterior: ${lastConversation.date}
-Consulta anterior: ${lastConversation.legalIssues || 'Consulta legal general'}
+Visita anterior: ${lastConversation?.date || 'Reciente'}
+Consulta anterior: ${lastConversation?.legalIssues || 'Consulta legal general'}
 
 IMPORTANTE: Comienza reconociendo su consulta anterior y pregunta si quieren continuar con ese tema o discutir algo más.
-Ejemplo: "¡Bienvenido de nuevo ${contact.firstName || ''}! Veo que la última vez estaba preguntando sobre ${lastConversation.legalIssues || 'un asunto legal'}. ¿Le gustaría continuar hablando de eso, o hay algo más en lo que pueda ayudarle hoy?"
+Ejemplo: "¡Bienvenido de nuevo ${contact.firstName || ''}! Veo que la última vez estaba preguntando sobre ${lastConversation?.legalIssues || 'un asunto legal'}. ¿Le gustaría continuar hablando de eso, o hay algo más en lo que pueda ayudarle hoy?"
 
 Información del Cliente:
 - Teléfono: ${contact.phone || phoneNumber}
 - Correo: ${contact.email || 'No proporcionado'}`
       : `RETURNING CLIENT - ${contact.firstName || ''} ${contact.lastName || ''}
-Previous visit: ${lastConversation.date}
-Previous concern: ${lastConversation.legalIssues || 'General legal inquiry'}
+Previous visit: ${lastConversation?.date || 'Recent'}
+Previous concern: ${lastConversation?.legalIssues || 'General legal inquiry'}
 
 IMPORTANT: Start by acknowledging their previous concern and ask if they want to continue with that topic or discuss something else.
-Example: "Welcome back ${contact.firstName || 'there'}! I see last time you were asking about ${lastConversation.legalIssues || 'a legal matter'}. Would you like to continue discussing that, or is there something else I can help you with today?"
+Example: "Welcome back ${contact.firstName || 'there'}! I see last time you were asking about ${lastConversation?.legalIssues || 'a legal matter'}. Would you like to continue discussing that, or is there something else I can help you with today?"
 
 Client Information:
 - Phone: ${contact.phone || phoneNumber}

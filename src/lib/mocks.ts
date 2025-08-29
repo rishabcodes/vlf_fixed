@@ -48,6 +48,41 @@ export const mockRetellResponses = {
 export const mockDelay = (ms: number = 100) => 
   new Promise(resolve => setTimeout(resolve, ms));
 
+// Check if we're in mock environment
+export const isMockEnvironment = () => 
+  process.env.MOCK_MODE === 'true' || 
+  process.env.NODE_ENV === 'test' ||
+  process.env.MOCK_EMAIL === 'true' ||
+  process.env.MOCK_SMS === 'true';
+
+// Handle mock GHL requests
+export async function handleGHLMockRequest(path: string, method: string, body?: any) {
+  await mockDelay(200);
+  
+  if (path.includes('contacts')) {
+    return mockGHLResponses.contacts;
+  }
+  if (path.includes('opportunities')) {
+    return mockGHLResponses.opportunities;
+  }
+  
+  return mockGHLResponses.default;
+}
+
+// Handle mock Retell requests
+export async function handleRetellMockRequest(path: string, method: string, body?: any) {
+  await mockDelay(200);
+  
+  if (path.includes('call')) {
+    return mockRetellResponses.call;
+  }
+  if (path.includes('transcript')) {
+    return mockRetellResponses.transcript;
+  }
+  
+  return mockRetellResponses.default;
+}
+
 // Mock error responses
 export const mockErrorResponse = (message: string = 'Mock error', statusCode: number = 500) => ({
   success: false,

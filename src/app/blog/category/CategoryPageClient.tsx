@@ -8,6 +8,8 @@ import { useRouter } from 'next/navigation';
 import { Calendar, User, ArrowRight, Clock, ChevronLeft } from 'lucide-react';
 import { getCategoryById } from '@/lib/blog/categories';
 import { stripHtml } from '@/lib/utils/stripHtml';
+import { format } from 'date-fns';
+
 
 interface BlogPost {
   id: string;

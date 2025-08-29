@@ -7,6 +7,8 @@ import path from 'path';
 import { logger } from '@/lib/safe-logger';
 import { errorToLogMeta } from '@/lib/safe-logger';
 import pdfParse from 'pdf-parse';
+import { format } from 'date-fns';
+
 
 // Document template schema
 const DocumentTemplateSchema = z.object({

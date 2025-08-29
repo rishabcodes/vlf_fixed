@@ -1,0 +1,331 @@
+TL;DR — the immediate blockers
+
+Your AWS Amplify build script runs TypeScript compilation and then next build. Both fail.
+
+Missing packages / unresolved imports cause Webpack to abort:
+
+“Module not found: Can’t resolve @radix-ui/react-checkbox, @radix-ui/react-slider, @radix-ui/react-tabs” during next build.
+Evidence: Module not found: Can't resolve '@radix-ui/react-checkbox' and companions.
+
+Aliased imports like @/lib/mocks are not resolving.
+Evidence: “Module not found: Can’t resolve @/lib/mocks”.
+
+Additional missing modules seen by the TS compiler (so even before Webpack): million/react, @react-pdf/renderer, @testing-library/react, and winston.
+
+TypeScript compile breaks with hundreds of errors (your build script runs npx tsc --build three times and it fails each time):
+
+Top error families (count in parentheses):
+
+TS2304: “Cannot find name …” (486)
+
+TS2339: “Property ‘…’ does not exist on type …” (261)
+
+TS18048: “'…' is possibly 'undefined'” (123)
+
+TS2322 / TS2345 / TS2769: Type/argument mismatch & bad overloads (177 total)
+
+TS2307: “Cannot find module …” (75)
+
+TS2305: “Module 'X' has no exported member 'Y'” (57)
+
+TS7006: Implicit any parameters (48)
+
+Examples pulled from the log:
+
+src/app/api/chat/agent/route.ts(438,5): error TS2304: Cannot find name 'classification'.
+
+src/components/__tests__/ModernHeader.test.tsx(…): error … then add 'jest' or 'mocha' to the types field in your tsconfig.
+
+src/app/es/dashboard/page.tsx(8,20): error TS2305: Module '"lucide-react"' has no exported member 'DocumentTextIcon'.
+
+src/lib/ai/enhanced-chat-service.ts(…): error TS2307: Cannot find module '@/lib/agents/agent-orchestrator'…
+
+src/lib/crewai/autonomous-crew.ts(…): error TS2307: Cannot find module 'winston'…
+
+Invalid Next.js config options (warnings, but you should fix them):
+
+Next 15 flags unrecognized keys (e.g., silent, prefetch, swcMinify) and experimental flags it doesn’t know about (e.g., webpackBuildActivity, experimentalCacheHandlerPath).
+Evidence: “⚠ Invalid next.config.js options detected: … Unrecognized key(s) in object: 'silent', 'prefetch', 'swcMinify' … at experimental.”
+
+Build script misconfiguration (not fatal, but noisy):
+
+pnpm config set node-options "--max-old-space-size=8192" → pnpm says “Unknown option”. This should be an environment variable: NODE_OPTIONS=--max-old-space-size=8192.
+Evidence: ERROR  Unknown option: 'max-old-space-size'.
+
+Amplify secrets weren’t loaded (warning, but may matter if your code needs env vars at build time):
+
+!Failed to set up process.env.secrets and a 404 while trying to write the cache.
+Evidence: “!Failed to set up process.env.secrets”.
+
+Final failure is next build terminating after Webpack errors:
+Evidence: Build failed: Command failed: npx next build with the “Module not found” items above.
+
+What you’re missing (concrete list)
+A) NPM packages to install (hard blockers)
+
+Install these (they are imported but not installed):
+
+pnpm add @radix-ui/react-checkbox @radix-ui/react-slider @radix-ui/react-tabs @react-pdf/renderer winston million
+
+
+If you intend to keep tests type‑checked during CI, also add:
+
+pnpm add -D @testing-library/react @testing-library/jest-dom jest @types/jest ts-jest
+
+
+(Or exclude tests from TypeScript’s project — see §C.)
+
+B) Path alias resolution for @/… and src/…
+
+Your code uses imports like @/lib/mocks, @/components/..., and src/lib/.... Webpack/TS can’t resolve them as configured in the build environment.
+
+Fix (both TS and Next/Webpack):
+
+tsconfig.json
+
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "src/*": ["src/*"]
+    }
+    // …keep the rest…
+  }
+}
+
+
+next.config.js (ensure Webpack resolves the same aliases)
+
+// next.config.js
+const path = require('path');
+
+module.exports = {
+  webpack: (config) => {
+    config.resolve.alias['@'] = path.resolve(__dirname, 'src');
+    config.resolve.alias['src'] = path.resolve(__dirname, 'src');
+    return config;
+  },
+  // Clean up invalid options too — see §D.
+};
+
+
+Alternatively, convert the problematic imports to relative paths (easiest short‑term) in the handful of files that import @/… or src/….
+
+C) Test files & TS “jest” types
+
+Your TypeScript build includes test files like
+src/components/__tests__/ModernHeader.test.tsx but there are no Jest/testing types configured. Decide one of these:
+
+Option 1 (skip tests in CI type‑check): exclude tests from the TS project
+
+// tsconfig.json
+{
+  "exclude": [
+    "node_modules",
+    ".next",
+    "dist",
+    "coverage",
+    "**/__tests__/**",
+    "**/*.test.*",
+    "**/*.spec.*"
+  ]
+}
+
+
+Option 2 (keep tests type‑checked): add dev deps and types (see §A), and include "types": ["node","jest"] in compilerOptions.
+
+D) Clean up next.config.js
+
+Remove/replace deprecated or unrecognized options flagged by Next 15:
+
+Remove: silent, prefetch, swcMinify
+
+Remove or move any unknown experimental keys like webpackBuildActivity, experimentalCacheHandlerPath (they are not recognized by your Next version)
+
+Leave any supported experimental options as-is.
+
+After cleanup, the warnings about “Invalid next.config.js options” will disappear.
+
+E) Fix broken imports / wrong symbols (code issues)
+
+These are not “missing packages” but incorrect imports or stale code:
+
+Lucide icons: you import DocumentTextIcon from lucide-react, but lucide does not export that name (it’s a Heroicons name). Use a matching lucide export (e.g., FileText or FileTextIcon) or switch that line to @heroicons/react.
+Evidence: Module '"lucide-react"' has no exported member 'DocumentTextIcon'.
+
+Local component exports: many AnimationShowcase imports expect named exports that don’t exist (e.g., ParallaxHero, ConfettiExplosion, BlobAnimation etc.). Ensure the target files actually export the named symbols, or change the imports to the correct names.
+
+Agent orchestration / AI plumbing: imports like @/lib/agents/agent-orchestrator and types like EnhancedChatResponse, AgentType, agentConfigs, etc., are missing or out of sync. Either restore those files/exports or update the code to the newer interface(s).
+Evidence: multiple TS2307 (“Cannot find module …”) and TS2304/TS2339 against those names.
+
+GHLMCPClient mismatches: methods such as createOpportunity, addNote, updateMessage don’t exist on GHLMCPClient. The error even suggests the right method names (e.g., updateContactNote, createContactNote). Update your calls or extend the client’s interface.
+Evidence: Property 'createOpportunity' does not exist on type 'GHLMCPClient'. and “Did you mean 'updateContactNote'?”
+
+Missing files referenced relatively: ./QwikHeaderWrapper, ./agent-manager-v2, ../roselyn-torrellas/page are imported but not present. Either add these files or remove the imports/refs.
+
+Implicit any & undefined checks: fix sites flagged by TS7006 and TS18048/TS2532 (add proper types and null/undefined guards).
+
+F) Build script & environment
+
+Node memory flag via env var (not pnpm config):
+
+In your Amplify prebuild commands, swap:
+
+pnpm config set node-options "--max-old-space-size=8192"
+
+
+for
+
+export NODE_OPTIONS="--max-old-space-size=8192"
+
+
+(Your log: ERROR  Unknown option: 'max-old-space-size')
+
+Amplify secrets / env: The build prints !Failed to set up process.env.secrets with a 404. If your app needs secrets at build time (DB URL, API keys, etc.), add them in Amplify → App settings → Environment variables. (The log doesn’t reveal which keys are required—verify your code’s process.env.* usages and make sure they exist in Amplify.)
+
+Why the build fails (timeline)
+
+TypeScript compile fails (npx tsc --build --incremental --verbose), three attempts, due to the errors summarized above (tests without jest types, missing modules, type mismatches).
+Evidence: repeated Command failed: npx tsc ….
+
+The build script then runs npx next build (twice). Next 15 reports invalid config options, then Webpack fails on unresolved modules (@radix-ui/react-*, @/lib/mocks), and the build aborts.
+Evidence: “Module not found… Can’t resolve … → Build failed because of webpack errors → Command failed: npx next build”.
+
+Highest‑leverage fix order (do this first to get green)
+
+Install the missing packages (hard blockers):
+
+pnpm add @radix-ui/react-checkbox @radix-ui/react-slider @radix-ui/react-tabs @react-pdf/renderer winston million
+
+
+Make alias resolution work (or remove the aliases):
+
+Add @/* and src/* mapping to tsconfig.json and mirror it in next.config.js (Webpack alias), or convert those imports to relative paths.
+
+Pick one approach for tests (so TypeScript stops failing early):
+
+Exclude tests from the TS project (recommended for production builds), or
+
+Install Jest/testing deps and add "types": ["node", "jest"].
+
+Clean next.config.js by removing unsupported keys (silent, prefetch, swcMinify) and unknown experimental flags.
+
+Fix obvious wrong imports (quick wins):
+
+Replace DocumentTextIcon from lucide-react with a valid lucide icon (e.g., FileText) or import it from @heroicons/react.
+
+Either create the missing local files (QwikHeaderWrapper, agent-manager-v2, @/lib/mocks, etc.) or update the code to not import them.
+
+(If needed) Add Amplify env vars that your build actually requires.
+
+After steps 1–4, next build should at least proceed to compile. Steps 5–6 get you the rest of the way.
+
+Useful context pulled from the log
+
+Runtime & framework
+
+Node: v18.20.8 (Amplify build image)
+Node.js version: v18.20.8
+
+Next.js: 15.4.5
+▲ Next.js 15.4.5 (twice)
+
+Prisma client generation succeeded (so DB client codegen isn’t the issue)
+
+postinstall: ✔ Generated … @prisma/client
+
+Final failure
+
+Build failed: Command failed: npx next build
+
+Optional (but helpful) configuration snippets
+
+tsconfig.json (concise example)
+
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "preserve",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "src/*": ["src/*"]
+    }
+    // If you keep tests in the TS project:
+    // "types": ["node", "jest"]
+  },
+  "exclude": [
+    "node_modules",
+    ".next",
+    "dist",
+    "coverage"
+    // Add these if you want to exclude tests:
+    // "**/__tests__/**",
+    // "**/*.test.*",
+    // "**/*.spec.*"
+  ]
+}
+
+
+next.config.js (cleaned up)
+
+const path = require('path');
+
+const nextConfig = {
+  webpack: (config) => {
+    config.resolve.alias['@'] = path.resolve(__dirname, 'src');
+    config.resolve.alias['src'] = path.resolve(__dirname, 'src');
+    return config;
+  },
+  // Remove deprecated: silent, prefetch, swcMinify
+  // Only keep supported experimental flags for Next 15
+};
+
+module.exports = nextConfig;
+
+File hotspots (where most TS errors concentrate)
+
+(Top offenders by error count)
+
+File (relative)	Errors	Example from log
+src/app/api/chat/agent/route.ts	126	TS2304: Cannot find name 'classification'.
+src/app/appointment/manage/page.tsx	108	TS2304: Cannot find name 'isFuture'.
+src/client-intake-automation/integrations/ghl-sync.ts	63	TS2339: Property 'createOpportunity' does not exist on type 'GHLMCPClient'.
+src/components/__tests__/ModernHeader.test.tsx	63	“add 'jest' or 'mocha' to the types field in your tsconfig.”
+src/lib/ai/enhanced-chat-service.ts	60	TS2307: Cannot find module '@/lib/agents/agent-orchestrator'
+src/components/animations/AnimationShowcase.tsx	51	TS2305: '.../ParallaxSection' has no exported member 'ParallaxHero'.
+src/app/es/dashboard/page.tsx	45	TS2305: Module '"lucide-react"' has no exported member 'DocumentTextIcon'.
+src/app/es/agentes/page.tsx	39	same lucide import issue
+src/app/api/chat/route.ts	36	TS18048: 'lastConversation' is possibly 'undefined'.
+
+Use this list to prioritize code fixes after you unblock the build.
+
+Copy‑paste checklist
+
+ Install missing deps:
+pnpm add @radix-ui/react-checkbox @radix-ui/react-slider @radix-ui/react-tabs @react-pdf/renderer winston million
+
+ (If keeping tests) dev deps:
+pnpm add -D @testing-library/react @testing-library/jest-dom jest @types/jest ts-jest
+
+ Add alias support in tsconfig.json and next.config.js, or switch to relative imports.
+
+ Remove deprecated/invalid options from next.config.js (silent, prefetch, swcMinify, unknown experimental flags).
+
+ Fix wrong icon imports (lucide-react vs heroicons).
+
+ Restore or remove missing local modules (@/lib/mocks, QwikHeaderWrapper, etc.).
+
+ Replace/rename incorrect GHLMCPClient method calls to match the actual interface.
+
+ Set NODE_OPTIONS="--max-old-space-size=8192" in the build environment; don’t use pnpm config set node-options.
+
+ (If needed) Add required environment variables in Amplify → Environment variables.

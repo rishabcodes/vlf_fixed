@@ -98,40 +98,12 @@ export async function POST(request: NextRequest) {
       successRate: 0,
     };
 
-    // Test enhanced chat service
+    // Test enhanced chat service - removed as service is no longer used
     if (testType === 'all' || testType === 'chat') {
-      try {
-        const { enhancedChatService } = await import('@/lib/ai/enhanced-chat-service');
-
-        const testContext = {
-          userId: 'api-test',
-          sessionId: `test-${Date.now()}`,
-          language,
-          socketId: 'api-test-socket',
-          history: [],
-          conversationContext: [],
-          metadata: {
-            source: 'web_chat' as const,
-          },
-        };
-
-        const startTime = Date.now();
-        const response = await enhancedChatService.processMessage(message, testContext);
-
-        results.results.chat = {
-          success: true,
-          responseTime: Date.now() - startTime,
-          agent: response.agent,
-          confidence: response.confidence,
-          response: response.response,
-          intent: response.intentAnalysis?.primary,
-        };
-      } catch (error) {
-        results.results.chat = {
-          success: false,
-          error: error instanceof Error ? error.message : 'Unknown error',
-        };
-      }
+      results.results.chat = {
+        success: false,
+        error: 'Chat service test not available - service removed',
+      };
     }
 
     // Test translation service
@@ -158,36 +130,12 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Test agent orchestrator
+    // Test agent orchestrator - removed as service is no longer used
     if (testType === 'all' || testType === 'agents') {
-      try {
-        const { AgentOrchestrator } = await import('@/lib/agents/agent-orchestrator');
-
-        const orchestrator = AgentOrchestrator.getInstance();
-        const testContext = {
-          userId: 'api-test',
-          sessionId: `test-${Date.now()}`,
-          language,
-          history: [],
-          metadata: { source: 'web_chat' },
-        };
-
-        const startTime = Date.now();
-        const response = await orchestrator.routeMessage(message, testContext);
-
-        results.results.agents = {
-          success: true,
-          responseTime: Date.now() - startTime,
-          agent: response.agent,
-          response: response.response,
-          suggestions: response.suggestions,
-        };
-      } catch (error) {
-        results.results.agents = {
-          success: false,
-          error: error instanceof Error ? error.message : 'Unknown error',
-        };
-      }
+      results.results.agents = {
+        success: false,
+        error: 'Agent orchestrator test not available - service removed',
+      };
     }
 
     // Determine overall success

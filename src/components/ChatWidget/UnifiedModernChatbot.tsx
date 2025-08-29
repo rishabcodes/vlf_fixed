@@ -62,6 +62,7 @@ export const UnifiedModernChatbot: React.FC<ChatbotProps> = ({ language: initial
   const [lastAutoSave, setLastAutoSave] = useState<Date | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
@@ -137,6 +138,11 @@ export const UnifiedModernChatbot: React.FC<ChatbotProps> = ({ language: initial
       };
       setMessages(prev => [...prev, newMessage]);
       setIsLoading(false);
+      
+      // Refocus input after AI response
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
       
       // Note: Messages are saved to GHL at session end
     };
@@ -320,6 +326,11 @@ export const UnifiedModernChatbot: React.FC<ChatbotProps> = ({ language: initial
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsLoading(true);
+    
+    // Keep input focused after sending message
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 0);
 
     // Extract contact info from message
     const emailMatch = messageText.match(/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/);
@@ -383,10 +394,20 @@ export const UnifiedModernChatbot: React.FC<ChatbotProps> = ({ language: initial
         };
         setMessages(prev => [...prev, botMessage]);
         setIsLoading(false);
+        
+        // Refocus input after bot response
+        setTimeout(() => {
+          inputRef.current?.focus();
+        }, 100);
       }
     } catch (error) {
       console.error('Failed to send message:', error);
       setIsLoading(false);
+      
+      // Refocus input even on error
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         content: t[language].error,
@@ -456,6 +477,11 @@ export const UnifiedModernChatbot: React.FC<ChatbotProps> = ({ language: initial
       setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
+      
+      // Refocus input after document upload
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
     }
   };
 
@@ -514,6 +540,11 @@ export const UnifiedModernChatbot: React.FC<ChatbotProps> = ({ language: initial
     } catch (error) {
       console.error('Failed to process audio:', error);
       setIsLoading(false);
+      
+      // Refocus input on audio error
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
     }
   };
 
@@ -588,6 +619,11 @@ export const UnifiedModernChatbot: React.FC<ChatbotProps> = ({ language: initial
       setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
+      
+      // Refocus input after document upload
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
     }
   };
 
@@ -604,16 +640,19 @@ export const UnifiedModernChatbot: React.FC<ChatbotProps> = ({ language: initial
 
       {/* Chat Button - Always visible for toggle */}
       <button
-        onClick={async (e) => {
+        onClick={(e) => {
           e.stopPropagation();
           console.log('Chat button clicked, toggling chat...');
           
-          // If closing and has conversation, save to GHL
-          if (isOpen && messages.length > 1) {
-            await endConversation();
-          }
-          
+          // Toggle immediately for responsive UI
           setIsOpen(!isOpen);
+          
+          // Save conversation in background if closing
+          if (isOpen && messages.length > 1) {
+            endConversation().catch(err => 
+              console.error('Failed to save conversation:', err)
+            );
+          }
         }}
         className="fixed bottom-6 right-6 z-[10000] bg-[#C9974D] text-white p-4 rounded-full shadow-2xl hover:bg-[#E5B568] transition-all duration-300 cursor-pointer animate-fadeInScale"
         aria-label="Open chat"
@@ -709,7 +748,11 @@ export const UnifiedModernChatbot: React.FC<ChatbotProps> = ({ language: initial
               {isLoading && (
                 <div className="flex justify-start">
                   <div className="bg-gray-800 text-white p-3 rounded-2xl">
-                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <div className="flex gap-1">
+                      <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                      <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                      <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                    </div>
                   </div>
                 </div>
               )}
@@ -754,6 +797,7 @@ export const UnifiedModernChatbot: React.FC<ChatbotProps> = ({ language: initial
                 className="flex gap-2"
               >
                 <input
+                  ref={inputRef}
                   type="text"
                   value={inputValue}
 

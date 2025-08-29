@@ -108,11 +108,22 @@ export function initializeDOMSafety(): (() => void) | undefined {
     removeChild: {
       original: Node.prototype.removeChild,
       patch: function (this: Node, child: Node) {
+        // Extra safety check for null parent
+        if (!this) {
+          console.warn('removeChild called on null parent');
+          return child;
+        }
         if (!child || !child.parentNode || child.parentNode !== this) {
           // Silently prevent unsafe operation
           return child;
         }
-        return safetyPatches.removeChild.original.call(this, child);
+        try {
+          return safetyPatches.removeChild.original.call(this, child);
+        } catch (e) {
+          // Catch any remaining errors and return the child
+          console.warn('removeChild error caught:', e);
+          return child;
+        }
       },
     },
     appendChild: {

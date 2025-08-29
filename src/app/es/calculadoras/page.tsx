@@ -20,7 +20,7 @@ const calculators = [
     id: 'personal-injury',
     title: 'Calculadora de Lesiones Personales',
     description: 'Estime el valor potencial de su reclamo por lesiones personales',
-    icon: HeartIcon,
+    icon: Heart,
     href: '/es/calculadoras/lesiones-personales',
     popular: true,
     fields: ['Gastos médicos', 'Salarios perdidos', 'Dolor y sufrimiento'],
@@ -38,7 +38,7 @@ const calculators = [
     id: 'workers-comp',
     title: 'Compensación al Trabajador',
     description: 'Determine los beneficios por lesiones laborales',
-    icon: BuildingOfficeIcon,
+    icon: Building2,
     href: '/es/calculadoras/compensacion-trabajador',
     fields: ['Salario semanal', 'Porcentaje de discapacidad', 'Duración'],
   },
@@ -46,7 +46,7 @@ const calculators = [
     id: 'settlement',
     title: 'Calculadora de Acuerdos',
     description: 'Estime el valor de liquidación de su caso',
-    icon: ScaleIcon,
+    icon: Scale,
     href: '/es/calculadoras/acuerdos',
     fields: ['Responsabilidad', 'Daños totales', 'Honorarios legales'],
   },
@@ -62,7 +62,7 @@ const calculators = [
     id: 'legal-fees',
     title: 'Estimador de Honorarios Legales',
     description: 'Comprenda los costos potenciales de representación legal',
-    icon: CurrencyDollarIcon,
+    icon: DollarSign,
     href: '/es/calculadoras/honorarios-legales',
     fields: ['Tipo de caso', 'Complejidad', 'Duración estimada'],
   },
@@ -70,7 +70,7 @@ const calculators = [
     id: 'case-timeline',
     title: 'Línea de Tiempo del Caso',
     description: 'Estime cuánto tiempo tomará resolver su caso',
-    icon: ClockIcon,
+    icon: Clock,
     href: '/es/calculadoras/linea-tiempo',
     fields: ['Tipo de caso', 'Complejidad', 'Carga judicial'],
   },
@@ -223,7 +223,7 @@ export default function CalculatorsPage() {
             <div className="mt-16 grid md:grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="mx-auto h-12 w-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
-                  <CurrencyDollarIcon className="h-6 w-6 text-secondary" />
+                  <DollarSign className="h-6 w-6 text-secondary" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">100% Gratis</h3>
                 <p className="text-gray-600">
@@ -232,7 +232,7 @@ export default function CalculatorsPage() {
               </div>
               <div className="text-center">
                 <div className="mx-auto h-12 w-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
-                  <ScaleIcon className="h-6 w-6 text-secondary" />
+                  <Scale className="h-6 w-6 text-secondary" />
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Basado en la Ley de NC</h3>
                 <p className="text-gray-600">

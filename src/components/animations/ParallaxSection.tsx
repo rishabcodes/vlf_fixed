@@ -57,6 +57,9 @@ export function ParallaxSection({
   );
 }
 
+// Export ParallaxSection as ParallaxHero for compatibility
+export const ParallaxHero = ParallaxSection;
+
 // Parallax image component
 interface ParallaxImageProps {
   src: string;

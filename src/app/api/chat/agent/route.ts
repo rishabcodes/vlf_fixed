@@ -12,6 +12,54 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
 });
 
+// Agent Types enum
+enum AgentType {
+  REMOVAL_DEFENSE = 'removal_defense',
+  CRIMINAL_DEFENSE = 'criminal_defense',
+  PERSONAL_INJURY = 'personal_injury',
+  FAMILY_LAW = 'family_law',
+  WORKERS_COMP = 'workers_comp',
+  BUSINESS_LAW = 'business_law',
+  TRAFFIC = 'traffic',
+  GENERAL = 'general'
+}
+
+// Agent configurations
+const agentConfigs = {
+  [AgentType.REMOVAL_DEFENSE]: {
+    name: 'Removal Defense Specialist',
+    promptTemplate: 'You are a specialist in removal defense and immigration court proceedings...'
+  },
+  [AgentType.CRIMINAL_DEFENSE]: {
+    name: 'Criminal Defense Attorney',
+    promptTemplate: 'You are a criminal defense attorney specializing in NC criminal law...'
+  },
+  [AgentType.PERSONAL_INJURY]: {
+    name: 'Personal Injury Attorney',
+    promptTemplate: 'You are a personal injury attorney familiar with NC contributory negligence law...'
+  },
+  [AgentType.FAMILY_LAW]: {
+    name: 'Family Law Attorney',
+    promptTemplate: 'You are a family law attorney specializing in NC family law requirements...'
+  },
+  [AgentType.WORKERS_COMP]: {
+    name: 'Workers Compensation Attorney',
+    promptTemplate: 'You are a workers compensation attorney familiar with NC requirements...'
+  },
+  [AgentType.BUSINESS_LAW]: {
+    name: 'Business Law Attorney',
+    promptTemplate: 'You are a business law attorney helping with corporate matters...'
+  },
+  [AgentType.TRAFFIC]: {
+    name: 'Traffic Attorney',
+    promptTemplate: 'You are a traffic attorney helping with violations and license issues...'
+  },
+  [AgentType.GENERAL]: {
+    name: 'General Legal Assistant',
+    promptTemplate: 'You are a legal assistant helping to identify the right specialist...'
+  }
+};
+
 // Embedded Legal Knowledge Base (from legal-agents-context.md)
 const LEGAL_KNOWLEDGE = {
   classification: {
@@ -434,8 +482,22 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Get or create conversation context
+    let context = conversations.get(sessionId);
+    if (!context) {
+      context = {
+        sessionId,
+        userId,
+        language: language as 'en' | 'es',
+        conversationHistory: [],
+        conversationStartTime: new Date()
+      };
+      conversations.set(sessionId, context);
+    }
+    const conversationHistory = context.conversationHistory;
+
     // Classify the legal area based on the message
-    classification = classifyLegalArea(message);
+    const classification = classifyLegalArea(message);
     
     // Build dynamic system prompt
     const systemPrompt = buildSystemPrompt(classification.area, classification.isEmergency);
@@ -490,6 +552,12 @@ export async function POST(request: NextRequest) {
 
     const reply = completion.choices[0].message.content || 'I apologize, but I am having trouble processing your request. Please try again or call us at 1-844-YO-PELEO.';
 
+    // Update conversation history
+    conversationHistory.push(
+      { role: 'user', content: message },
+      { role: 'assistant', content: reply }
+    );
+
     // Calculate progress based on conversation stage
     let progress = 0;
     if (conversationHistory.length > 0) {
@@ -531,16 +599,19 @@ export async function POST(request: NextRequest) {
     }
     
     // For sensitive topics, provide a more helpful response
-    const isSensitiveTopic = message?.toLowerCase().includes('hit') || 
-                           message?.toLowerCase().includes('accident') ||
-                           message?.toLowerCase().includes('injury') ||
-                           message?.toLowerCase().includes('arrested') ||
-                           message?.toLowerCase().includes('detained');
+    const requestBody = await request.json().catch(() => ({ message: '' }));
+    const userMessage = requestBody.message || '';
+    
+    const isSensitiveTopic = userMessage?.toLowerCase().includes('hit') || 
+                           userMessage?.toLowerCase().includes('accident') ||
+                           userMessage?.toLowerCase().includes('injury') ||
+                           userMessage?.toLowerCase().includes('arrested') ||
+                           userMessage?.toLowerCase().includes('detained');
     
     if (isSensitiveTopic) {
       let emergencyResponse = "I understand this is a serious situation. ";
       
-      if (message?.toLowerCase().includes('hit')) {
+      if (userMessage?.toLowerCase().includes('hit')) {
         emergencyResponse += "First, make sure everyone involved gets medical attention if needed. Do not leave the scene. ";
       }
       
@@ -548,10 +619,14 @@ export async function POST(request: NextRequest) {
       
       return NextResponse.json({
         reply: emergencyResponse,
-        sessionId,
-        classification: classification,
+        sessionId: requestBody.sessionId || 'emergency-session',
+        classification: {
+          area: 'emergency',
+          confidence: 100,
+          isEmergency: true
+        },
         progress: 30,
-        legalAreaDetected: classification.area,
+        legalAreaDetected: 'emergency',
         emergencyStatus: true
       });
     }
@@ -559,8 +634,12 @@ export async function POST(request: NextRequest) {
     // Return fallback response instead of error for better UX
     return NextResponse.json({
       reply: 'I apologize, but I am having trouble processing your request. Please try again or call us at 1-844-YO-PELEO.',
-      sessionId,
-      classification: classification,
+      sessionId: requestBody.sessionId || 'error-session',
+      classification: {
+        area: 'general',
+        confidence: 0,
+        isEmergency: false
+      },
       progress: 0,
       error: error.message,  // Always show error for debugging
       errorStack: process.env.NODE_ENV === 'development' ? error.stack : undefined

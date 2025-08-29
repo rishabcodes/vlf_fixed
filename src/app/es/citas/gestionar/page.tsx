@@ -84,7 +84,7 @@ export default function ManageAppointmentsPage() {
               </div>
               <Link href="/es/citas/nueva">
                 <Button className="bg-secondary hover:bg-secondary-dark">
-                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  <Calendar className="mr-2 h-4 w-4" />
                   Nueva Cita
                 </Button>
               </Link>
@@ -97,7 +97,7 @@ export default function ManageAppointmentsPage() {
             {upcomingAppointments.length === 0 ? (
               <Card>
                 <CardContent className="text-center py-12">
-                  <CalendarIcon className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+                  <Calendar className="mx-auto h-12 w-12 text-gray-400 mb-4" />
                   <p className="text-gray-600 mb-4">No tiene citas programadas</p>
                   <Link href="/es/citas/nueva">
                     <Button variant="outline">Programar una Cita</Button>
@@ -126,7 +126,7 @@ export default function ManageAppointmentsPage() {
 
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-600">
                             <div className="flex items-center">
-                              <CalendarIcon className="h-4 w-4 mr-2" />
+                              <Calendar className="h-4 w-4 mr-2" />
                               {new Date(appointment.date).toLocaleDateString('es-ES', {
                                 weekday: 'long',
                                 year: 'numeric',
@@ -136,19 +136,19 @@ export default function ManageAppointmentsPage() {
                             </div>
 
                             <div className="flex items-center">
-                              <ClockIcon className="h-4 w-4 mr-2" />
+                              <Clock className="h-4 w-4 mr-2" />
                               {appointment.time}
                             </div>
 
                             <div className="flex items-center">
                               {appointment.type === 'in-person' && (
-                                <MapPinIcon className="h-4 w-4 mr-2" />
+                                <MapPin className="h-4 w-4 mr-2" />
                               )}
                               {appointment.type === 'virtual' && (
-                                <VideoCameraIcon className="h-4 w-4 mr-2" />
+                                <Video className="h-4 w-4 mr-2" />
                               )}
                               {appointment.type === 'phone' && (
-                                <PhoneIcon className="h-4 w-4 mr-2" />
+                                <Phone className="h-4 w-4 mr-2" />
                               )}
                               {appointment.type === 'in-person' && appointment.location}
                               {appointment.type === 'virtual' && 'Reunión Virtual'}
@@ -172,7 +172,7 @@ export default function ManageAppointmentsPage() {
 
                         <div className="flex gap-2 mt-4 md:mt-0 md:ml-6">
                           <Button variant="outline" size="sm">
-                            <PencilIcon className="h-4 w-4 mr-1" />
+                            <Pencil className="h-4 w-4 mr-1" />
                             Editar
                           </Button>
                           <Button
@@ -180,7 +180,7 @@ export default function ManageAppointmentsPage() {
                             size="sm"
                             className="text-red-600 hover:text-red-700"
                           >
-                            <TrashIcon className="h-4 w-4 mr-1" />
+                            <Trash2 className="h-4 w-4 mr-1" />
                             Cancelar
                           </Button>
                         </div>
@@ -250,7 +250,7 @@ export default function ManageAppointmentsPage() {
                   </p>
                   <Button variant="outline" size="sm" asChild>
                     <a href="tel:18449673536">
-                      <PhoneIcon className="h-4 w-4 mr-2" />
+                      <Phone className="h-4 w-4 mr-2" />
                       Llamar Ahora
                     </a>
                   </Button>
