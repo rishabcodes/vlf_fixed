@@ -19,7 +19,6 @@ frontend:
         - npm install -g pnpm@latest
         
         # Configure pnpm for sequential operation
-        - pnpm config set node-options "--max-old-space-size=16384"
         - pnpm config set worker-concurrency 1
         - pnpm config set side-effects-cache false
         
